@@ -1,0 +1,45 @@
+﻿<div class="col-md-12">
+    <form id="search-form" role="search" asp-controller="Search">
+        <div class="input-group mb-3">
+            <input class="form-control form-control-lg" placeholder="Search for Items" id="query" name="query" type="text" value="@(ViewData["Query"] != null  ? (string) ViewData["Query"] : "")">
+            <div class="input-group-append">
+                <button class="btn btn-success" type="submit"><i class="fa fa-search px-3" aria-hidden="true"></i></button>
+            </div>
+        </div>
+        <a href="#?" data-toggle="collapse" data-target="#demo" class="float-right">Search Options</a><br />
+
+        <div id="demo" class="collapse">
+            <div class="row">
+                <div class="col-md-3">
+                    <label>Status</label>
+                    <select class="form-control search-result-filter" id="manufacturer-filter">
+                        <option value="">--Any Status--</option>
+                        <option>Active</option>
+                    </select>
+                </div>
+                <div class="col-md-3">
+                    <label>CDM</label>
+                    <select class="form-control search-result-filter" id="manufacturer-filter">
+                        <option value="">--Any CDM--</option>
+                        <option>John Doe</option>
+                    </select>
+                </div>
+                <div class="col-md-3">
+                    <label>Filter 3</label>
+                    <select class="form-control search-result-filter" id="manufacturer-filter">
+                        <option value="">--Filter 3--</option>
+                        <option>All</option>
+                    </select>
+                </div>
+                <div class="col-md-3">
+                    <label>Filter 4</label>
+                    <select class="form-control search-result-filter" id="manufacturer-filter">
+                        <option value="">--Filter 4--</option>
+                        <option>All</option>
+                    </select>
+                </div>
+            </div>
+            
+        </div>
+    </form>
+</div>
