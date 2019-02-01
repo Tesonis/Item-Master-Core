@@ -5,17 +5,11 @@
 
     <div class="container-fluid">
 
-        <!-- Breadcrumbs-->
-        <ol class="breadcrumb">
-            <li class="breadcrumb-item">
-                <a href="index.html">Dashboard</a>
-            </li>
-            <li class="breadcrumb-item active">Blank Page</li>
-        </ol>
+        @Html.Partial("_Breadcrumb")
 
         <!-- Page Content -->
         <div class="mx-auto text-center"><h1>Item Master Inquiry</h1></div>
-        
+
         <hr>
         @Html.Partial("_SearchPartial")
         <div id="searchResults" class="my-5 searchresult mx-4">
@@ -23,7 +17,48 @@
             <hr />
             <h5 class="text-secondary text-center my-4">Showing 1 - 8 of 8 Results</h5>
             <ul class="row">
-                
+
+                <li class="col-12 col-md-6 col-lg-2">
+                    <a href="@Url.Action("Edit", null, new { area = string.Empty, controller = "Item" }, Request.Url.Scheme)">
+                        <div class="cnt-block equal-hight" style="height: 349px;">
+                            <p><b>30001</b></p>
+                            <figure><img src="https://via.placeholder.com/150" class="img-responsive" alt=""></figure>
+                            <h5>MINSA CORN FLOUR REG 2KG</h5>
+                            <p><span class="text-success">ACTIVE</span> - 09/09/14</p>
+                        </div>
+                    </a>
+                </li>
+
+                <li class="col-12 col-md-6 col-lg-2">
+                    <a href="#?">
+                        <div class="cnt-block equal-hight" style="height: 349px;">
+                            <p><b>30900</b></p>
+                            <figure><img src="https://via.placeholder.com/150" class="img-responsive" alt=""></figure>
+                            <h5>OM RAW EP 26/30 WT SHRIMP</h5>
+                            <p><span class="text-danger">INACTIVE</span> - 09/09/14</p>
+                        </div>
+                    </a>
+                </li>
+                <li class="col-12 col-md-6 col-lg-2">
+                    <a href="#?">
+                        <div class="cnt-block equal-hight" style="height: 349px;">
+                            <p><b>40545</b></p>
+                            <figure><img src="https://via.placeholder.com/150" class="img-responsive" alt=""></figure>
+                            <h5>RUBICON MANGO JUICE DRINK</h5>
+                            <p><span class="text-success">INACTIVE</span> - 06/26/14</p>
+                        </div>
+                    </a>
+                </li>
+                <li class="col-12 col-md-6 col-lg-2">
+                    <a href="#?">
+                        <div class="cnt-block equal-hight" style="height: 349px;">
+                            <p><b>56455</b></p>
+                            <figure><img src="https://via.placeholder.com/150" class="img-responsive" alt=""></figure>
+                            <h5>BRM MUESLI 8 CS SHIPPER</h5>
+                            <p><span class="text-success">ACTIVE</span> - 09/09/14</p>
+                        </div>
+                    </a>
+                </li>
                 <li class="col-12 col-md-6 col-lg-2">
                     <a href="#?">
                         <div class="cnt-block equal-hight" style="height: 349px;">
@@ -32,64 +67,37 @@
                             <h5>MINSA CORN FLOUR REG 2KG</h5>
                             <p><span class="text-success">ACTIVE</span> - 09/09/14</p>
                         </div>
-                    </a>`````
-                </li>
-                    
-                <li class="col-12 col-md-6 col-lg-2">
-                    <div class="cnt-block equal-hight" style="height: 349px;">
-                        <p><b>30900</b></p>
-                        <figure><img src="https://via.placeholder.com/150" class="img-responsive" alt=""></figure>
-                        <h5><a href="#?">OM RAW EP 26/30 WT SHRIMP</a></h5>
-                        <p><span class="text-danger">INACTIVE</span> - 09/09/14</p>
-                    </div>
+                    </a>
                 </li>
                 <li class="col-12 col-md-6 col-lg-2">
-                    <div class="cnt-block equal-hight" style="height: 349px;">
-                        <p><b>40545</b></p>
-                        <figure><img src="https://via.placeholder.com/150" class="img-responsive" alt=""></figure>
-                        <h5><a href="#?">RUBICON MANGO JUICE DRINK</a></h5>
-                        <p><span class="text-success">INACTIVE</span> - 06/26/14</p>
-                    </div>
+                    <a href="#?">
+                        <div class="cnt-block equal-hight" style="height: 349px;">
+                            <p><b>30001</b></p>
+                            <figure><img src="https://via.placeholder.com/150" class="img-responsive" alt=""></figure>
+                            <h5>MINSA CORN FLOUR REG 2KG</h5>
+                            <p><span class="text-success">ACTIVE</span> - 09/09/14</p>
+                        </div>
+                    </a>
                 </li>
                 <li class="col-12 col-md-6 col-lg-2">
-                    <div class="cnt-block equal-hight" style="height: 349px;">
-                        <p><b>56455</b></p>
-                        <figure><img src="https://via.placeholder.com/150" class="img-responsive" alt=""></figure>
-                        <h5><a href="#?">BRM MUESLI 8 CS SHIPPER</a></h5>
-                        <p><span class="text-success">ACTIVE</span> - 09/09/14</p>
-                    </div>
+                    <a href="#?">
+                        <div class="cnt-block equal-hight" style="height: 349px;">
+                            <p><b>30001</b></p>
+                            <figure><img src="https://via.placeholder.com/150" class="img-responsive" alt=""></figure>
+                            <h5>MINSA CORN FLOUR REG 2KG</h5>
+                            <p><span class="text-success">ACTIVE</span> - 09/09/14</p>
+                        </div>
+                    </a>
                 </li>
                 <li class="col-12 col-md-6 col-lg-2">
-                    <div class="cnt-block equal-hight" style="height: 349px;">
-                        <p><b>30001</b></p>
-                        <figure><img src="https://via.placeholder.com/150" class="img-responsive" alt=""></figure>
-                        <h5><a href="#?">MINSA CORN FLOUR REG 2KG</a></h5>
-                        <p><span class="text-success">ACTIVE</span> - 09/09/14</p>
-                    </div>
-                </li>
-                <li class="col-12 col-md-6 col-lg-2">
-                    <div class="cnt-block equal-hight" style="height: 349px;">
-                        <p><b>30001</b></p>
-                        <figure><img src="https://via.placeholder.com/150" class="img-responsive" alt=""></figure>
-                        <h5><a href="#?">MINSA CORN FLOUR REG 2KG</a></h5>
-                        <p><span class="text-success">ACTIVE</span> - 09/09/14</p>
-                    </div>
-                </li>
-                <li class="col-12 col-md-6 col-lg-2">
-                    <div class="cnt-block equal-hight" style="height: 349px;">
-                        <p><b>30001</b></p>
-                        <figure><img src="https://via.placeholder.com/150" class="img-responsive" alt=""></figure>
-                        <h5><a href="#?">MINSA CORN FLOUR REG 2KG</a></h5>
-                        <p><span class="text-success">ACTIVE</span> - 09/09/14</p>
-                    </div>
-                </li>
-                <li class="col-12 col-md-6 col-lg-2">
-                    <div class="cnt-block equal-hight" style="height: 349px;">
-                        <p><b>30001</b></p>
-                        <figure><img src="https://via.placeholder.com/150" class="img-responsive" alt=""></figure>
-                        <h5><a href="#?">MINSA CORN FLOUR REG 2KG</a></h5>
-                        <p><span class="text-success">ACTIVE</span> - 09/09/14</p>
-                    </div>
+                    <a href="#?">
+                        <div class="cnt-block equal-hight" style="height: 349px;">
+                            <p><b>30001</b></p>
+                            <figure><img src="https://via.placeholder.com/150" class="img-responsive" alt=""></figure>
+                            <h5>MINSA CORN FLOUR REG 2KG</h5>
+                            <p><span class="text-success">ACTIVE</span> - 09/09/14</p>
+                        </div>
+                    </a>
                 </li>
 
             </ul>
