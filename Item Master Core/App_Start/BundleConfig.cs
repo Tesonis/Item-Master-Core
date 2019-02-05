@@ -31,6 +31,10 @@ namespace Item_Master_Core
 
             bundles.Add(new ScriptBundle("~/bundles/js").Include(
                       "~/Scripts/sb-admin.js"));
+            bundles.Add(new ScriptBundle("~/bundles/bs-select").Include(
+                      "~/Scripts/bootstrap-select*", 
+                      "~/Content/bootstrap-select*
+                      ));
         }
     }
 }

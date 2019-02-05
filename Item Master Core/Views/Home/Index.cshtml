@@ -5,10 +5,8 @@
 
     <div class="container-fluid">
 
-        @Html.Partial("_Breadcrumb")
-
         <!-- Page Content -->
-        <div class="mx-auto text-center"><h1>Item Master Inquiry</h1></div>
+        <div class="mx-auto text-center my-4"><h1>Item Master Inquiry</h1></div>
 
         <hr>
         @Html.Partial("_SearchPartial")
@@ -19,7 +17,7 @@
             <ul class="row">
 
                 <li class="col-12 col-md-6 col-lg-2">
-                    <a href="@Url.Action("Edit", null, new { area = string.Empty, controller = "Item" }, Request.Url.Scheme)">
+                    <a href="@Url.Action("Inquiry", null, new { area = string.Empty, controller = "Item" }, Request.Url.Scheme)">
                         <div class="cnt-block equal-hight" style="height: 349px;">
                             <p><b>30001</b></p>
                             <figure><img src="https://via.placeholder.com/150" class="img-responsive" alt=""></figure>
@@ -30,7 +28,7 @@
                 </li>
 
                 <li class="col-12 col-md-6 col-lg-2">
-                    <a href="#?">
+                    <a href="@Url.Action("Edit", null, new { area = string.Empty, controller = "Item" }, Request.Url.Scheme)">
                         <div class="cnt-block equal-hight" style="height: 349px;">
                             <p><b>30900</b></p>
                             <figure><img src="https://via.placeholder.com/150" class="img-responsive" alt=""></figure>
