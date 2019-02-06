@@ -29,12 +29,14 @@ namespace Item_Master_Core
                       "~/Content/sb-admin.css",
                       "~/Content/Site.css"));
 
+            bundles.Add(new StyleBundle("~/Content/bs-select").Include(
+                      "~/Content/bootstrap-select.min.css"));
+
             bundles.Add(new ScriptBundle("~/bundles/js").Include(
                       "~/Scripts/sb-admin.js"));
+
             bundles.Add(new ScriptBundle("~/bundles/bs-select").Include(
-                      "~/Scripts/bootstrap-select*", 
-                      "~/Content/bootstrap-select*
-                      ));
+                      "~/Scripts/bootstrap-select*"));
         }
     }
 }

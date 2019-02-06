@@ -12,34 +12,38 @@
             <div class="row">
                 <div class="col-md-3">
                     <label>Status</label>
-                    <select class="form-control search-result-filter" id="manufacturer-filter">
-                        <option value="">--Any Status--</option>
-                        <option>Active only</option>
-                        <option>Inactive only</option>
-                        <option>Work file only</option>
+                    <select class="selectpicker form-control search-result-filter" multiple>
+                        <option selected>Active</option>
+                        <option selected>Inactive</option>
+                        <option selected>Draft</option>
                     </select>
                 </div>
                 <div class="col-md-3">
                     <label>CDM</label>
-                    <select class="form-control search-result-filter" id="manufacturer-filter">
-                        <option value="">--Any CDM--</option>
+                    <select class="selectpicker form-control search-result-filter" data-live-search="true" multiple>
                         <option>John Doe</option>
-                        <option>John Doe</option>
-                        <option>John Doe</option>
+                        <option>Terry Huang</option>
+                        <option>Vincent Perry</option>
                     </select>
                 </div>
                 <div class="col-md-3">
-                    <label>Filter 3</label>
-                    <select class="form-control search-result-filter" id="manufacturer-filter">
-                        <option value="">--Filter 3--</option>
-                        <option>All</option>
+                    <label>Pillar</label>
+                    <select class="selectpicker form-control search-result-filter" multiple>
+                        <option selected>Natural & Organic</option>
+                        <option selected>Cheese & Dairy</option>
+                        <option selected>Seafood</option>
                     </select>
                 </div>
                 <div class="col-md-3">
                     <label>Filter 4</label>
-                    <select class="form-control search-result-filter" id="manufacturer-filter">
-                        <option value="">--Filter 4--</option>
-                        <option>All</option>
+                    <select class="selectpicker form-control search-result-filter" data-live-search="true">
+                        <option>Option 1</option>
+                        <option>Option 2</option>
+                        <option>Option 3</option>
+                        <option data-divider="true"></option>
+                        <option>Option 1</option>
+                        <option>Option 2</option>
+                        <option>Option 3</option>
                     </select>
                 </div>
             </div>

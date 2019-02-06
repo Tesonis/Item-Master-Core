@@ -7,12 +7,22 @@
     @Html.Partial("_Breadcrumb")
     <a href="@Url.Action("Index", null, new { area = string.Empty, controller = "Home" }, Request.Url.Scheme)"><i class="fa fa-long-arrow-left pr-2"></i>Back to Index</a>
     <hr />
-    <figure><img src="https://via.placeholder.com/150" class="img-responsive" alt=""></figure>
-    <div class="mb-4">
-        <h5><b>Item ID:</b> 30002</h5>
-        <h5><b>Status:</b> <span class="text-success">Active - 9/09/14</span></h5>
-        <h5><b>Product:</b> Minsa Corn Flour Tam 2KG</h5>
+    <div class="row">
+        <div class="col-9">
+            <figure><img src="https://via.placeholder.com/150" class="img-responsive" alt=""></figure>
+            <div class="mb-4">
+                <h5><b>Item ID:</b> 30002</h5>
+                <h5><b>Status:</b> <span class="text-success">Active - 9/09/14</span></h5>
+                <h5><b>Product:</b> Minsa Corn Flour Tam 2KG</h5>
+            </div>
+        </div>
+        <div class="col-3">
+            <button class="btn-lg btn-block btn-info">Generate Marketing Report</button>
+            <button class="btn-lg btn-block btn-warning">Generate Sales Report</button>
+            <button class="btn-lg btn-block btn-dark">Generate Admin Report</button>
+        </div>
     </div>
+    
     <!-- Nav tabs -->
     <ul class="nav nav-tabs justify-content-center">
         <li class="nav-item">
