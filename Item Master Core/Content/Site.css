@@ -109,3 +109,10 @@ ul {
             font-weight: 400;
         }
 
+@media (min-width:1500px){
+    .col-xxl-2 {
+        -ms-flex: 0 0 16.666667%;
+        flex: 0 0 16.666667%;
+        max-width: 16.666667%;
+    }
+}
