@@ -17,17 +17,20 @@
             <hr />
             <h5 class="text-secondary text-center my-4">Showing 1 - 8 of 8 Results</h5>
             <ul class="row">
+                @for (int i = 0; i < 1; i++)
+                {
+                    <li class="col-12 col-lg-3 col-xxl-2">
+                        <a href="@Url.Action("Inquiry", null, new { area = string.Empty, controller = "Item" }, Request.Url.Scheme)">
+                            <div class="cnt-block equal-hight" style="height: 349px;">
+                                <p><b>30001</b></p>
+                                <figure><img src="https://via.placeholder.com/150" class="img-responsive" alt=""></figure>
+                                <h5>MINSA CORN FLOUR REG 2KG</h5>
+                                <p><span class="text-success">ACTIVE</span> - 09/09/14</p>
+                            </div>
+                        </a>
+                    </li>
+                }
 
-                <li class="col-12 col-lg-3 col-xxl-2">
-                    <a href="@Url.Action("Inquiry", null, new { area = string.Empty, controller = "Item" }, Request.Url.Scheme)">
-                        <div class="cnt-block equal-hight" style="height: 349px;">
-                            <p><b>30001</b></p>
-                            <figure><img src="https://via.placeholder.com/150" class="img-responsive" alt=""></figure>
-                            <h5>MINSA CORN FLOUR REG 2KG</h5>
-                            <p><span class="text-success">ACTIVE</span> - 09/09/14</p>
-                        </div>
-                    </a>
-                </li>
 
                 <li class="col-12 col-lg-3 col-xxl-2">
                     <a href="@Url.Action("Edit", null, new { area = string.Empty, controller = "Item" }, Request.Url.Scheme)">
@@ -40,7 +43,7 @@
                     </a>
                 </li>
                 <li class="col-12 col-lg-3 col-xxl-2">
-                    <a href="#?">
+                    <a href="@Url.Action("Create", null, new { area = string.Empty, controller = "Item" }, Request.Url.Scheme)">
                         <div class="cnt-block equal-hight" style="height: 349px;">
                             <p><b>87678</b></p>
                             <figure><img src="https://via.placeholder.com/150" class="img-responsive" alt=""></figure>

@@ -16,6 +16,8 @@ namespace Item_Master_Core.Controllers
 
         public ActionResult Create()
         {
+            string date = String.Format("{0:D}", DateTime.Now);
+            ViewBag.currentDate = date;
             return View();
         }
 
