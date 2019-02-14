@@ -3,6 +3,7 @@
 }
 @Styles.Render("~/Content/bs-select")
 @Styles.Render("~/Content/css")
+
 <div id="content-wrapper">
 
     <div class="container-fluid">
@@ -16,7 +17,13 @@
             <h5>Search Results</h5>
             <hr />
             <h5 class="text-secondary text-center my-4">Showing 1 - 8 of 8 Results</h5>
-            <ul class="row">
+            <div class="row">
+                <div class="buttons ml-auto my-3">
+                    <button class="grid-view-btn btn btn-secondary"><i class="fa fa-th"></i></button>
+                    <button class="list-view-btn btn btn-outline-secondary"><i class="fa fa-bars"></i></button>
+                </div>
+            </div>
+            <ul id="gridview" class="row">
                 @for (int i = 0; i < 1; i++)
                 {
                     <li class="col-12 col-lg-3 col-xxl-2">
@@ -103,11 +110,35 @@
                     </a>
                 </li>
 
+
+
             </ul>
+            <table id="listview" class="table table-bordered    table-striped">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Thumbnail</th>
+                        <th>Item Description</th>
+                        <th>Status</th>
+                        <th>Date Added</th>
+                    </tr>
+                </thead>
+                @for (int i = 0; i < 8; i++)
+                {
+                    <tr>
+                        <td><b>30001</b></td>
+                        <td><img src="https://via.placeholder.com/75" class="img-responsive" alt=""></td>
+                        <td><a href="@Url.Action("Inquiry", null, new { area = string.Empty, controller = "Item" }, Request.Url.Scheme)"><h5>MINSA CORN FLOUR REG 2KG</h5></a></td>
+                        <td><span class="text-success">ACTIVE</span></td>
+                        <td>09/09/14</td>
+                    </tr>
+                }
+            </table>
+            </di>
+
         </div>
+        <!-- /.container-fluid -->
 
     </div>
-    <!-- /.container-fluid -->
+    <!-- /.content-wrapper -->
 
-</div>
-<!-- /.content-wrapper -->
