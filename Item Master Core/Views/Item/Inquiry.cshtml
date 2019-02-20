@@ -11,7 +11,7 @@
             <figure><img src="https://via.placeholder.com/150" class="img-responsive" alt=""></figure>
             <div class="mb-4">
                 <h5><b>Item ID:</b> 57187</h5>
-                <h5><b>Status:</b> <span class="text-success">Active - 9/09/14</span></h5>
+                <h5><b>Status:</b> <span class="text-success">Active - 09/26/2005</span></h5>
                 <h5><b>Product:</b> KIKKOMAN ORGANIC SOY SAUCE / KIKKOMAN - SAUCE SOYA BIOLOGIQUE</h5>
             </div>
         </div>
@@ -86,26 +86,27 @@
                             <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">Size</div>
                             <div class="h5 mb-0 font-weight-bold text-gray-800">1 Carton / 6 Case / 296ML</div>
                         </div>
-                        <div class="col-auto">
-                            <i class="fas fa-comments fa-2x text-gray-300"></i>
-                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- Content Row -->
-    <div class="card bg-info text-white">
-        <div class="card-body" data-toggle="collapse" data-target="#detailed-productinfo">Product Details</div>
-
-    </div>
-    <div id="detailed-productinfo" class="collapse show">
-        <div class="card">
+    <!-- Product Details -->
+    <div class="card shadow mb-2">
+        <!-- Card Header - Accordion -->
+        <a href="#detailed-productinfo" class="d-block card-header bg-info py-3" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="detailed-productinfo">
+            <h6 class="m-0 font-weight-bold text-white">Product Details</h6>
+        </a>
+        <!-- Card Content - Collapse -->
+        <div class="collapse show" id="detailed-productinfo">
             <div class="card-body">
                 <div class="row container">
                     <div class="col">
+                        <span><b>National Product Manager: </b><input type="text" class="form-control-plaintext" value="U2" readonly /></span>
+                        <span><b>Regional Product Manager:</b> <input readonly class="form-control-plaintext" value="U2" /></span>
                         <span><b>Item Type: </b><input type="text" class="form-control-plaintext" value="Purchased For Resale" readonly /></span>
+                        <span><b>Masterial Type: </b><input type="text" class="form-control-plaintext" value="N/a" readonly /></span>
                         <span>
                             <b>Product Groups: </b><br />
                             <span class="d-inline-flex">
@@ -114,12 +115,13 @@
                                 <input type="number" class="form-control" value="27" style="width:70px;" readonly>
                                 <input type="number" class="form-control" value="05" style="width:70px;" readonly>
                             </span>
-                        </span>
+                        </span><br />
                         <span><b>Case UPC: </b><input type="number" class="form-control-plaintext" value="10041390001908" readonly /></span>
                         <span><b>WT/Case:</b> <input type="text" class="form-control-plaintext" value=" 3.379 KG(s)" readonly /></span>
-                        <span><b>Moving Avg Cost:</b> <input type="text" class="form-control-plaintext" value="$2.89443 / Piece" readonly /></span>
-                        <span><b>Supplier List:</b> <input type="text" class="form-control-plaintext" value="USD$2.09167 / Piece" readonly /></span>
-                        <span><b>List Expiry:</b> <input type="date" class="form-control-plaintext" value="2019-12-31" readonly /></span>
+                        <span><b>Bottle Size:</b> <input type="text" class="form-control-plaintext" value=" N/a" readonly /></span>
+                        <span><b>Moving Avg Cost:</b> <input type="text" class="form-control-plaintext" value="$2.89443 / Piece " readonly /> </span>
+                        <span><b>Last Month MAC:</b> <input type="text" class="form-control-plaintext" value="$2.89443 / Piece" readonly /></span>
+
                     </div>
                     <div class="col-auto">
                         <div class="custom-control custom-checkbox">
@@ -152,27 +154,81 @@
                         </div>
                         <hr />
 
+                        <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input" id="customCheck" name="example1" disabled>
+                            <label class="custom-control-label" for="customCheck">Perishable / Seasonal</label>
+                        </div>
+                        <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input" id="customCheck" name="example1" checked disabled>
+                            <label class="custom-control-label" for="customCheck">Slow Moving</label>
+                        </div>
+
+                        <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input" id="customCheck" name="example1" disabled>
+                            <label class="custom-control-label" for="customCheck">Hold</label>
+                        </div>
+                        <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input" id="customCheck" name="example1" checked disabled>
+                            <label class="custom-control-label" for="customCheck">Print Price List</label>
+                        </div>
+                        <hr />
+                        <span><b>Principal:</b> <input readonly class="form-control-plaintext" value="231" /></span>
+                        <span><b>Catalog Code:</b> <input readonly class="form-control-plaintext" value="N/A" /></span>
+                        <span><b>Commission Code:</b> <input readonly class="form-control-plaintext" value="R" /></span>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <!-- Content Row -->
-    <div class="card bg-dark text-white">
-        <div class="card-body" data-toggle="collapse" data-target="#detailed-warehouseinfo">Warehouse Info</div>
 
-    </div>
-    <div id="detailed-warehouseinfo" class="collapse show">
-        <div class="card">
+    <!-- Supply Details -->
+    <div class="card shadow mb-2">
+        <!-- Card Header - Accordion -->
+        <a href="#detailed-supplyinfo" class="d-block card-header bg-info py-3" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="detailed-supplyinfo">
+            <h6 class="m-0 font-weight-bold text-white">Supply Details</h6>
+        </a>
+        <!-- Card Content - Collapse -->
+        <div class="collapse show" id="detailed-supplyinfo">
             <div class="card-body">
-                <div class=""></div>
-                <div class="card bg-light">
-                    <div class="card-body">
-                        <h5><b>Warehouse Location: </b> KPV 31 A</h5>
+                <div class="alert alert-primary" role="alert">
+                    <b>Currency:</b> $USD
+                </div>
+                <div class="row container">
+
+                    <div class="col">
+                        <span><b>Supplier List:</b> <input type="text" class="form-control-plaintext" value="U$2.09167 / Piece" readonly /></span>
+                        <span><b>List Expiry:</b> <input type="date" class="form-control-plaintext" value="2019-12-31" readonly /></span>
+                        <span><b>Equivalent Case:</b> <input type="text" class="form-control-plaintext" value="1.000 Factor" readonly /></span>
+                        <span><b>Supplier Pallet Size:</b> <input type="text" class="form-control-plaintext" value="250 H/S" readonly /></span>
+                        <span><b>Code:</b> <input type="text" class="form-control-plaintext" value="0000000000" readonly /></span>
+                        <span><b>T/C Code:</b> <input type="text" class="form-control-plaintext" value="00" readonly /></span>
+                        
+                    </div>
+                    <div class="col-auto">
+                        <span><b>Supplier Item Number:</b> <input type="number" class="form-control-plaintext" value="00190" readonly /></span>
+                        <span><b>Duty:</b> <input type="text" class="form-control-plaintext" value="0.00%" readonly /></span>
+                        <hr />
+                        <span><b>Suggested Retail:</b> <input type="text" class="form-control-plaintext" value="$6.79 / Piece" readonly /></span>
+                        <span><b>Base:</b> <input type="text" class="form-control-plaintext" value="$26.58 / Case" readonly /></span>
+                        <span><b>High End Deal:</b> <input type="text" class="form-control-plaintext text-danger" value="($2.65 / Case)" readonly /></span>
                     </div>
                 </div>
-                
+            </div>
+        </div>
+    </div>
 
+    <!-- Supply Details -->
+    <div class="card shadow mb-2">
+        <!-- Card Header - Accordion -->
+        <a href="#detailed-warehouseinfo" class="d-block card-header bg-info py-3" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="detailed-warehouseinfo">
+            <h6 class="m-0 font-weight-bold text-white">Warehouse / Stock Details</h6>
+        </a>
+        <!-- Card Content - Collapse -->
+        <div class="collapse show" id="detailed-warehouseinfo">
+            <div class="card-body">
+                <div class="alert alert-primary" role="alert">
+                    <b>Warehouse Location: </b> KPV 31 A
+                </div>
                 <table class="table table-bordered">
                     <thead class="thead-light">
                         <tr>
