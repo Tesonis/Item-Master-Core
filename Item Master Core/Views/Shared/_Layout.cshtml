@@ -5,11 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - My ASP.NET Application</title>
     @Styles.Render("~/Content/css")
-    @*@Scripts.Render("~/bundles/modernizr")*@
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs4/dt-1.10.18/b-1.5.4/datatables.min.css" />
 </head>
 <body id="page-top">
-    
-    
+
+
     <div id="wrapper">
         @Html.Partial("_SideNavPartial")
         <!-- Content Wrapper -->
@@ -28,5 +28,6 @@
     @Scripts.Render("~/bundles/bs-select")
     @Scripts.Render("~/Scripts/search-view-toggle.js");
     @RenderSection("scripts", required: false)
+    <script type="text/javascript" src="https://cdn.datatables.net/v/bs4/dt-1.10.18/b-1.5.4/datatables.min.js"></script>
 </body>
 </html>

@@ -844,5 +844,95 @@
             </div>
         </div>
     </div>
-
+    <!-- PO Details -->
+    <div class="card shadow mb-2">
+        <!-- Card Header - Accordion -->
+        <a href="#detailed-poinfo" class="d-block card-header bg-info py-3" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="detailed-poinfo">
+            <h6 class="m-0 font-weight-bold text-white">Supply Details</h6>
+        </a>
+        <!-- Card Content - Collapse -->
+        <div class="collapse show" id="detailed-poinfo">
+            <div class="card-body">
+                <table class="table table-bordered" id="dataTable-poinfo">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th>PO# / MPB</th>
+                            <th>Vendor</th>
+                            <th>Status</th>
+                            <th>Order Date</th>
+                            <th>ETA Date</th>
+                            <th>Order Quantity</th>
+                            <th>UM</th>
+                            <th>Receiving DateTime</th>
+                            <th>Qty received/shipped</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="table-warning">
+                            <td>247206</td>
+                            <td>460 - Kikkoman</td>
+                            <td>New</td>
+                            <td>02/14/19</td>
+                            <td>03/14/19</td>
+                            <td>500</td>
+                            <td>CA</td>
+                            <td>-</td>
+                            <td>0</td>
+                        </tr>
+                        <tr class="table-success">
+                            <td>246790</td>
+                            <td>460 - Kikkoman</td>
+                            <td>Complete</td>
+                            <td>01/25/19</td>
+                            <td>02/14/19</td>
+                            <td>100</td>
+                            <td>CA</td>
+                            <td>02/14/19 16:52</td>
+                            <td>100</td>
+                        </tr>
+                        <tr class="table-success">
+                            <td>246782</td>
+                            <td>460 - Kikkoman</td>
+                            <td>Complete</td>
+                            <td>01/25/19</td>
+                            <td>02/08/19</td>
+                            <td>750</td>
+                            <td>CA</td>
+                            <td>02/11/19 14:56</td>
+                            <td>750</td>
+                        </tr>
+                        <tr>
+                            <td>247206</td>
+                            <td>460 - Kikkoman</td>
+                            <td>New</td>
+                            <td>02/14/19</td>
+                            <td>03/14/19</td>
+                            <td>500</td>
+                            <td>CA</td>
+                            <td>-</td>
+                            <td>0</td>
+                        </tr>
+                        <tr>
+                            <td>247206</td>
+                            <td>460 - Kikkoman</td>
+                            <td>New</td>
+                            <td>02/14/19</td>
+                            <td>03/14/19</td>
+                            <td>500</td>
+                            <td>CA</td>
+                            <td>-</td>
+                            <td>0</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
 </div>
+@section scripts {
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#dataTable-poinfo').DataTable();
+        });
+    </script>
+}
