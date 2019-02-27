@@ -433,7 +433,7 @@
                             </tr>
                         </tbody>
                     </table>
-                    <table class="table table-bordered col-lg-4 offset-1">
+                    <table class="table table-bordered col-lg-4 offset-2">
                         <thead class="thead-dark">
                             <tr>
                                 <th></th>
@@ -710,7 +710,7 @@
         <!-- Card Content - Collapse -->
         <div class="collapse show" id="detailed-pricinginfo">
             <div class="card-body">
-                <table class="table table-bordered">
+                <table class="table table-bordered datatable">
                     <thead class="thead-dark">
                         <tr>
                             <th>ID</th>
@@ -853,7 +853,7 @@
         <!-- Card Content - Collapse -->
         <div class="collapse show" id="detailed-poinfo">
             <div class="card-body">
-                <table class="table table-bordered" id="dataTable-poinfo">
+                <table class="table table-bordered datatable" id="dataTable-poinfo">
                     <thead class="thead-dark">
                         <tr>
                             <th>PO# / MPB</th>
@@ -932,7 +932,7 @@
 @section scripts {
     <script type="text/javascript">
         $(document).ready(function () {
-            $('#dataTable-poinfo').DataTable();
+            $('.datatable').DataTable();
         });
     </script>
 }
