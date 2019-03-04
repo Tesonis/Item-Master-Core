@@ -129,7 +129,7 @@
     <Compile Include="Models\Item.cs" />
     <Compile Include="Models\ItemPartialModels\DimensionsModel.cs" />
     <Compile Include="Models\ItemPartialModels\PODetailsModel.cs" />
-    <Compile Include="Models\ItemPartialModels\PriceingDetailsModel.cs" />
+    <Compile Include="Models\ItemPartialModels\PricingDetailsModel.cs" />
     <Compile Include="Models\ItemPartialModels\ProductDetailsModel.cs" />
     <Compile Include="Models\ItemPartialModels\SalesDetailsModel.cs" />
     <Compile Include="Models\ItemPartialModels\SupplyDetailsModel.cs" />

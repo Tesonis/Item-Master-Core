@@ -1,7 +1,7 @@
 ﻿<div class="col-md-12">
     <form id="search-form" role="search" asp-controller="Search">
         <div class="input-group mb-3">
-            <input class="form-control form-control-lg" placeholder="Search by Description or UPC" id="query" name="query" type="text" value="@(ViewData["Query"] != null  ? (string) ViewData["Query"] : "")">
+            <input class="form-control form-control-lg" placeholder="Search by Item #, Description or UPC" id="query" name="query" type="text" value="@(ViewData["Query"] != null  ? (string) ViewData["Query"] : "")">
             <div class="input-group-append">
                 <button class="btn btn-success" type="submit"><i class="fa fa-search px-3" aria-hidden="true"></i></button>
             </div>
@@ -19,7 +19,7 @@
                     </select>
                 </div>
                 <div class="col-md-3">
-                    <label>Sales Rep</label>
+                    <label>Vendor</label>
                     <select class="selectpicker form-control search-result-filter" data-live-search="true" multiple>
                         <option id='Sondra Sautner  '>Sondra Sautner  </option>
                         <option id='Boris Brunett  '>Boris Brunett  </option>
@@ -82,7 +82,7 @@
                     </select>
                 </div>
                 <div class="col-md-3">
-                    <label>Brand / Principal</label>
+                    <label>Brand</label>
                     <select class="selectpicker form-control search-result-filter" data-live-search="true">
                         <option id='Sondra Sautner  '>Sondra Sautner  </option>
                         <option id='Boris Brunett  '>Boris Brunett  </option>
@@ -139,6 +139,19 @@
                         <option id='Francoise Foushee  '>Francoise Foushee  </option>
                     </select>
                 </div>
+                <div class="col-md-3">
+                    <div class="custom-control custom-checkbox">
+                        <input type="checkbox" class="custom-control-input" id="customCheck" name="example1">
+                        <label class="custom-control-label" for="customCheck">Gluten Free</label>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="custom-control custom-checkbox">
+                        <input type="checkbox" class="custom-control-input" id="customCheck" name="example1">
+                        <label class="custom-control-label" for="customCheck1">Halal</label>
+                    </div>
+                </div>
+
                 <div class="col-12 text-center mt-4"><button class="btn btn-success btn-lg mx-auto">Apply Filter</button></div>
             </div>
             </div>

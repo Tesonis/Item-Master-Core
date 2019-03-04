@@ -10,7 +10,7 @@ namespace Item_Master_Core.Models.ItemViewModels
     public class Item
     {
         [Key]
-        public int ItemID { get; set; }
+        public string ItemID { get; set; }
         [Required]
         public string imgsrc { get; set; }
         [Required]
@@ -41,6 +41,7 @@ namespace Item_Master_Core.Models.ItemViewModels
         public WarehouseStockModel WarehouseStockDetails { get; set; }
         public DimensionsModel Dimentions { get; set; }
         public SalesDetailsModel SalesDetails { get; set; }
-
+        public PricingDetailsModel PricingDetails { get; set; }
+        public PODetailsModel PODetails { get; set; }
     }
 }
