@@ -125,6 +125,16 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\AccountViewModels\LoginModel.cs" />
+    <Compile Include="Models\Item.cs" />
+    <Compile Include="Models\ItemPartialModels\DimensionsModel.cs" />
+    <Compile Include="Models\ItemPartialModels\PODetailsModel.cs" />
+    <Compile Include="Models\ItemPartialModels\PriceingDetailsModel.cs" />
+    <Compile Include="Models\ItemPartialModels\ProductDetailsModel.cs" />
+    <Compile Include="Models\ItemPartialModels\SalesDetailsModel.cs" />
+    <Compile Include="Models\ItemPartialModels\SupplyDetailsModel.cs" />
+    <Compile Include="Models\ItemPartialModels\WarehouseStockModel.cs" />
+    <Compile Include="Models\Search.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -307,7 +317,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Models\" />
+    <Folder Include="Models\ItemViewModels\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

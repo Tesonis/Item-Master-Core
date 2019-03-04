@@ -11,7 +11,7 @@
             <figure><img src="https://via.placeholder.com/150" class="img-responsive" alt=""></figure>
             <div class="mb-4">
                 <h5><b>Item ID:</b> 57187</h5>
-                <h5><b>Status:</b> <span class="text-success">Active - 09/26/2005</span></h5>
+                <h5><b>Status:</b> <span class="text-success">Active Since - 09/26/2005</span></h5>
                 <h5><b>Product:</b> KIKKOMAN ORGANIC SOY SAUCE / KIKKOMAN - SAUCE SOYA BIOLOGIQUE</h5>
             </div>
         </div>
@@ -322,9 +322,39 @@
                             <td>232</td>
                             <td>129</td>
                         </tr>
+                        <tr>
+                            <td>Quantity on Order</td>
+                            <td>500</td>
+                            <td>250</td>
+                            <td>100</td>
+                        </tr>
+                        <tr>
+                            <td>Quantity on PDRs</td>
+                            <td>0</td>
+                            <td>0</td>
+                            <td>0</td>
+                        </tr>
+                        <tr>
+                            <td>M/E On Hand</td>
+                            <td>232</td>
+                            <td>151</td>
+                            <td>115</td>
+                        </tr>
+                        <tr>
+                            <td>Quantity Returned</td>
+                            <td>0</td>
+                            <td>0</td>
+                            <td>0</td>
+                        </tr>
+                        <tr class="table-success">
+                            <td>Value of Inventory</td>
+                            <td>$4029.05</td>
+                            <td>$1054.87</td>
+                            <td>$2342.00</td>
+                        </tr>
                     </tbody>
                 </table>
-
+                
             </div>
         </div>
     </div>
@@ -446,12 +476,12 @@
                                 <td>Tie</td>
                                 <td>
                                     <div class="input-group mb-2">
-                                        <input type="number" class="form-control-plaintext" value="50">
+                                        <input type="number" class="form-control-plaintext" value="50" readonly>
                                     </div>
                                 </td>
                                 <td>
                                     <div class="input-group mb-2">
-                                        <input type="number" class="form-control-plaintext" value="42">
+                                        <input type="number" class="form-control-plaintext" value="42" readonly>
                                     </div>
                                 </td>
                             </tr>
@@ -459,7 +489,7 @@
                                 <td>Tier</td>
                                 <td>
                                     <div class="input-group mb-2">
-                                        <input type="number" class="form-control-plaintext" value="5">
+                                        <input type="number" class="form-control-plaintext" value="5" readonly> 
                                         <div class="input-group-append">
                                             <span class="input-group-text">cm</span>
                                         </div>
@@ -467,7 +497,7 @@
                                 </td>
                                 <td>
                                     <div class="input-group mb-2">
-                                        <input type="number" class="form-control-plaintext" value="5">
+                                        <input type="number" class="form-control-plaintext" value="5" readonly>
                                         <div class="input-group-append">
                                             <span class="input-group-text">cm</span>
                                         </div>
@@ -478,7 +508,7 @@
                                 <td>Size</td>
                                 <td>
                                     <div class="input-group mb-2">
-                                        <input type="number" class="form-control-plaintext" value="296.00">
+                                        <input type="number" class="form-control-plaintext" value="296.00" readonly>
                                         <div class="input-group-append">
                                             <span class="input-group-text">ML</span>
                                         </div>
@@ -573,7 +603,7 @@
                                 <td>Jan</td>
                                 <td>522</td>
                                 <td>13044.20</td>
-                                <td>3978.85</td>
+                                <td><a href="" data-toggle="modal" data-target="#salesModal-0" class="font-weight-bold">3978.85</a></td>
                             </tr>
                             <tr>
                                 <td>Feb</td>
@@ -696,6 +726,75 @@
                             </tr>
                         </tbody>
                     </table>
+                    <!-- The Modal -->
+                    <div class="modal fade " id="salesModal-0">
+                        <div class="modal-dialog modal-dialog-scrollable modal-xl">
+                            <div class="modal-content">
+
+                                <!-- Modal Header -->
+                                <div class="modal-header">
+                                    <h4 class="modal-title">Sales Orders for - Month 09/FY19 - 57187</h4>
+                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                </div>
+
+                                <!-- Modal body -->
+                                <div class="modal-body">
+                                    <table class="table table-bordered datatable">
+                                        <thead class="thead-dark">
+                                            <tr>
+                                                <th>Order #</th>
+                                                <th>Invoice #</th>
+                                                <th>Ship To</th>
+                                                <th>Name</th>
+                                                <th>Quantity</th>
+                                                <th>Case Price</th>
+                                                <th>Sales</th>
+                                                <th>Margin</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>2096039</td>
+                                                <td>2156609</td>
+                                                <td>806626</td>
+                                                <td>METRO ONTAR</td>
+                                                <td>1</td>
+                                                <td>25.56</td>
+                                                <td>25.56</td>
+                                                <td>8.19</td>
+                                            </tr>
+                                            <tr>
+                                                <td>2096098</td>
+                                                <td>2156513</td>
+                                                <td>847364</td>
+                                                <td>METRO PLUS</td>
+                                                <td>1</td>
+                                                <td>25.56</td>
+                                                <td>25.56</td>
+                                                <td>8.19</td>
+                                            </tr>
+                                            <tr>
+                                                <td>2096901</td>
+                                                <td>2156488</td>
+                                                <td>850209</td>
+                                                <td>METRO PLUS</td>
+                                                <td>2</td>
+                                                <td>25.56</td>
+                                                <td>51.12</td>
+                                                <td>16.39</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+
+                                <!-- Modal footer -->
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -848,7 +947,7 @@
     <div class="card shadow mb-2">
         <!-- Card Header - Accordion -->
         <a href="#detailed-poinfo" class="d-block card-header bg-info py-3" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="detailed-poinfo">
-            <h6 class="m-0 font-weight-bold text-white">Supply Details</h6>
+            <h6 class="m-0 font-weight-bold text-white">PO Details</h6>
         </a>
         <!-- Card Content - Collapse -->
         <div class="collapse show" id="detailed-poinfo">
