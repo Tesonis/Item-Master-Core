@@ -21,9 +21,10 @@ namespace Item_Master_Core.Models.ItemViewModels
         public DateTime Date { get; set; }
         [Required]
         public string ItemDescEng { get; set; }
+        public string ItemDescEngShort { get; set; }
         [Required]
         public string ItemDescFr { get; set; }
-
+        public string ItemDescFrShort { get; set; }
         public string vendor { get; set; }
         public string BrandManager { get; set; }
         public string UnitUPC { get; set; }

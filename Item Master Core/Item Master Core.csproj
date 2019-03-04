@@ -129,9 +129,11 @@
     <Compile Include="Models\Item.cs" />
     <Compile Include="Models\ItemPartialModels\DimensionsModel.cs" />
     <Compile Include="Models\ItemPartialModels\PODetailsModel.cs" />
+    <Compile Include="Models\ItemPartialModels\PriceChangeModel.cs" />
     <Compile Include="Models\ItemPartialModels\PricingDetailsModel.cs" />
     <Compile Include="Models\ItemPartialModels\ProductDetailsModel.cs" />
     <Compile Include="Models\ItemPartialModels\SalesDetailsModel.cs" />
+    <Compile Include="Models\ItemPartialModels\SalesOrderModel.cs" />
     <Compile Include="Models\ItemPartialModels\SupplyDetailsModel.cs" />
     <Compile Include="Models\ItemPartialModels\WarehouseStockModel.cs" />
     <Compile Include="Models\Search.cs" />
