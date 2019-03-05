@@ -5,18 +5,16 @@ using System.Linq;
 using System.Web;
 using Item_Master_Core.Models.ItemPartialModels;
 
-namespace Item_Master_Core.Models.ItemViewModels
+namespace Item_Master_Core.Models
 {
     public class Item
     {
         [Key]
         public string ItemID { get; set; }
         [Required]
-        public string imgsrc { get; set; }
+        public string Imgsrc { get; set; }
         [Required]
-        public string Name { get; set; }
-        [Required]
-        public string status { get; set; }
+        public string Status { get; set; }
         [Required]
         public DateTime Date { get; set; }
         [Required]
@@ -30,7 +28,7 @@ namespace Item_Master_Core.Models.ItemViewModels
         public string UnitUPC { get; set; }
         public string Size { get; set; }
         //Tentative
-        public string principal { get; set; }
+        public string Brand { get; set; }
         //Tentative
         public string SupplyChainAnalyst { get; set; }
         public string CaseUPC { get; set; }

@@ -1,4 +1,4 @@
-﻿
+﻿@model Item_Master_Core.Models.Item
 @{
     ViewBag.Title = "Edit";
 }
@@ -10,9 +10,9 @@
         <div class="col-9">
             <figure><img src="https://via.placeholder.com/150" class="img-responsive" alt=""></figure>
             <div class="mb-4">
-                <h5><b>Item ID:</b> 57187</h5>
-                <h5><b>Status:</b> <span class="text-success">Active Since - 09/26/2005</span></h5>
-                <h5><b>Product:</b> KIKKOMAN ORGANIC SOY SAUCE / KIKKOMAN - SAUCE SOYA BIOLOGIQUE</h5>
+                <h5><b>Item ID:</b> @Model.ItemID</h5>
+                <h5><b>Status:</b> <span class="text-success">@Model.Status Since - @Model.Date.ToShortDateString()</span></h5>
+                <h5><b>Product:</b> @Model.ItemDescEng / @Model.ItemDescFr</h5>@Model
             </div>
         </div>
         <div class="col-3">

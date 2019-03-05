@@ -136,7 +136,7 @@
     <Compile Include="Models\ItemPartialModels\SalesOrderModel.cs" />
     <Compile Include="Models\ItemPartialModels\SupplyDetailsModel.cs" />
     <Compile Include="Models\ItemPartialModels\WarehouseStockModel.cs" />
-    <Compile Include="Models\Search.cs" />
+    <Compile Include="Models\ItemViewModels\SearchViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -316,10 +316,10 @@
     <Content Include="Views\Item\Create.cshtml" />
     <Content Include="Views\Shared\_Breadcrumb.cshtml" />
     <Content Include="Views\Item\Inquiry.cshtml" />
+    <Content Include="Views\Home\Search.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Models\ItemViewModels\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

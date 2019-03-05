@@ -4,9 +4,9 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 
-namespace Item_Master_Core.Models
+namespace Item_Master_Core.Models.ItemViewModels
 {
-    public class Search
+    public class SearchViewModel
     {
         public string SearchString { get; set; }
         public string Status { get; set; }
