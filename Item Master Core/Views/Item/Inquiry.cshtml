@@ -7,18 +7,21 @@
     <a href="@Url.Action("Index", null, new { area = string.Empty, controller = "Home" }, Request.Url.Scheme)"><i class="fa fa-long-arrow-left pr-2"></i>Back to Index</a>
     <hr />
     <div class="row">
+        <div class="col-12 mb-4">
+            <button class="btn btn-lg btn-block btn-danger">Edit Item (Only visible to Admin level)</button>
+        </div>
         <div class="col-9">
             <figure><img src="https://via.placeholder.com/150" class="img-responsive" alt=""></figure>
             <div class="mb-4">
                 <h5><b>Item ID:</b> @Model.ItemID</h5>
                 <h5><b>Status:</b> <span class="text-success">@Model.Status Since - @Model.Date.ToShortDateString()</span></h5>
-                <h5><b>Product:</b> @Model.ItemDescEng / @Model.ItemDescFr</h5>@Model
+                <h5><b>Product:</b> @Model.ItemDescEng / @Model.ItemDescFr</h5>
             </div>
         </div>
         <div class="col-3">
-            <button class="btn btn-lg btn-block btn-outline-info">Generate Marketing Report</button>
-            <button class="btn btn-lg btn-block btn-outline-primary">Generate Sales Report</button>
-            <button class="btn btn-lg btn-block btn-outline-dark">Generate Admin Report</button>
+            <button class="btn btn-lg btn-block btn-outline-info">Marketing Report</button>
+            <button class="btn btn-lg btn-block btn-outline-primary">Sales Report</button>
+            
         </div>
     </div>
     <hr />
@@ -160,7 +163,7 @@
     <!-- Product Details -->
     <div class="card shadow mb-2">
         <!-- Card Header - Accordion -->
-        <a href="#detailed-productinfo" class="d-block card-header bg-info py-3" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="detailed-productinfo">
+        <a href="#detailed-productinfo" class="d-block card-header bg-primary py-3" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="detailed-productinfo">
             <h6 class="m-0 font-weight-bold text-white">Product Details</h6>
         </a>
         <!-- Card Content - Collapse -->
@@ -171,7 +174,7 @@
                         <span><b>National Product Manager: </b><input type="text" class="form-control-plaintext" value="U2" readonly /></span>
                         <span><b>Regional Product Manager:</b> <input readonly class="form-control-plaintext" value="U2" /></span>
                         <span><b>Item Type: </b><input type="text" class="form-control-plaintext" value="Purchased For Resale" readonly /></span>
-                        <span><b>Masterial Type: </b><input type="text" class="form-control-plaintext" value="N/a" readonly /></span>
+                        <span><b>Material Type: </b><input type="text" class="form-control-plaintext" value="N/a" readonly /></span>
                         <span>
                             <b>Product Groups: </b><br />
                             <span class="d-inline-flex">
@@ -208,14 +211,6 @@
                             <input type="checkbox" class="custom-control-input" id="customCheck" name="example1" disabled>
                             <label class="custom-control-label" for="customCheck">Allow Discount</label>
                         </div>
-                        <div class="custom-control custom-checkbox">
-                            <input type="checkbox" class="custom-control-input" id="customCheck" name="example1" disabled>
-                            <label class="custom-control-label" for="customCheck">GST</label>
-                        </div>
-                        <div class="custom-control custom-checkbox">
-                            <input type="checkbox" class="custom-control-input" id="customCheck" name="example1" disabled>
-                            <label class="custom-control-label" for="customCheck">PST</label>
-                        </div>
                         <hr />
 
                         <div class="custom-control custom-checkbox">
@@ -232,6 +227,8 @@
                             <label class="custom-control-label" for="customCheck">Print Price List</label>
                         </div>
                         <hr />
+                        <span><b>GST:</b> <input readonly class="form-control-plaintext" value="0%" /></span>
+                        <span><b>PST/HST:</b> <input readonly class="form-control-plaintext" value="13%" /></span>
                         <span><b>Catalog Code:</b> <input readonly class="form-control-plaintext" value="N/A" /></span>
                         <span><b>Commission Code:</b> <input readonly class="form-control-plaintext" value="R" /></span>
                     </div>
@@ -243,19 +240,19 @@
     <!-- Supply Details -->
     <div class="card shadow mb-2">
         <!-- Card Header - Accordion -->
-        <a href="#detailed-supplyinfo" class="d-block card-header bg-info py-3" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="detailed-supplyinfo">
+        <a href="#detailed-supplyinfo" class="d-block card-header bg-primary py-3" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="detailed-supplyinfo">
             <h6 class="m-0 font-weight-bold text-white">Supply Details</h6>
         </a>
         <!-- Card Content - Collapse -->
         <div class="collapse show" id="detailed-supplyinfo">
             <div class="card-body">
                 <div class="alert alert-primary" role="alert">
-                    <b>Currency:</b> USD
+                    <b>Currency:</b> $USD
                 </div>
                 <div class="row container">
 
                     <div class="col">
-                        <span><b>Supplier List:</b> <input type="text" class="form-control-plaintext" value="U$2.09167 / Piece" readonly /></span>
+                        <span><b>Supplier List:</b> <input type="text" class="form-control-plaintext" value="$2.09167 / Piece" readonly /></span>
                         <span><b>List Expiry:</b> <input type="date" class="form-control-plaintext" value="2019-12-31" readonly /></span>
                         <span><b>Equivalent Case:</b> <input type="text" class="form-control-plaintext" value="1.000 Factor" readonly /></span>
                         <span><b>Supplier Pallet Size:</b> <input type="text" class="form-control-plaintext" value="250 H/S" readonly /></span>
@@ -279,22 +276,27 @@
     <!-- Inventory Details -->
     <div class="card shadow mb-2">
         <!-- Card Header - Accordion -->
-        <a href="#detailed-warehouseinfo" class="d-block card-header bg-info py-3" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="detailed-warehouseinfo">
+        <a href="#detailed-warehouseinfo" class="d-block card-header bg-primary py-3" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="detailed-warehouseinfo">
             <h6 class="m-0 font-weight-bold text-white">Warehouse / Stock Details</h6>
         </a>
         <!-- Card Content - Collapse -->
         <div class="collapse show" id="detailed-warehouseinfo">
             <div class="card-body">
-                <div class="alert alert-primary" role="alert">
-                    <b>Warehouse Location: </b> KPV 31 A
-                </div>
                 <table class="table table-bordered">
                     <thead class="thead-dark">
                         <tr>
-                            <th>Warehouse Stock</th>
+                            <th>Warehouse</th>
                             <th>Mississauga</th>
                             <th>Calgary</th>
                             <th>Surrey</th>
+                        </tr>
+                    </thead>
+                    <thead class="thead-dark">
+                        <tr>
+                            <th>Warehouse Location</th>
+                            <th>KPV 31 A</th>
+                            <th>KPV 31 A</th>
+                            <th>KPV 31 A</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -374,7 +376,7 @@
     <!-- Dimensions -->
     <div class="card shadow mb-2">
         <!-- Card Header - Accordion -->
-        <a href="#detailed-dimensionsinfo" class="d-block card-header bg-info py-3" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="detailed-dimensionsinfo">
+        <a href="#detailed-dimensionsinfo" class="d-block card-header bg-primary py-3" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="detailed-dimensionsinfo">
             <h6 class="m-0 font-weight-bold text-white">Dimensions</h6>
         </a>
         <!-- Card Content - Collapse -->
@@ -541,7 +543,7 @@
     <!-- Sales Details -->
     <div class="card shadow mb-2">
         <!-- Card Header - Accordion -->
-        <a href="#detailed-salesinfo" class="d-block card-header bg-info py-3" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="detailed-salesinfo">
+        <a href="#detailed-salesinfo" class="d-block card-header bg-primary py-3" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="detailed-salesinfo">
             <h6 class="m-0 font-weight-bold text-white">Sales Details</h6>
         </a>
         <!-- Card Content - Collapse -->
@@ -556,7 +558,7 @@
                         </thead>
                         <thead class="thead-dark">
                             <tr>
-                                <th>2018-2019</th>
+                                <th>FY2018-2019</th>
                                 <th>Cases</th>
                                 <th>Net Revenue</th>
                                 <th>Profit Margin</th>
@@ -564,78 +566,78 @@
                         </thead>
                         <tbody>
                             <tr>
-                                <td>May</td>
+                                <td>P1</td>
                                 <td>544 <span class="text-success">(+88.2%)</span></td>
                                 <td>10892.57 <span class="text-success">(+75.9%)</span></td>
                                 <td>1955.22 <span class="text-success">(+54.5%)</span></td>
                             </tr>
                             <tr>
-                                <td>Jun</td>
+                                <td>P2</td>
                                 <td>520</td>
                                 <td>13052.19</td>
                                 <td>4507.82</td>
                             </tr>
                             <tr>
-                                <td>Jul</td>
+                                <td>P3</td>
                                 <td>472</td>
                                 <td>10327.74</td>
                                 <td>2550.84</td>
                             </tr>
                             <tr>
-                                <td>Aug</td>
+                                <td>P4</td>
                                 <td>464</td>
                                 <td>12137.98</td>
                                 <td>4492.89</td>
                             </tr>
                             <tr>
-                                <td>Sep</td>
+                                <td>P5</td>
                                 <td>288</td>
                                 <td>6907.34</td>
                                 <td>2009.72</td>
                             </tr>
                             <tr>
-                                <td>Oct</td>
+                                <td>P6</td>
                                 <td>473</td>
                                 <td>11043.89</td>
                                 <td>3047.94</td>
                             </tr>
                             <tr>
-                                <td>Nov</td>
+                                <td>P7</td>
                                 <td>448</td>
                                 <td>10018.16</td>
                                 <td>2309.14</td>
                             </tr>
                             <tr>
-                                <td>Dec</td>
+                                <td>P8</td>
                                 <td>291</td>
                                 <td>6662.56</td>
                                 <td>1608.89</td>
                             </tr>
                             <tr>
-                                <td>Jan</td>
+                                <td>P9</td>
                                 <td>522</td>
                                 <td>13044.20</td>
                                 <td><a href="" data-toggle="modal" data-target="#salesModal-0" class="font-weight-bold">3978.85</a></td>
                             </tr>
                             <tr>
-                                <td>Feb</td>
+                                <td>P10</td>
                                 <td>42</td>
                                 <td>1130.76</td>
                                 <td>401.31</td>
                             </tr>
                             <tr>
-                                <td>Mar</td>
+                                <td>P11</td>
                                 <td>0</td>
                                 <td>0.00</td>
                                 <td>0.00</td>
                             </tr>
                             <tr>
-                                <td>Apr</td>
+                                <td>P12</td>
                                 <td>0</td>
                                 <td>0.00</td>
                                 <td>0.00</td>
                             </tr>
-                            <tr class="table-primary font-weight-bold">
+                            <tr class="table-success font-weight-bold">
                                 <td>Total</td>
                                 <td>4064 <span class="text-danger">(-32.5%)</span></td>
                                 <td>95217.39 <span class="text-danger">(-33.0%)</span></td>
@@ -730,7 +732,7 @@
                                 <td>12900.45</td>
                                 <td>3688.82</td>
                             </tr>
-                            <tr class="table-primary font-weight-bold">
+                            <tr class="table-success font-weight-bold">
                                 <td>Total</td>
                                 <td>6023</td>
                                 <td>142155.19</td>
@@ -745,7 +747,7 @@
 
                                 <!-- Modal Header -->
                                 <div class="modal-header">
-                                    <h4 class="modal-title">Sales Orders for - Month 09/FY19 - 57187</h4>
+                                    <h4 class="modal-title">Sales Orders for - Period 09/FY19 - 57187</h4>
                                     <button type="button" class="close" data-dismiss="modal">&times;</button>
                                 </div>
 
@@ -815,7 +817,7 @@
     <!-- Pricing Details -->
     <div class="card shadow mb-2">
         <!-- Card Header - Accordion -->
-        <a href="#detailed-pricinginfo" class="d-block card-header bg-info py-3" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="detailed-pricinginfo">
+        <a href="#detailed-pricinginfo" class="d-block card-header bg-primary py-3" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="detailed-pricinginfo">
             <h6 class="m-0 font-weight-bold text-white">Pricing Details</h6>
         </a>
         <!-- Card Content - Collapse -->
@@ -824,39 +826,37 @@
                 <table class="table table-bordered datatable">
                     <thead class="thead-dark">
                         <tr>
-                            <th>ID</th>
                             <th>Zone Price Name</th>
-                            <th>Zone 1</th>
-                            <th>Z1 Mrg</th>
-                            <th>Z1 Pgm</th>
-                            <th>Zone 3</th>
-                            <th>Z3 Mrg</th>
-                            <th>Z3 Pgm</th>
+                            <th>CAN-EAST Price</th>
+                            <th>CAN-EAST Target</th>
+                            <th>CAN-EAST Margin</th>
+                            <th>CAN-WEST</th>
+                            <th>CAN-WEST Target</th>
+                            <th>CAN-WEST Margin</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
-                            <td>0</td>
                             <td><a href="#?" data-toggle="modal" data-target="#priceModal-0"><b><u>Retail</u></b></a></td>
                             <td>6.79</td>
-                            <td>57.37</td>
+                            <td>6.79</td>
+                            <td>57.37%</td>
                             <td>6.79</td>
                             <td>6.79</td>
-                            <td>57.37</td>
-                            <td>6.79</td>
+                            <td>57.37%</td>
                         </tr>
                         <tr>
-                            <td>1</td>
                             <td>Store Door</td>
                             <td>26.58</td>
+
+                            <td>26.58</td>
                             <td>34.68</td>
                             <td>26.58</td>
+
                             <td>26.58</td>
                             <td>34.68</td>
-                            <td>26.58</td>
                         </tr>
                         <tr>
-                            <td>2</td>
                             <td>Wholesale</td>
                             <td>23.70</td>
                             <td>26.75</td>
@@ -866,7 +866,6 @@
                             <td>23.70</td>
                         </tr>
                         <tr>
-                            <td>3</td>
                             <td>Amazon</td>
                             <td>0.00</td>
                             <td>0.00</td>
@@ -875,21 +874,11 @@
                             <td>0.00</td>
                             <td>23.10</td>
                         </tr>
-                        <tr>
-                            <td>4</td>
-                            <td>Unused</td>
-                            <td>0.00</td>
-                            <td>0.00</td>
-                            <td>0.00</td>
-                            <td>0.00</td>
-                            <td>0.00</td>
-                            <td>0.00</td>
-                        </tr>
                     </tbody>
                 </table>
                 <!-- The Modal -->
                 <div class="modal  fade " id="priceModal-0">
-                    <div class="modal-dialog modal-dialog-scrollable modal-lg">
+                    <div class="modal-dialog modal-dialog-scrollable modal-xl">
                         <div class="modal-content">
 
                             <!-- Modal Header -->
@@ -903,42 +892,43 @@
                                 <table class="table table-bordered">
                                     <thead class="thead-dark">
                                         <tr>
-                                            <th>Date Effective</th>
-                                            <th>New Z1</th>
-                                            <th>New Z3</th>
                                             <th>Changed By</th>
                                             <th>Changed On</th>
-                                            <th>Z1 Pgm</th>
-                                            <th>Z3 Pgm</th>
+                                            <th>New CAN-EAST Price</th>
+                                            <th>New CAN-WEST Price</th>
+                                            <th>CAN-EAST Target</th>
+                                            <th>CAN-WEST Target</th>
+                                            <th>Date Effective</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <tr>
-                                            <td>10/29/17</td>
-                                            <td>6.43</td>
-                                            <td>6.43</td>
+
                                             <td>QSYSOPR</td>
                                             <td>06/21/17</td>
+                                            <td>6.43</td>
+                                            <td>6.43</td>
                                             <td>0.00</td>
                                             <td>0.00</td>
+                                            <td>10/29/17</td>
                                         </tr>
                                         <tr>
+                                            <td>HALLKEI</td>
+                                            <td>07/05/18</td>
+                                            <td>0.00</td>
+                                            <td>6.79</td>
+                                            <td>0.00</td>
+                                            <td>0.00</td>
                                             <td>09/01/18</td>
-                                            <td>0.00</td>
-                                            <td>6.79</td>
-                                            <td>HALLKEI</td>
-                                            <td>07/05/18</td>
-                                            <td>0.00</td>
-                                            <td>0.00</td>
                                         </tr>
                                         <tr>
-                                            <td>09/02/18</td>
-                                            <td>6.79</td>
-                                            <td>0.00</td>
                                             <td>HALLKEI</td>
                                             <td>07/05/18</td>
+                                            <td>6.79</td>
                                             <td>0.00</td>
                                             <td>0.00</td>
+                                            <td>0.00</td>
+                                            <td>09/02/18</td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -958,7 +948,7 @@
     <!-- PO Details -->
     <div class="card shadow mb-2">
         <!-- Card Header - Accordion -->
-        <a href="#detailed-poinfo" class="d-block card-header bg-info py-3" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="detailed-poinfo">
+        <a href="#detailed-poinfo" class="d-block card-header bg-primary py-3" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="detailed-poinfo">
             <h6 class="m-0 font-weight-bold text-white">PO Details</h6>
         </a>
         <!-- Card Content - Collapse -->

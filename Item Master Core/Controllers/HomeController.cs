@@ -38,5 +38,10 @@ namespace Item_Master_Core.Controllers
         {
             return View();
         }
+
+        public ActionResult Login()
+        {
+            return View();
+        }
     }
 }
