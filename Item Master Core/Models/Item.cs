@@ -23,14 +23,14 @@ namespace Item_Master_Core.Models
         [Required]
         public string ItemDescFr { get; set; }
         public string ItemDescFrShort { get; set; }
-        public string vendor { get; set; }
+        public string Vendor { get; set; }
         public string BrandManager { get; set; }
         public string UnitUPC { get; set; }
         public string Size { get; set; }
         //Tentative
         public string Brand { get; set; }
         //Tentative
-        public string SupplyChainAnalyst { get; set; }
+        public string Purchaser { get; set; }
         public string CaseUPC { get; set; }
         public bool Perishable { get; set; }
 
