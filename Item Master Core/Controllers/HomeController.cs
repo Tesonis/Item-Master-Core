@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using Item_Master_Core.Models.ItemViewModels;
+using Item_Master_Core.Models.AccountViewModels;
 
 namespace Item_Master_Core.Controllers
 {
@@ -39,7 +40,7 @@ namespace Item_Master_Core.Controllers
             return View();
         }
 
-        public ActionResult Login()
+        public ActionResult Login(LoginViewModel loginViewModel)
         {
             return View();
         }
