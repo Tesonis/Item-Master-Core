@@ -162,12 +162,8 @@
 
     <!-- Product Details -->
     <div class="card shadow mb-2">
-        <!-- Card Header - Accordion -->
-        <a href="#detailed-productinfo" class="d-block card-header bg-primary py-3" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="detailed-productinfo">
-            <h6 class="m-0 font-weight-bold text-white">Product Details</h6>
-        </a>
         <!-- Card Content - Collapse -->
-        <div class="collapse show" id="detailed-productinfo">
+        <div id="detailed-productinfo">
             <div class="card-body">
                 <div class="row container">
                     <div class="col">
@@ -227,8 +223,15 @@
                             <label class="custom-control-label" for="customCheck">Print Price List</label>
                         </div>
                         <hr />
-                        <span><b>GST:</b> <input readonly class="form-control-plaintext" value="0%" /></span>
-                        <span><b>PST/HST:</b> <input readonly class="form-control-plaintext" value="13%" /></span>
+                        <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input" id="customCheck" name="example1" checked disabled>
+                            <label class="custom-control-label" for="customCheck">GST </label>
+                        </div>
+                        <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input" id="customCheck" name="example1" checked disabled>
+                            <label class="custom-control-label" for="customCheck">PST/HST</label>
+                        </div>
+                        <hr/>
                         <span><b>Catalog Code:</b> <input readonly class="form-control-plaintext" value="N/A" /></span>
                         <span><b>Commission Code:</b> <input readonly class="form-control-plaintext" value="R" /></span>
                     </div>
@@ -247,26 +250,151 @@
         <div class="collapse show" id="detailed-supplyinfo">
             <div class="card-body">
                 <div class="alert alert-primary" role="alert">
-                    <b>Currency:</b> $USD
+                    <b>Currency:</b> USD
                 </div>
-                <div class="row container">
+                <div class="row container-fluid">
 
-                    <div class="col">
+                    <div class="col-lg-6">
                         <span><b>Supplier List:</b> <input type="text" class="form-control-plaintext" value="$2.09167 / Piece" readonly /></span>
                         <span><b>List Expiry:</b> <input type="date" class="form-control-plaintext" value="2019-12-31" readonly /></span>
                         <span><b>Equivalent Case:</b> <input type="text" class="form-control-plaintext" value="1.000 Factor" readonly /></span>
                         <span><b>Supplier Pallet Size:</b> <input type="text" class="form-control-plaintext" value="250 H/S" readonly /></span>
-                        <span><b>Code:</b> <input type="text" class="form-control-plaintext" value="0000000000" readonly /></span>
-                        <span><b>T/C Code:</b> <input type="text" class="form-control-plaintext" value="00" readonly /></span>
-
-                    </div>
-                    <div class="col-auto">
                         <span><b>Supplier Item Number:</b> <input type="number" class="form-control-plaintext" value="00190" readonly /></span>
-                        <span><b>Duty:</b> <input type="text" class="form-control-plaintext" value="0.00%" readonly /></span>
-                        <hr />
                         <span><b>Suggested Retail:</b> <input type="text" class="form-control-plaintext" value="$6.79 / Piece" readonly /></span>
                         <span><b>Base:</b> <input type="text" class="form-control-plaintext" value="$26.58 / Case" readonly /></span>
                         <span><b>High End Deal:</b> <input type="text" class="form-control-plaintext" value="$2.65 / Case" readonly /></span>
+
+                    </div>
+                    <div class="col-lg-6">
+                        <table class="table table-bordered">
+                            <thead class="thead-dark">
+                                <tr>
+                                    <th></th>
+                                    <th>Mississauga</th>
+                                    <th>Calgary</th>
+                                    <th>Surrey</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>H/S Code</td>
+                                    <td>0000000000</td>
+                                    <td>0000000000</td>
+                                    <td>0000000000</td>
+                                </tr>
+                                <tr>
+                                    <td>T/C Code</td>
+                                    <td>00</td>
+                                    <td>00</td>
+                                    <td>00</td>
+                                </tr>
+                                <tr>
+                                    <td>Duty %</td>
+                                    <td>0</td>
+                                    <td>0</td>
+                                    <td>0</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <hr />
+                        <table class="table table-bordered">
+                            <thead class="thead-dark">
+                                <tr>
+                                    <th>
+                                    Dimensions 
+                                        <select id="dimenToggle" class="form-control-sm">
+                                            <option selected value="cm">Metric</option>
+                                            <option value="inch">Imperial</option>
+                                        </select></th>
+                                    <th>Unit</th>
+                                    <th>Case</th>
+                                    <th>Export</th>
+                                </tr>
+                            </thead>
+                            <tbody id="dimen-table">
+                                <tr>
+                                    <td>Length</td>
+                                    <td>
+                                        <div class="input-group mb-2">
+                                            <input id="dimen-UL" type="number" class="form-control-plaintext" value="5.9" readonly>
+                                            <div class="input-group-append">
+                                                <span class="input-group-text">cm</span>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="input-group mb-2">
+                                            <input id="dimen-CL" type="number" class="form-control-plaintext" value="19.0" readonly>
+                                            <div class="input-group-append">
+                                                <span class="input-group-text">cm</span>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="input-group mb-2">
+                                            <input id="dimen-EL" type="number" class="form-control-plaintext" value="19.0" readonly>
+                                            <div class="input-group-append">
+                                                <span class="input-group-text">cm</span>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Width</td>
+                                    <td>
+                                        <div class="input-group mb-2">
+                                            <input id="dimen-UW" type="number" class="form-control-plaintext" value="5.9" readonly>
+                                            <div class="input-group-append">
+                                                <span class="input-group-text">cm</span>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="input-group mb-2">
+                                            <input id="dimen-CW" type="number" class="form-control-plaintext" value="12.8" readonly>
+                                            <div class="input-group-append">
+                                                <span class="input-group-text">cm</span>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="input-group mb-2">
+                                            <input id="dimen-EW" type="number" class="form-control-plaintext" value="12.8" readonly>
+                                            <div class="input-group-append">
+                                                <span class="input-group-text">cm</span>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Height</td>
+                                    <td>
+                                        <div class="input-group mb-2">
+                                            <input id="dimen-UH" type="number" class="form-control-plaintext" value="20.1" readonly>
+                                            <div class="input-group-append">
+                                                <span class="input-group-text">cm</span>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="input-group mb-2">
+                                            <input id="dimen-CH" type="number" class="form-control-plaintext" value="21.3" readonly>
+                                            <div class="input-group-append">
+                                                <span class="input-group-text">cm</span>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="input-group mb-2">
+                                            <input id="dimen-EH" type="number" class="form-control-plaintext" value="21.3" readonly>
+                                            <div class="input-group-append">
+                                                <span class="input-group-text">cm</span>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </div>
@@ -282,264 +410,266 @@
         <!-- Card Content - Collapse -->
         <div class="collapse show" id="detailed-warehouseinfo">
             <div class="card-body">
+                <div class="alert alert-primary" role="alert">
+                    <b>Purchase Volume: </b> 0.0052 Cubic Meter / Export Carton
+                </div>
                 <table class="table table-bordered">
                     <thead class="thead-dark">
                         <tr>
                             <th>Warehouse</th>
-                            <th>Mississauga</th>
-                            <th>Calgary</th>
-                            <th>Surrey</th>
+                            <th colspan="2">Mississauga</th>
+                            <th colspan="2">Calgary</th>
+                            <th colspan="2">Surrey</th>
                         </tr>
                     </thead>
-                    <thead class="thead-dark">
+                    <thead class="thead-light">
                         <tr>
                             <th>Warehouse Location</th>
-                            <th>KPV 31 A</th>
-                            <th>KPV 31 A</th>
-                            <th>KPV 31 A</th>
+                            <th colspan="2">KPV 31 A</th>
+                            <th colspan="2"> EA 87 B</th>
+                            <th colspan="2">JB 65 A</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
-                            <td>Cases On Order</td>
-                            <td>850</td>
-                            <td>100</td>
-                            <td>150</td>
-                        </tr>
-                        <tr>
                             <td>Cases On Hand</td>
-                            <td>287</td>
-                            <td>232</td>
-                            <td>131</td>
+                            <td colspan="2">287</td>
+                            <td colspan="2">232</td>
+                            <td colspan="2">131</td>
+                        </tr>
+
+                        <tr>
+                            <td>Cases Awaiting Pick</td>
+                            <td colspan="2">850</td>
+                            <td colspan="2">100</td>
+                            <td colspan="2">150</td>
                         </tr>
                         <tr>
-                            <td>Cases Allocated</td>
-                            <td>3</td>
-                            <td>0</td>
-                            <td>2</td>
+                            <td>Cases Unallocated</td>
+                            <td colspan="2"><a href="" data-toggle="modal" data-target="#warehouseModal-tag" class="font-weight-bold">0</a></td>
+                            <td colspan="2"><a href="" data-toggle="modal" data-target="#warehouseModal-tag" class="font-weight-bold">0</a></td>
+                            <td colspan="2"><a href="" data-toggle="modal" data-target="#warehouseModal-tag" class="font-weight-bold">0</a></td>
                         </tr>
                         <tr>
                             <td>Cases Available</td>
-                            <td>284</td>
-                            <td>232</td>
-                            <td>129</td>
+                            <td colspan="2">284</td>
+                            <td colspan="2">232</td>
+                            <td colspan="2">129</td>
                         </tr>
                         <tr>
                             <td>Quantity on Order</td>
-                            <td>500</td>
-                            <td>250</td>
-                            <td>100</td>
+                            <td colspan="2">500</td>
+                            <td colspan="2">250</td>
+                            <td colspan="2">100</td>
                         </tr>
                         <tr>
                             <td>Quantity on PDRs</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
+                            <td colspan="2">0</td>
+                            <td colspan="2">0</td>
+                            <td colspan="2">0</td>
                         </tr>
                         <tr>
                             <td>M/E On Hand</td>
-                            <td>232</td>
-                            <td>151</td>
-                            <td>115</td>
+                            <td colspan="2">232</td>
+                            <td colspan="2">151</td>
+                            <td colspan="2">115</td>
                         </tr>
                         <tr>
                             <td>Quantity Returned</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
+                            <td colspan="2">0</td>
+                            <td colspan="2">0</td>
+                            <td colspan="2">0</td>
                         </tr>
                         <tr class="table-success">
                             <td>Value of Inventory</td>
-                            <td>$4029.05</td>
-                            <td>$1054.87</td>
-                            <td>$2342.00</td>
+                            <td colspan="2">$4029.05</td>
+                            <td colspan="2">$1054.87</td>
+                            <td colspan="2">$2342.00</td>
+                        </tr>
+                        
+                    </tbody>
+                    <thead class="thead-dark">
+                        <tr>
+                            <th>Shipment Dimensions</th>
+                            <th>Vendor</th>
+                            <th>DC</th>
+                            <th>Vendor</th>
+                            <th>DC</th>
+                            <th>Vendor</th>
+                            <th>DC</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Tie</td>
+                            <td>
+                                <div class="input-group mb-2">
+                                    <input type="number" class="form-control-plaintext" value="50" readonly>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="input-group mb-2">
+                                    <input type="number" class="form-control-plaintext" value="42" readonly>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="input-group mb-2">
+                                    <input type="number" class="form-control-plaintext" value="50" readonly>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="input-group mb-2">
+                                    <input type="number" class="form-control-plaintext" value="50" readonly>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="input-group mb-2">
+                                    <input type="number" class="form-control-plaintext" value="50" readonly>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="input-group mb-2">
+                                    <input type="number" class="form-control-plaintext" value="50" readonly>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Tier</td>
+                            <td>
+                                <div class="input-group mb-2">
+                                    <input type="number" class="form-control-plaintext" value="5" readonly>
+                                    <div class="input-group-append">
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="input-group mb-2">
+                                    <input type="number" class="form-control-plaintext" value="5" readonly>
+                                    <div class="input-group-append">
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="input-group mb-2">
+                                    <input type="number" class="form-control-plaintext" value="5" readonly>
+                                    <div class="input-group-append">
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="input-group mb-2">
+                                    <input type="number" class="form-control-plaintext" value="5" readonly>
+                                    <div class="input-group-append">
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="input-group mb-2">
+                                    <input type="number" class="form-control-plaintext" value="5" readonly>
+                                    <div class="input-group-append">
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="input-group mb-2">
+                                    <input type="number" class="form-control-plaintext" value="5" readonly>
+                                    <div class="input-group-append">
+                                    </div>
+                                </div>
+                            </td>
                         </tr>
                         <tr class="table-warning">
                             <td>Picks Last</td>
-                            <td>127 MTD / 1201 YTD</td>
-                            <td>17 MTD / 101 YTD</td>
-                            <td>77 MTD / 601 YTD</td>
+                            <td colspan="2">127 MTD / 1201 YTD</td>
+                            <td colspan="2">17 MTD / 101 YTD</td>
+                            <td colspan="2">77 MTD / 601 YTD</td>
                         </tr>
                         <tr class="table-warning">
                             <td>Picks This</td>
-                            <td>127 MTD / 1201 YTD</td>
-                            <td>17 MTD / 101 YTD</td>
-                            <td>77 MTD / 601 YTD</td>
+                            <td colspan="2">127 MTD / 1201 YTD</td>
+                            <td colspan="2">17 MTD / 101 YTD</td>
+                            <td colspan="2">77 MTD / 601 YTD</td>
                         </tr>
                     </tbody>
                 </table>
-                
+            </div>
+        </div>
+        <!-- The Modal -->
+        <div class="modal fade " id="warehouseModal-tag">
+            <div class="modal-dialog modal-dialog-scrollable modal-xl">
+                <div class="modal-content">
+
+                    <!-- Modal Header -->
+                    <div class="modal-header">
+                        <h4 class="modal-title">Tag Inquiry</h4>
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    </div>
+
+                    <!-- Modal body -->
+                    <div class="modal-body">
+                        <table class="table table-bordered">
+                            <thead class="thead-dark">
+                                <tr>
+                                    <th>Tag #</th>
+                                    <th>T</th>
+                                    <th>PO #</th>
+                                    <th>Location</th>
+                                    <th>On Hand Cases</th>
+                                    <th>Available Picks</th>
+                                    <th>Date Received</th>
+                                    <th>Best Before</th>
+                                    <th>Lot Code</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>1618582</td>
+                                    <td>P</td>
+                                    <td>0244390</td>
+                                    <td>KPV31A</td>
+                                    <td>22</td>
+                                    <td>0</td>
+                                    <td>11/20/18</td>
+                                    <td>8/20/21</td>
+                                    <td>41390</td>
+                                </tr>
+                                <tr>
+                                    <td>1644652</td>
+                                    <td>P</td>
+                                    <td>1491786</td>
+                                    <td>KPV31A</td>
+                                    <td>1</td>
+                                    <td>0</td>
+                                    <td>1/22/19</td>
+                                    <td>8/20/21</td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td>1652851</td>
+                                    <td>R</td>
+                                    <td>0246782</td>
+                                    <td>KPV31A</td>
+                                    <td>250</td>
+                                    <td>250</td>
+                                    <td>2/08/19</td>
+                                    <td>8/20/21</td>
+                                    <td>41390</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <!-- Modal footer -->
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                    </div>
+
+                </div>
             </div>
         </div>
     </div>
 
-    <!-- Dimensions -->
-    <div class="card shadow mb-2">
-        <!-- Card Header - Accordion -->
-        <a href="#detailed-dimensionsinfo" class="d-block card-header bg-primary py-3" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="detailed-dimensionsinfo">
-            <h6 class="m-0 font-weight-bold text-white">Dimensions</h6>
-        </a>
-        <!-- Card Content - Collapse -->
-        <div class="collapse show" id="detailed-dimensionsinfo">
-            <div class="card-body">
-
-                <div class="row col-12">
-                    <table class="table table-bordered col-lg-6">
-                        <thead class="thead-dark">
-                            <tr>
-                                <th>Dimensions</th>
-                                <th>Unit</th>
-                                <th>Case</th>
-                                <th>Export</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>Length</td>
-                                <td>
-                                    <div class="input-group mb-2">
-                                        <input type="number" class="form-control-plaintext" value="5.9" readonly>
-                                        <div class="input-group-append">
-                                            <span class="input-group-text">cm</span>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td>
-                                    <div class="input-group mb-2">
-                                        <input type="number" class="form-control-plaintext" value="19.0" readonly>
-                                        <div class="input-group-append">
-                                            <span class="input-group-text">cm</span>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td>
-                                    <div class="input-group mb-2">
-                                        <input type="number" class="form-control-plaintext" value="19.0" readonly>
-                                        <div class="input-group-append">
-                                            <span class="input-group-text">cm</span>
-                                        </div>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Width</td>
-                                <td>
-                                    <div class="input-group mb-2">
-                                        <input type="number" class="form-control-plaintext" value="5.9" readonly>
-                                        <div class="input-group-append">
-                                            <span class="input-group-text">cm</span>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td>
-                                    <div class="input-group mb-2">
-                                        <input type="number" class="form-control-plaintext" value="12.8" readonly>
-                                        <div class="input-group-append">
-                                            <span class="input-group-text">cm</span>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td>
-                                    <div class="input-group mb-2">
-                                        <input type="number" class="form-control-plaintext" value="12.8" readonly>
-                                        <div class="input-group-append">
-                                            <span class="input-group-text">cm</span>
-                                        </div>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Height</td>
-                                <td>
-                                    <div class="input-group mb-2">
-                                        <input type="number" class="form-control-plaintext" value="20.1" readonly>
-                                        <div class="input-group-append">
-                                            <span class="input-group-text">cm</span>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td>
-                                    <div class="input-group mb-2">
-                                        <input type="number" class="form-control-plaintext" value="21.3" readonly>
-                                        <div class="input-group-append">
-                                            <span class="input-group-text">cm</span>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td>
-                                    <div class="input-group mb-2">
-                                        <input type="number" class="form-control-plaintext" value="21.3" readonly>
-                                        <div class="input-group-append">
-                                            <span class="input-group-text">cm</span>
-                                        </div>
-                                    </div>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                    <table class="table table-bordered col-lg-4 offset-2">
-                        <thead class="thead-dark">
-                            <tr>
-                                <th></th>
-                                <th>Vendor</th>
-                                <th>DC</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>Tie</td>
-                                <td>
-                                    <div class="input-group mb-2">
-                                        <input type="number" class="form-control-plaintext" value="50" readonly>
-                                    </div>
-                                </td>
-                                <td>
-                                    <div class="input-group mb-2">
-                                        <input type="number" class="form-control-plaintext" value="42" readonly>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Tier</td>
-                                <td>
-                                    <div class="input-group mb-2">
-                                        <input type="number" class="form-control-plaintext" value="5" readonly> 
-                                        <div class="input-group-append">
-                                            <span class="input-group-text">cm</span>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td>
-                                    <div class="input-group mb-2">
-                                        <input type="number" class="form-control-plaintext" value="5" readonly>
-                                        <div class="input-group-append">
-                                            <span class="input-group-text">cm</span>
-                                        </div>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Size</td>
-                                <td>
-                                    <div class="input-group mb-2">
-                                        <input type="number" class="form-control-plaintext" value="296.00" readonly>
-                                        <div class="input-group-append">
-                                            <span class="input-group-text">ML</span>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td></td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-                <div class="alert alert-primary" role="alert">
-                    <b>Purchase Volume: </b> 0.0052 Cubic Meter / Export Carton
-                </div>
-            </div>
-        </div>
-
-    </div>
+    
     <!-- Sales Details -->
     <div class="card shadow mb-2">
         <!-- Card Header - Accordion -->
@@ -549,6 +679,16 @@
         <!-- Card Content - Collapse -->
         <div class="collapse show" id="detailed-salesinfo">
             <div class="card-body">
+                <div class="form-group d-inline-flex">
+                    <label for="locPicker1" class="pr-3">Viewing Data For:</label>
+                    <select id="locPicker1" class="form-control">
+                        <option selected>Combined</option>
+                        <option>Mississauga</option>
+                        <option>Calgary</option>
+                        <option>Surrey</option>
+                    </select>
+                </div>
+                <hr />
                 <div class="d-flex">
                     <table class="table table-bordered table-striped col-lg-6">
                         <thead class="thead-dark">
@@ -621,15 +761,15 @@
                             </tr>
                             <tr>
                                 <td>P10</td>
-                                <td>42</td>
-                                <td>1130.76</td>
-                                <td>401.31</td>
+                                <td>514</td>
+                                <td>11783.90</td>
+                                <td>2857.48</td>
                             </tr>
                             <tr>
                                 <td>P11</td>
-                                <td>0</td>
-                                <td>0.00</td>
-                                <td>0.00</td>
+                                <td>369</td>
+                                <td>10426.95</td>
+                                <td>4018.43</td>
                             </tr>
                             <tr>
                                 <td>P12</td>
@@ -639,9 +779,9 @@
                             </tr>
                             <tr class="table-success font-weight-bold">
                                 <td>Total</td>
-                                <td>4064 <span class="text-danger">(-32.5%)</span></td>
-                                <td>95217.39 <span class="text-danger">(-33.0%)</span></td>
-                                <td>26862.62 <span class="text-danger">(-35.4%)</span></td>
+                                <td>4905 <span class="text-danger">(-16.5%)</span></td>
+                                <td>116297.48 <span class="text-danger">(-23.0%)</span></td>
+                                <td>33337.22 <span class="text-danger">(-21.4%)</span></td>
                             </tr>
                         </tbody>
                     </table>
@@ -954,6 +1094,15 @@
         <!-- Card Content - Collapse -->
         <div class="collapse show" id="detailed-poinfo">
             <div class="card-body">
+                <div class="form-group d-inline-flex">
+                    <label for="locPicker1" class="pr-3">Viewing Data For:</label>
+                    <select id="locPicker1" class="form-control">
+                        <option selected>Mississauga</option>
+                        <option>Calgary</option>
+                        <option>Surrey</option>
+                    </select>
+                </div>
+                <hr />
                 <table class="table table-bordered datatable" id="dataTable-poinfo">
                     <thead class="thead-dark">
                         <tr>
@@ -1034,6 +1183,35 @@
     <script type="text/javascript">
         $(document).ready(function () {
             $('.datatable').DataTable();
+        });
+    </script>
+    <script type="text/javascript">
+        $('#dimenToggle').on('change', function () {
+            if ($('#dimenToggle').val() == "cm") {
+                $("#dimen-UL").val(($("#dimen-UL").val() / 0.39370).toFixed(2));
+                $("#dimen-CL").val(($("#dimen-CL").val() / 0.39370).toFixed(2));
+                $("#dimen-EL").val(($("#dimen-EL").val() / 0.39370).toFixed(2));
+                $("#dimen-UW").val(($("#dimen-UW").val() / 0.39370).toFixed(2));
+                $("#dimen-CW").val(($("#dimen-CW").val() / 0.39370).toFixed(2));
+                $("#dimen-EW").val(($("#dimen-EW").val() / 0.39370).toFixed(2));
+                $("#dimen-Uh").val(($("#dimen-UH").val() / 0.39370).toFixed(2));
+                $("#dimen-CH").val(($("#dimen-CH").val() / 0.39370).toFixed(2));
+                $("#dimen-EH").val(($("#dimen-EH").val() / 0.39370).toFixed(2));
+                $("#dimen-table .input-group-text").text("cm");
+            }
+            else {
+                $("#dimen-UL").val(($("#dimen-UL").val() * 0.39370).toFixed(2));
+                $("#dimen-CL").val(($("#dimen-CL").val() * 0.39370).toFixed(2));
+                $("#dimen-EL").val(($("#dimen-EL").val() * 0.39370).toFixed(2));
+                $("#dimen-UW").val(($("#dimen-UW").val() * 0.39370).toFixed(2));
+                $("#dimen-CW").val(($("#dimen-CW").val() * 0.39370).toFixed(2));
+                $("#dimen-EW").val(($("#dimen-EW").val() * 0.39370).toFixed(2));
+                $("#dimen-Uh").val(($("#dimen-UH").val() * 0.39370).toFixed(2));
+                $("#dimen-CH").val(($("#dimen-CH").val() * 0.39370).toFixed(2));
+                $("#dimen-EH").val(($("#dimen-EH").val() * 0.39370).toFixed(2));
+                $("#dimen-table .input-group-text").text("inch");
+            }
+            
         });
     </script>
 }
