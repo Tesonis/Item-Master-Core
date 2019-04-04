@@ -24,15 +24,14 @@ namespace Item_Master_Core.Controllers
             return View();
         }
 
-        public ActionResult Inquiry()
+        public ActionResult Inquiry(int ItemID)
         {
             //Call GET method to obtain Item
             //Use URL itemID as parameter
-
-
+            ViewBag.ItemID = ItemID;
             Item item = new Item()
             {
-                ItemID = "58187",
+                ItemID = "57187",
                 ItemDescEng = "KIKKOMAN ORGANIC SOY SAUCE",
                 ItemDescFr = "KIKKOMAN - SAUCE SOYA BIOLOGIQUE",
                 Imgsrc = "https://via.placeholder.com/150",
@@ -50,6 +49,12 @@ namespace Item_Master_Core.Controllers
 
             };
             return View(item);
+        }
+        public ActionResult SalesReport(int ItemID)
+        {
+            //Call GET method to obtain Item
+            //Use URL itemID as parameter
+            return View();
         }
     }
 }

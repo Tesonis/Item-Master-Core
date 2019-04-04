@@ -7,16 +7,16 @@
     @Styles.Render("~/Content/css")
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs4/dt-1.10.18/b-1.5.4/datatables.min.css" />
 </head>
-<body id="page-top">
+<body id="page-top" class="sidebar-toggled">
 
 
     <div id="wrapper">
-        @Html.Partial("_SideNavPartial")
+        @Html.Partial("_NavPartial")
         <!-- Content Wrapper -->
         <div id="content-wrapper" class="d-flex flex-column">
             <!-- Main Content -->
             <div id="content">
-                @Html.Partial("_NavPartial")
+                @Html.Partial("_SideNavPartial")
                 @RenderBody()
             </div>
             @Html.Partial("_Footer")
@@ -27,6 +27,7 @@
     @Scripts.Render("~/bundles/bootstrap")
     @Scripts.Render("~/bundles/bs-select")
     @Scripts.Render("~/Scripts/search-view-toggle.js");
+    @Scripts.Render("~/bundles/layoutjs")
     @RenderSection("scripts", required: false)
     <script type="text/javascript" src="https://cdn.datatables.net/v/bs4/dt-1.10.18/b-1.5.4/datatables.min.js"></script>
 </body>

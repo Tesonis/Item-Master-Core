@@ -1,5 +1,6 @@
 ﻿$(document).ready(function () {
     $("#listview").hide();
+
 });
 
 $(".grid-view-btn").click(function () {
@@ -23,3 +24,4 @@ $(".list-view-btn").click(function () {
         $(".grid-view-btn").addClass("btn-outline-secondary");
     }
 });
+

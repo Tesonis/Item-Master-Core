@@ -1,6 +1,6 @@
 ﻿@model Item_Master_Core.Models.Item
 @{
-    ViewBag.Title = "Edit";
+    ViewBag.Title = ViewBag.ItemID;
 }
 
 <div class="container-fluid mt-3">
@@ -19,8 +19,8 @@
             </div>
         </div>
         <div class="col-3">
-            <button class="btn btn-lg btn-block btn-outline-info">Marketing Report</button>
-            <button class="btn btn-lg btn-block btn-outline-primary">Sales Report</button>
+            <button class="btn btn-lg btn-block btn-outline-info">Product Sheet</button>
+            <a class="btn btn-lg btn-block btn-outline-primary" href="@Url.Action("SalesReport", null, new { area = string.Empty, controller = "Item", @ItemID=ViewBag.ItemID}, Request.Url.Scheme)">YoY Sales Report</a>
             
         </div>
     </div>
@@ -165,12 +165,12 @@
         <!-- Card Content - Collapse -->
         <div id="detailed-productinfo">
             <div class="card-body">
-                <div class="row container">
-                    <div class="col">
-                        <span><b>National Product Manager: </b><input type="text" class="form-control-plaintext" value="U2" readonly /></span>
-                        <span><b>Regional Product Manager:</b> <input readonly class="form-control-plaintext" value="U2" /></span>
+                <div class="row container-fluid">
+                    <div class="col-lg-6">
+                        <span><b>National Product Manager: </b><input type="text" class="form-control-plaintext" value="Keira Hall" readonly /></span>
+                        <span><b>Regional Product Manager:</b> <input readonly class="form-control-plaintext" value="Keira Hall" /></span>
                         <span><b>Item Type: </b><input type="text" class="form-control-plaintext" value="Purchased For Resale" readonly /></span>
-                        <span><b>Material Type: </b><input type="text" class="form-control-plaintext" value="N/a" readonly /></span>
+                        <span><b>Material Type: </b><input type="text" class="form-control-plaintext" value="-" readonly /></span>
                         <span>
                             <b>Product Groups: </b><br />
                             <span class="d-inline-flex">
@@ -181,12 +181,37 @@
                             </span>
                         </span><br />
                         <span><b>WT/Case:</b> <input type="text" class="form-control-plaintext" value=" 3.379 KG(s)" readonly /></span>
-                        <span><b>Bottle Size:</b> <input type="text" class="form-control-plaintext" value=" N/a" readonly /></span>
-                        <span><b>Moving Avg Cost:</b> <input type="text" class="form-control-plaintext" value="$2.89443 / Piece " readonly /> </span>
-                        <span><b>Last Month MAC:</b> <input type="text" class="form-control-plaintext" value="$2.89443 / Piece" readonly /></span>
+                        <span><b>Bottle Size:</b> <input type="text" class="form-control-plaintext" value="-" readonly /></span>
+                        <span><b>Catalog Code:</b> <input readonly class="form-control-plaintext" value="-" /></span>
+                        <span><b>Commission Code:</b> <input readonly class="form-control-plaintext" value="R" /></span>
 
                     </div>
-                    <div class="col-auto">
+                    <div class="col-lg-6">
+                        <table class="table table-bordered">
+                            <thead class="thead-dark">
+                                <tr>
+                                    <th>MAC/ Piece</th>
+                                    <th>Mississauga</th>
+                                    <th>Calgary</th>
+                                    <th>Surrey</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>MAC</td>
+                                    <td>$2.89443</td>
+                                    <td>$2.87425</td>
+                                    <td>$2.88132</td>
+                                </tr>
+                                <tr>
+                                    <td>Last Month MAC</td>
+                                    <td>$2.89443</td>
+                                    <td>$2.87425</td>
+                                    <td>$2.88132</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <hr />
                         <div class="custom-control custom-checkbox">
                             <input type="checkbox" class="custom-control-input" id="customCheck" name="example1" checked disabled>
                             <label class="custom-control-label" for="customCheck">Sold by Weight</label>
@@ -231,9 +256,7 @@
                             <input type="checkbox" class="custom-control-input" id="customCheck" name="example1" checked disabled>
                             <label class="custom-control-label" for="customCheck">PST/HST</label>
                         </div>
-                        <hr/>
-                        <span><b>Catalog Code:</b> <input readonly class="form-control-plaintext" value="N/A" /></span>
-                        <span><b>Commission Code:</b> <input readonly class="form-control-plaintext" value="R" /></span>
+                        
                     </div>
                 </div>
             </div>
@@ -255,14 +278,14 @@
                 <div class="row container-fluid">
 
                     <div class="col-lg-6">
-                        <span><b>Supplier List:</b> <input type="text" class="form-control-plaintext" value="$2.09167 / Piece" readonly /></span>
-                        <span><b>List Expiry:</b> <input type="date" class="form-control-plaintext" value="2019-12-31" readonly /></span>
+                        <span><b>Supplier List Price:</b> <input type="text" class="form-control-plaintext" value="$2.09167 / Piece" readonly /></span>
+                        <span><b>Price List Expiry:</b> <input type="date" class="form-control-plaintext" value="2019-12-31" readonly /></span>
                         <span><b>Equivalent Case:</b> <input type="text" class="form-control-plaintext" value="1.000 Factor" readonly /></span>
-                        <span><b>Supplier Pallet Size:</b> <input type="text" class="form-control-plaintext" value="250 H/S" readonly /></span>
+                        <span><b>Supplier Pallet Size:</b> <input type="text" class="form-control-plaintext" value="250" readonly /></span>
                         <span><b>Supplier Item Number:</b> <input type="number" class="form-control-plaintext" value="00190" readonly /></span>
                         <span><b>Suggested Retail:</b> <input type="text" class="form-control-plaintext" value="$6.79 / Piece" readonly /></span>
                         <span><b>Base:</b> <input type="text" class="form-control-plaintext" value="$26.58 / Case" readonly /></span>
-                        <span><b>High End Deal:</b> <input type="text" class="form-control-plaintext" value="$2.65 / Case" readonly /></span>
+                        <span><b>Maximum Discount:</b> <input type="text" class="form-control-plaintext" value="$2.65 / Case" readonly /></span>
 
                     </div>
                     <div class="col-lg-6">
@@ -585,7 +608,7 @@
                             <td colspan="2">77 MTD / 601 YTD</td>
                         </tr>
                         <tr class="table-warning">
-                            <td>Picks This</td>
+                            <td>Picks Current</td>
                             <td colspan="2">127 MTD / 1201 YTD</td>
                             <td colspan="2">17 MTD / 101 YTD</td>
                             <td colspan="2">77 MTD / 601 YTD</td>
@@ -611,7 +634,7 @@
                             <thead class="thead-dark">
                                 <tr>
                                     <th>Tag #</th>
-                                    <th>T</th>
+                                    <th>Type</th>
                                     <th>PO #</th>
                                     <th>Location</th>
                                     <th>On Hand Cases</th>
@@ -698,18 +721,18 @@
                         </thead>
                         <thead class="thead-dark">
                             <tr>
-                                <th>FY2018-2019</th>
+                                <th>FY2019</th>
                                 <th>Cases</th>
-                                <th>Net Revenue</th>
+                                <th>Net Sales</th>
                                 <th>Profit Margin</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
                                 <td>P1</td>
-                                <td>544 <span class="text-success">(+88.2%)</span></td>
-                                <td>10892.57 <span class="text-success">(+75.9%)</span></td>
-                                <td>1955.22 <span class="text-success">(+54.5%)</span></td>
+                                <td>544</td>
+                                <td>10892.57 </td>
+                                <td>1955.22 </td>
                             </tr>
                             <tr>
                                 <td>P2</td>
@@ -793,9 +816,9 @@
                         </thead>
                         <thead class="thead-dark">
                             <tr>
-                                <th>2017-2018</th>
+                                <th>FY2018</th>
                                 <th>Cases</th>
-                                <th>Net Revenue</th>
+                                <th>Net Sales</th>
                                 <th>Profit Margin</th>
                             </tr>
                         </thead>
@@ -1112,9 +1135,9 @@
                             <th>Order Date</th>
                             <th>ETA Date</th>
                             <th>Order Quantity</th>
-                            <th>UM</th>
+                            <th>Unit</th>
                             <th>Receiving DateTime</th>
-                            <th>Qty received/shipped</th>
+                            <th>Quantity received/shipped</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -1125,7 +1148,7 @@
                             <td>02/14/19</td>
                             <td>03/14/19</td>
                             <td>500</td>
-                            <td>CA</td>
+                            <td>Case</td>
                             <td>-</td>
                             <td>0</td>
                         </tr>
@@ -1136,7 +1159,7 @@
                             <td>01/25/19</td>
                             <td>02/14/19</td>
                             <td>100</td>
-                            <td>CA</td>
+                            <td>Case</td>
                             <td>02/14/19 16:52</td>
                             <td>100</td>
                         </tr>
@@ -1147,7 +1170,7 @@
                             <td>01/25/19</td>
                             <td>02/08/19</td>
                             <td>750</td>
-                            <td>CA</td>
+                            <td>Case</td>
                             <td>02/11/19 14:56</td>
                             <td>750</td>
                         </tr>
@@ -1165,7 +1188,7 @@
                         <tr>
                             <td>247206</td>
                             <td>460 - Kikkoman</td>
-                            <td>New</td>
+                            <td>Costed</td>
                             <td>02/14/19</td>
                             <td>03/14/19</td>
                             <td>500</td>

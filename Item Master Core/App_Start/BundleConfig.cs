@@ -32,7 +32,7 @@ namespace Item_Master_Core
             bundles.Add(new StyleBundle("~/Content/bs-select").Include(
                       "~/Content/bootstrap-select.min.css"));
 
-            bundles.Add(new ScriptBundle("~/bundles/js").Include(
+            bundles.Add(new ScriptBundle("~/bundles/layoutjs").Include(
                       "~/Scripts/sb-admin-2.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/bs-select").Include(

@@ -7,7 +7,7 @@
     <div class="container-fluid">
 
         <!-- Page Content -->
-        <div class="mx-auto text-center my-4"><h1>Item Master Inquiry</h1></div>
+        <div class="mx-auto text-center my-5"><h1>Item Master Inquiry</h1></div>
 
         <hr>
         @Html.Partial("_SearchPartial")
@@ -25,7 +25,7 @@
                 @for (int i = 0; i < 1; i++)
                 {
                     <li class="col-12 col-lg-3 col-xxl-2">
-                        <a href="@Url.Action("Inquiry", null, new { area = string.Empty, controller = "Item" }, Request.Url.Scheme)">
+                        <a href="@Url.Action("Inquiry", null, new { area = string.Empty, controller = "Item", @ItemID=57187}, Request.Url.Scheme)">
                             <div class="cnt-block equal-hight" style="height: 349px;">
                                 <p><b>30001</b></p>
                                 <figure><img src="https://via.placeholder.com/150" class="img-responsive" alt=""></figure>
