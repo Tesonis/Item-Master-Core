@@ -5,6 +5,8 @@
 
 <div class="container mt-3">
     <div class="wrapper">
+        <a href="@Url.Action("Inquiry", null, new { area = string.Empty, controller = "Item", @ItemID=ViewBag.ItemID}, Request.Url.Scheme)"><i class="fa fa-long-arrow-left pr-2"></i>Back to Item Inquiry</a>
+        <hr />
         <canvas id="chart-0"></canvas>
     </div>
 </div>
@@ -17,7 +19,7 @@
         var inputs = {
             min: 20,
             max: 80,
-            count: 8,
+            count: 12,
             decimals: 2,
             continuity: 1
         };
@@ -27,24 +29,49 @@
         }
 
         function generateLabels() {
-            return utils.months({ count: inputs.count });
+            return utils.fiscal({ count: inputs.count });
         }
 
         utils.srand(42);
 
+        //create var to total
+        var FY2018Margin = 0;
+        var FY2019Margin = 0;
         var data = {
             labels: generateLabels(),
             datasets: [{
                 backgroundColor: utils.transparentize(presets.purple),
                 borderColor: presets.purple,
-                data:[10,20],
-                label: 'D6',
+                data: [ FY2018Margin += 1265.51,
+                        FY2018Margin += 5342.29,
+                        FY2018Margin += 1431.5,
+                        FY2018Margin += 2109.28,
+                        FY2018Margin += 4944.32,
+                        FY2018Margin += 3120.27,
+                        FY2018Margin += 5059.97,
+                        FY2018Margin += 3911.67,
+                        FY2018Margin += 4260.71,
+                        FY2018Margin += 2308.44,
+                        FY2018Margin += 4141.43,
+                        FY2018Margin += 3688.82],
+                label: 'FY2018',
                 fill: false
             }, {
                 backgroundColor: utils.transparentize(presets.red),
                 borderColor: presets.red,
-                data: generateData(),
-                label: 'D7',
+                data: [ FY2019Margin += 1955.22,
+                        FY2019Margin += 4507.82,
+                        FY2019Margin += 2550.84,
+                        FY2019Margin += 4492.89,
+                        FY2019Margin += 2009.72,
+                        FY2019Margin += 3047.94,
+                        FY2019Margin += 2309.14,
+                        FY2019Margin += 1608.89,
+                        FY2019Margin += 3978.85,
+                        FY2019Margin += 2857.48,
+                        FY2019Margin += 4020.42,
+                        FY2019Margin += 1804.37],
+                label: 'FY2019',
                 fill: 8
             }]
         };
@@ -54,12 +81,12 @@
             spanGaps: false,
             elements: {
                 line: {
-                    tension: 0.000001
+                    tension: 0.1
                 }
             },
             scales: {
                 yAxes: [{
-                    stacked: true
+                    stacked: false
                 }]
             },
             plugins: {

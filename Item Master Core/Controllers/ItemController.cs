@@ -54,6 +54,7 @@ namespace Item_Master_Core.Controllers
         {
             //Call GET method to obtain Item
             //Use URL itemID as parameter
+            ViewBag.ItemID = ItemID;
             return View();
         }
     }

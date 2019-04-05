@@ -25,7 +25,20 @@ window.chartColors = {
         'November',
         'December'
     ];
-
+    var FISCAL = [
+        'P1',
+        'P2',
+        'P3',
+        'P4',
+        'P5',
+        'P6',
+        'P7',
+        'P8',
+        'P9',
+        'P10',
+        'P11',
+        'P12'
+    ];
     var COLORS = [
         '#4dc9f6',
         '#f67019',
@@ -107,6 +120,20 @@ window.chartColors = {
 
             for (i = 0; i < count; ++i) {
                 value = MONTHS[Math.ceil(i) % 12];
+                values.push(value.substring(0, section));
+            }
+
+            return values;
+        },
+        fiscal: function (config) {
+            var cfg = config || {};
+            var count = cfg.count || 12;
+            var section = cfg.section;
+            var values = [];
+            var i, value;
+
+            for (i = 0; i < count; ++i) {
+                value = FISCAL[Math.ceil(i) % 12];
                 values.push(value.substring(0, section));
             }
 
