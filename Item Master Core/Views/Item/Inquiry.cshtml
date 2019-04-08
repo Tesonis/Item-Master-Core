@@ -456,16 +456,16 @@
                     <tbody>
                         <tr>
                             <td>Cases On Hand</td>
-                            <td colspan="2">287</td>
-                            <td colspan="2">232</td>
-                            <td colspan="2">131</td>
+                            <td colspan="2"><a href="" data-toggle="modal" data-target="#warehouseModal-invqty" class="font-weight-bold">287</a></td>
+                            <td colspan="2"><a href="" data-toggle="modal" data-target="#warehouseModal-invqty" class="font-weight-bold">232</a></td>
+                            <td colspan="2"><a href="" data-toggle="modal" data-target="#warehouseModal-invqty" class="font-weight-bold">131</a></td>
                         </tr>
 
                         <tr>
                             <td>Cases Awaiting Pick</td>
-                            <td colspan="2">850</td>
-                            <td colspan="2">100</td>
-                            <td colspan="2">150</td>
+                            <td colspan="2"><a href="" data-toggle="modal" data-target="#warehouseModal-salesorderline" class="font-weight-bold">850</a></td>
+                            <td colspan="2"><a href="" data-toggle="modal" data-target="#warehouseModal-salesorderline" class="font-weight-bold">100</a></td>
+                            <td colspan="2"><a href="" data-toggle="modal" data-target="#warehouseModal-salesorderline" class="font-weight-bold">150</a></td>
                         </tr>
                         <tr>
                             <td>Cases Unallocated</td>
@@ -509,7 +509,7 @@
                             <td colspan="2">$1054.87</td>
                             <td colspan="2">$2342.00</td>
                         </tr>
-                        
+
                     </tbody>
                     <thead class="thead-dark">
                         <tr>
@@ -618,6 +618,172 @@
             </div>
         </div>
         <!-- The Modal -->
+        <div class="modal fade " id="warehouseModal-invqty">
+            <div class="modal-dialog modal-dialog-scrollable modal-xl">
+                <div class="modal-content">
+
+                    <!-- Modal Header -->
+                    <div class="modal-header">
+                        <h4 class="modal-title">Inventory Qty Movement for Mississauga
+                        </h4>
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    </div>
+
+                    <!-- Modal body -->
+                    <div class="modal-body">
+                        <div class="clearfix">
+                            <btn class="btn btn-outline-secondary" style="cursor:pointer;"><i class="fa fa-chevron-left" aria-hidden="true"></i></btn>
+                            <span class="btn border-0 disabled text-dark">Fiscal Year <b class="text-primary">19</b> --- Period <b class="text-primary">12</b></span>                     
+                            <btn class="btn btn-outline-secondary" style="cursor:pointer;"><i class="fa fa-chevron-right" aria-hidden="true"></i></btn>
+                            <h5 class="float-right">Total Sales: 308</h5>
+                        </div>
+                        
+                        <hr />
+                        <table class="table table-bordered">
+                            <thead class="thead-dark">
+                                <tr>
+                                    <th>Transaction Type</th>
+                                    <th>Alt. Loc</th>
+                                    <th>Amount</th>
+                                    <th>Date/Time</th>
+                                    <th>Referral #</th>
+                                    <th>Cases/Pieces</th>
+                                    <th>User</th>
+                                </tr>
+                                
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>PURCHASES-QTY & $$</td>
+                                    <td>0</td>
+                                    <td>$13,438.18</td>
+                                    <td>3/27/19 19:22</td>
+                                    <td>0246782</td>
+                                    <td>750/0</td>
+                                    <td>CXDUONG</td>
+                                </tr>
+                                <tr class="border border-bottom-success">
+                                    <td colspan="2">/CNC Description/</td>
+                                    <td colspan="3">/Transaction Description/</td>
+                                    <td colspan="2">/Ship To/</td>
+
+                                </tr>
+                                <tr>
+                                    <td>PURCHASES-QTY & $$</td>
+                                    <td>0</td>
+                                    <td>$13,438.18</td>
+                                    <td>3/27/19 19:22</td>
+                                    <td>0246782</td>
+                                    <td>750/0</td>
+                                    <td>CXDUONG</td>
+                                </tr>
+                                <tr class="border border-bottom-success">
+                                    <td colspan="2">/CNC Description/</td>
+                                    <td colspan="3">/Transaction Description/</td>
+                                    <td colspan="2">/Ship To/</td>
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <!-- Modal footer -->
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <!-- The Modal -->
+        <div class="modal fade " id="warehouseModal-salesorderline">
+            <div class="modal-dialog modal-dialog-scrollable modal-xl">
+                <div class="modal-content">
+
+                    <!-- Modal Header -->
+                    <div class="modal-header">
+                        <h4 class="modal-title">Sales Order Line Inquiry</h4>
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    </div>
+
+                    <!-- Modal body -->
+                    <div class="modal-body">
+                        <div class="clearfix">
+                            <btn class="btn btn-outline-primary" style="cursor:pointer;">Unprinted Pick Slips</btn>
+                            
+                            <btn class="btn btn-outline-primary active" style="cursor:pointer;">Printed But Not Filled Pick Slips</btn>
+                            <h5 class="float-right">Grand Total: 19</h5>
+                        </div>
+
+                        <hr />
+                        <table class="table table-bordered datatable">
+                            <thead class="thead-dark">
+                                <tr>
+                                    <th>Order #</th>
+                                    <th>Ship Date</th>
+                                    <th>Ship to</th>
+                                    <th>Customer Name</th>
+                                    <th>Awaiting Pick</th>
+                                    <th>Allocated for Pick</th>
+                                    <th>Price / Case</th>
+                                    <th>PK</th>
+                                </tr>
+
+                            </thead>
+                            <tbody id="salesorderline-unprinted">
+                                <tr>
+                                    <td>2149261</td>
+                                    <td>4/05/19</td>
+                                    <td>201300</td>
+                                    <td>METRO ONTARIO 0150</td>
+                                    <td>1</td>
+                                    <td></td>
+                                    <td>25.56</td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td>2149870</td>
+                                    <td>4/08/19</td>
+                                    <td>704164</td>
+                                    <td>GROUPE ADONIS INC (LAVA</td>
+                                    <td>1</td>
+                                    <td></td>
+                                    <td>26.58</td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td>2149925</td>
+                                    <td>4/09/19</td>
+                                    <td>851205</td>
+                                    <td>METRO PLUS INDP 4127</td>
+                                    <td>1</td>
+                                    <td></td>
+                                    <td>25.56</td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td>2149977</td>
+                                    <td>4/05/19</td>
+                                    <td>120369</td>
+                                    <td>MVR CASH CARRY</td>
+                                    <td>5</td>
+                                    <td></td>
+                                    <td>23.70</td>
+                                    <td></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <!-- Modal footer -->
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <!-- The Modal -->
         <div class="modal fade " id="warehouseModal-tag">
             <div class="modal-dialog modal-dialog-scrollable modal-xl">
                 <div class="modal-content">
@@ -630,7 +796,7 @@
 
                     <!-- Modal body -->
                     <div class="modal-body">
-                        <table class="table table-bordered">
+                        <table class="table table-bordered datatable">
                             <thead class="thead-dark">
                                 <tr>
                                     <th>Tag #</th>
@@ -690,6 +856,46 @@
                 </div>
             </div>
         </div>
+
+        <!-- The Modal -->
+        <div class="modal fade " id="warehouseModal-pdr">
+            <div class="modal-dialog modal-dialog-scrollable modal-xl">
+                <div class="modal-content">
+
+                    <!-- Modal Header -->
+                    <div class="modal-header">
+                        <h4 class="modal-title">Active/Approved PDR"s</h4>
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    </div>
+
+                    <!-- Modal body -->
+                    <div class="modal-body">
+                        <table class="table table-bordered">
+                            <thead class="thead-dark">
+                                <tr>
+                                    <th>PDR #</th>
+                                    <th>Required Date</th>
+                                    <th>Period</th>
+                                    <th>Quantities</th>
+                                    <th>Customer Classes</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td colspan="5" class="table-warning">No Transactions Match</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <!-- Modal footer -->
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                    </div>
+
+                </div>
+            </div>
+        </div>
     </div>
 
     
@@ -732,49 +938,49 @@
                                 <td>P1</td>
                                 <td>544</td>
                                 <td>10892.57 </td>
-                                <td>1955.22 </td>
+                                <td><a href="" data-toggle="modal" data-target="#salesModal-0" class="font-weight-bold">1955.22 </a></td>
                             </tr>
                             <tr>
                                 <td>P2</td>
                                 <td>520</td>
                                 <td>13052.19</td>
-                                <td>4507.82</td>
+                                <td><a href="" data-toggle="modal" data-target="#salesModal-0" class="font-weight-bold">4507.82 </a></td>
                             </tr>
                             <tr>
                                 <td>P3</td>
                                 <td>472</td>
                                 <td>10327.74</td>
-                                <td>2550.84</td>
+                                <td><a href="" data-toggle="modal" data-target="#salesModal-0" class="font-weight-bold">2550.84</a></td>
                             </tr>
                             <tr>
                                 <td>P4</td>
                                 <td>464</td>
                                 <td>12137.98</td>
-                                <td>4492.89</td>
+                                <td><a href="" data-toggle="modal" data-target="#salesModal-0" class="font-weight-bold">4492.89</a></td>
                             </tr>
                             <tr>
                                 <td>P5</td>
                                 <td>288</td>
                                 <td>6907.34</td>
-                                <td>2009.72</td>
+                                <td><a href="" data-toggle="modal" data-target="#salesModal-0" class="font-weight-bold">2009.72</a></td>
                             </tr>
                             <tr>
                                 <td>P6</td>
                                 <td>473</td>
                                 <td>11043.89</td>
-                                <td>3047.94</td>
+                                <td><a href="" data-toggle="modal" data-target="#salesModal-0" class="font-weight-bold">3047.94</a></td>
                             </tr>
                             <tr>
                                 <td>P7</td>
                                 <td>448</td>
                                 <td>10018.16</td>
-                                <td>2309.14</td>
+                                <td><a href="" data-toggle="modal" data-target="#salesModal-0" class="font-weight-bold">2309.14</a></td>
                             </tr>
                             <tr>
                                 <td>P8</td>
                                 <td>291</td>
                                 <td>6662.56</td>
-                                <td>1608.89</td>
+                                <td><a href="" data-toggle="modal" data-target="#salesModal-0" class="font-weight-bold">1608.89</a></td>
                             </tr>
                             <tr>
                                 <td>P9</td>
@@ -786,19 +992,19 @@
                                 <td>P10</td>
                                 <td>514</td>
                                 <td>11783.90</td>
-                                <td>2857.48</td>
+                                <td><a href="" data-toggle="modal" data-target="#salesModal-0" class="font-weight-bold">2857.48</a></td>
                             </tr>
                             <tr>
                                 <td>P11</td>
                                 <td>369</td>
                                 <td>10601.04</td>
-                                <td>4020.42</td>
+                                <td><a href="" data-toggle="modal" data-target="#salesModal-0" class="font-weight-bold">4020.42</a></td>
                             </tr>
                             <tr>
                                 <td>P12</td>
                                 <td>0</td>
                                 <td>7177.77</td>
-                                <td>1804.37</td>
+                                <td><a href="" data-toggle="modal" data-target="#salesModal-0" class="font-weight-bold">1804.37</a></td>
                             </tr>
                             <tr class="table-success font-weight-bold">
                                 <td>Total</td>
@@ -827,73 +1033,73 @@
                                 <td>May</td>
                                 <td>289</td>
                                 <td>6192.71</td>
-                                <td>1265.51</td>
+                                <td><a href="" data-toggle="modal" data-target="#salesModal-0" class="font-weight-bold">1265.51 </a></td>
                             </tr>
                             <tr>
                                 <td>Jun</td>
                                 <td>5504</td>
                                 <td>13973.90</td>
-                                <td>5342.29</td>
+                                <td><a href="" data-toggle="modal" data-target="#salesModal-0" class="font-weight-bold">5342.29 </a></td>
                             </tr>
                             <tr>
                                 <td>Jul</td>
                                 <td>361</td>
                                 <td>7614.08</td>
-                                <td>1431.5</td>
+                                <td><a href="" data-toggle="modal" data-target="#salesModal-0" class="font-weight-bold">1431.5 </a></td>
                             </tr>
                             <tr>
                                 <td>Aug</td>
                                 <td>525</td>
                                 <td>11086.28</td>
-                                <td>2109.28</td>
+                                <td><a href="" data-toggle="modal" data-target="#salesModal-0" class="font-weight-bold">2109.28 </a></td>
                             </tr>
                             <tr>
                                 <td>Sep</td>
                                 <td>330</td>
                                 <td>10587.00</td>
-                                <td>4944.32</td>
+                                <td><a href="" data-toggle="modal" data-target="#salesModal-0" class="font-weight-bold">4944.32 </a></td>
                             </tr>
                             <tr>
                                 <td>Oct</td>
                                 <td>616</td>
                                 <td>13360.15</td>
-                                <td>3120.27</td>
+                                <td><a href="" data-toggle="modal" data-target="#salesModal-0" class="font-weight-bold">3120.27 </a></td>
                             </tr>
                             <tr>
                                 <td>Nov</td>
                                 <td>636</td>
                                 <td>15604.34</td>
-                                <td>5059.97</td>
+                                <td><a href="" data-toggle="modal" data-target="#salesModal-0" class="font-weight-bold">5059.97 </a></td>
                             </tr>
                             <tr>
                                 <td>Dec</td>
                                 <td>595</td>
                                 <td>13758.66</td>
-                                <td>3911.67</td>
+                                <td><a href="" data-toggle="modal" data-target="#salesModal-0" class="font-weight-bold">3911.67 </a></td>
                             </tr>
                             <tr>
                                 <td>Jan</td>
                                 <td>334</td>
                                 <td>9757.36</td>
-                                <td>4260.71</td>
+                                <td><a href="" data-toggle="modal" data-target="#salesModal-0" class="font-weight-bold">4260.71 </a></td>
                             </tr>
                             <tr>
                                 <td>Feb</td>
                                 <td>543</td>
                                 <td>11217.73</td>
-                                <td>2308.44</td>
+                                <td><a href="" data-toggle="modal" data-target="#salesModal-0" class="font-weight-bold">2308.44 </a></td>
                             </tr>
                             <tr>
                                 <td>Mar</td>
                                 <td>729</td>
                                 <td>16102.53</td>
-                                <td>4141.43</td>
+                                <td><a href="" data-toggle="modal" data-target="#salesModal-0" class="font-weight-bold">4141.43</a></td>
                             </tr>
                             <tr>
                                 <td>Apr</td>
                                 <td>561</td>
                                 <td>12900.45</td>
-                                <td>3688.82</td>
+                                <td><a href="" data-toggle="modal" data-target="#salesModal-0" class="font-weight-bold">3688.82</a></td>
                             </tr>
                             <tr class="table-success font-weight-bold">
                                 <td>Total</td>
@@ -921,8 +1127,8 @@
                                             <tr>
                                                 <th>Order #</th>
                                                 <th>Invoice #</th>
-                                                <th>Ship To</th>
-                                                <th>Name</th>
+                                                <th>Ship To Location</th>
+                                                <th>Customer Name</th>
                                                 <th>Quantity</th>
                                                 <th>Case Price</th>
                                                 <th>Sales</th>
@@ -1009,7 +1215,7 @@
                             <td>57.37%</td>
                         </tr>
                         <tr>
-                            <td>Store Door</td>
+                            <td><a href="#?" data-toggle="modal" data-target="#priceModal-0"><b><u>Store Door</u></b></a></td>
                             <td>26.58</td>
 
                             <td>26.58</td>
@@ -1020,7 +1226,7 @@
                             <td>34.68</td>
                         </tr>
                         <tr>
-                            <td>Wholesale</td>
+                            <td><a href="#?" data-toggle="modal" data-target="#priceModal-0"><b><u>Wholesale</u></b></a></td>
                             <td>23.70</td>
                             <td>26.75</td>
                             <td>23.70</td>
@@ -1029,7 +1235,7 @@
                             <td>23.70</td>
                         </tr>
                         <tr>
-                            <td>Amazon</td>
+                            <td><a href="#?" data-toggle="modal" data-target="#priceModal-0"><b><u>Amazon</u></b></a></td>
                             <td>0.00</td>
                             <td>0.00</td>
                             <td>27.24</td>
@@ -1112,7 +1318,7 @@
     <div class="card shadow mb-2">
         <!-- Card Header - Accordion -->
         <a href="#detailed-poinfo" class="d-block card-header bg-primary py-3" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="detailed-poinfo">
-            <h6 class="m-0 font-weight-bold text-white">PO Details</h6>
+            <h6 class="m-0 font-weight-bold text-white">Purchase Order Details</h6>
         </a>
         <!-- Card Content - Collapse -->
         <div class="collapse show" id="detailed-poinfo">
@@ -1152,7 +1358,7 @@
                             <td>-</td>
                             <td>0</td>
                         </tr>
-                        <tr class="table-success">
+                        <tr>
                             <td>246790</td>
                             <td>460 - Kikkoman</td>
                             <td>Complete</td>
@@ -1163,7 +1369,7 @@
                             <td>02/14/19 16:52</td>
                             <td>100</td>
                         </tr>
-                        <tr class="table-success">
+                        <tr>
                             <td>246782</td>
                             <td>460 - Kikkoman</td>
                             <td>Complete</td>
@@ -1175,7 +1381,7 @@
                             <td>750</td>
                         </tr>
                         <tr>
-                            <td>247206</td>
+                            <td>246093</td>
                             <td>460 - Kikkoman</td>
                             <td>New</td>
                             <td>02/14/19</td>
@@ -1186,7 +1392,7 @@
                             <td>0</td>
                         </tr>
                         <tr>
-                            <td>247206</td>
+                            <td>245770</td>
                             <td>460 - Kikkoman</td>
                             <td>Costed</td>
                             <td>02/14/19</td>
