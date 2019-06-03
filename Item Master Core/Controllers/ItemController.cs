@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using Item_Master_Core.Models;
+using TOLC.ERP.Application;
 
 namespace Item_Master_Core.Controllers
 {
@@ -28,6 +29,7 @@ namespace Item_Master_Core.Controllers
         {
             //Call GET method to obtain Item
             //Use URL itemID as parameter
+            
             ViewBag.ItemID = ItemID;
             Item item = new Item()
             {

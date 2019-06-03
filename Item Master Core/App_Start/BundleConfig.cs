@@ -26,14 +26,13 @@ namespace Item_Master_Core
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
                       "~/Content/font-awesome.css",
-                      "~/Content/sb-admin-2.css",
-                      "~/Content/Site.css"));
+                      "~/Content/style.min.css"));
 
             bundles.Add(new StyleBundle("~/Content/bs-select").Include(
                       "~/Content/bootstrap-select.min.css"));
 
             bundles.Add(new ScriptBundle("~/bundles/layoutjs").Include(
-                      "~/Scripts/sb-admin-2.js"));
+                      "~/Scripts/core.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/bs-select").Include(
                       "~/Scripts/bootstrap-select*"));

@@ -1,4 +1,13 @@
-﻿<!DOCTYPE html>
+﻿@{ Layout = ""; }
+@model Item_Master_Core.Models.User
+<!--
+* CoreUI - Free Bootstrap Admin Template
+* @@version v2.0.0
+* @@link https://coreui.io
+* Copyright (c) 2018 creativeLabs Łukasz Holeczek
+* Licensed under MIT (https://coreui.io/license)
+-->
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
@@ -7,28 +16,45 @@
     @Styles.Render("~/Content/css")
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs4/dt-1.10.18/b-1.5.4/datatables.min.css" />
 </head>
-<body id="page-top" class="sidebar-toggled">
+<body class="app header-fixed sidebar-fixed aside-menu-fixed sidebar-lg-show bg-light">
 
+    <!--Partial view for top Navbar-->
+    @{
+        Html.RenderPartial("_Topnav");
+    }
 
-    <div id="wrapper">
-        @Html.Partial("_NavPartial")
-        <!-- Content Wrapper -->
-        <div id="content-wrapper" class="d-flex flex-column">
-            <!-- Main Content -->
-            <div id="content">
-                @Html.Partial("_SideNavPartial")
-                @RenderBody()
+    <div class="app-body">
+        <!--Partial view for side Navbar-->
+        @{
+            Html.RenderPartial("_Sidenav");
+        }
+
+        <main class="main">
+            <!--Partial view for breadcrumb section-->
+            <partial name="~/Views/Shared/_Breadcrumb.cshtml" />
+            <div class="container-fluid">
+                <div class="animated fadeIn">
+                    @RenderBody()
+                </div>
             </div>
-            @Html.Partial("_Footer")
-        </div>
+        </main>
+
     </div>
+
+    @{
+        Html.RenderPartial("_Footer");
+    }
+    <!-- VIEW-SCRIPTS -->
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @Scripts.Render("~/bundles/bs-select")
     @Scripts.Render("~/Scripts/search-view-toggle.js");
     @Scripts.Render("~/bundles/layoutjs")
-    @RenderSection("scripts", required: false)
     <script type="text/javascript" src="https://cdn.datatables.net/v/bs4/dt-1.10.18/b-1.5.4/datatables.min.js"></script>
+    @RenderSection("Scripts", required: false)
+    <!-- /VIEW-SCRIPTS -->
 </body>
 </html>
+
+

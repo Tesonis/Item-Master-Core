@@ -1,4 +1,4 @@
-﻿@model Item_Master_Core.Models.Item
+﻿@model Item_Master_Core.Models.ItemViewModels.InquiryViewModel
 @{
     ViewBag.Title = ViewBag.ItemID;
 }
@@ -13,9 +13,9 @@
         <div class="col-9">
             <figure><img src="https://www.kikkomanusa.com/images/homecooks/products/00070.png" class="img-responsive" alt="kikkoman soy sauce" height="150"></figure>
             <div class="mb-4">
-                <h5><b>Item ID:</b> @Model.ItemID</h5>
-                <h5><b>Status:</b> <span class="text-success">@Model.Status Since - @Model.Date.ToShortDateString()</span></h5>
-                <h5><b>Product:</b> @Model.ItemDescEng / @Model.ItemDescFr</h5>
+                <h5><b>Item ID:</b> @Model.item.ItemID</h5>
+                <h5><b>Status:</b> <span class="text-success">@Model.item.Status Since - @Model.item.Date.ToShortDateString()</span></h5>
+                <h5><b>Product:</b> @Model.item.ItemDescEng / @Model.item.ItemDescFr</h5>
             </div>
         </div>
         <div class="col-3">
@@ -35,7 +35,7 @@
                     <div class="row no-gutters align-items-center">
                         <div class="col mr-2">
                             <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Vendor / Supplier</div>
-                            <div class="h5 mb-0 font-weight-bold text-gray-800">@Model.Vendor</div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800">@Model.item.Vendor</div>
                         </div>
                     </div>
                 </div>
@@ -49,7 +49,7 @@
                     <div class="row no-gutters align-items-center">
                         <div class="col mr-2">
                             <div class="text-xs font-weight-bold text-success text-uppercase mb-1">Brand Manager</div>
-                            <div class="h5 mb-0 font-weight-bold text-gray-800">@Model.BrandManager</div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800">@Model.item.BrandManager</div>
                         </div>
                         <div class="col-auto">
                             <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
@@ -68,7 +68,7 @@
                             <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Unit UPC</div>
                             <div class="row no-gutters align-items-center">
                                 <div class="col-auto">
-                                    <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">@Model.UnitUPC</div>
+                                    <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">@Model.item.UnitUPC</div>
                                 </div>
                             </div>
                         </div>
@@ -87,7 +87,7 @@
                     <div class="row no-gutters align-items-center">
                         <div class="col mr-2">
                             <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">Size</div>
-                            <div class="h5 mb-0 font-weight-bold text-gray-800">@Model.Size</div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800">@Model.item.Size</div>
                         </div>
                     </div>
                 </div>
@@ -100,7 +100,7 @@
                     <div class="row no-gutters align-items-center">
                         <div class="col mr-2">
                             <div class="text-xs font-weight-bold text-danger text-uppercase mb-1">Brand</div>
-                            <div class="h5 mb-0 font-weight-bold text-gray-800">@Model.Brand</div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800">@Model.item.Brand</div>
                         </div>
                     </div>
                 </div>
@@ -114,7 +114,7 @@
                     <div class="row no-gutters align-items-center">
                         <div class="col mr-2">
                             <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">Purchaser</div>
-                            <div class="h5 mb-0 font-weight-bold text-gray-800">@Model.Purchaser</div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800">@Model.item.Purchaser</div>
                         </div>
                         <div class="col-auto">
                             <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
@@ -133,7 +133,7 @@
                             <div class="text-xs font-weight-bold text-success text-uppercase mb-1">Case UPC</div>
                             <div class="row no-gutters align-items-center">
                                 <div class="col-auto">
-                                    <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">@Model.CaseUPC</div>
+                                    <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">@Model.item.CaseUPC</div>
                                 </div>
                             </div>
                         </div>

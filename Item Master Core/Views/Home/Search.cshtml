@@ -1,5 +1,4 @@
 ﻿@model Item_Master_Core.Models.ItemViewModels.SearchViewModel
-
 @{
     ViewBag.Title = "Search";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -8,13 +7,14 @@
 @Styles.Render("~/Content/bs-select")
 @Styles.Render("~/Content/css")
 
-<div class="container-fluid">
+<!-- Page Content -->
+<div class="bg-white">
+    <div class="mx-auto text-center py-5"><h1>Item Master Inquiry</h1></div>
 
-    <!-- Page Content -->
-    <div class="mx-auto text-center my-4"><h1>Item Master Inquiry</h1></div>
+    <div class="col-md-12">
+        @Html.Partial("_SearchPartial");
+    </div>
 
-    <hr>
-    @Html.Partial("_SearchPartial")
     <div id="searchResults" class="my-5 searchresult mx-4">
         <h5>Search Results</h5>
         <hr />
@@ -25,97 +25,133 @@
                 <button class="list-view-btn btn btn-outline-secondary"><i class="fa fa-bars"></i></button>
             </div>
         </div>
-        <ul id="gridview" class="row">
-            @for (int i = 0; i < 1; i++)
+
+        <div id="gridview" class="row">
+            @for (int i = 0; i < 14; i++)
             {
-                <li class="col-12 col-lg-3 col-xxl-2">
-                    <a href="@Url.Action("Inquiry", null, new { area = string.Empty, controller = "Item" }, Request.Url.Scheme)">
-                        <div class="cnt-block equal-hight" style="height: 349px;">
-                            <p><b>30001</b></p>
-                            <figure><img src="https://via.placeholder.com/150" class="img-responsive" alt=""></figure>
-                            <h5>MINSA CORN FLOUR REG 2KG</h5>
-                            <p><span class="text-success">ACTIVE</span> - 09/09/14</p>
+                <div class="col-12 col-lg-3 col-xl-2">
+                    <div class="card mb-3">
+                        <a href="@Url.Action("Inquiry", new { controller = "Item", ItemID=57187})", protocol: Request.Url.Scheme >
+                            <img class="mx-auto d-block img-fluid" src="https://www.kikkomanusa.com/images/homecooks/products/00070.png" alt="Card image cap" style="height:250px;">
+                            <div class="card-body">
+                                <p class="card-text text-center text-primary"><b>ID: 57187</b></p>
+                                <h5 class="card-title text-dark"><b>KIKKOMAN</b> - ORGANIC SOY SAUCE </h5>
+                                <p class="card-text text-muted">Size: 296ML</p>
+                                <p class="card-text text-muted"><span class="text-success">ACTIVE</span> - 2005-09-26</p>
+
+
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            }
+            <div class="col-12 col-lg-3 col-xl-2">
+                <div class="card mb-3">
+                    <a asp-area="" asp-controller="Item" asp-action="Inquiry" asp-route-view="57187">
+                        <img class="mx-auto d-block img-fluid" src="https://via.placeholder.com/150" alt="Card image cap" style="height:250px;">
+                        <div class="card-body">
+                            <h4 class="card-title">57187</h4>
+                            <p class="card-text">KIKKOMAN ORGANIC SOY SAUCE</p>
+                            <p class="card-text text-muted"><span class="text-success">ACTIVE</span> - 2005-09-26</p>
                         </div>
                     </a>
+                </div>
+            </div>
+        </div>
+
+
+
+        @*<ul id="gridview" class="row">
+              @for (int i = 0; i < 1; i++)
+              {
+                <li class="col-12 col-lg-3 col-xxl-2">
+                  <a class="nav-link" asp-area="" asp-controller="Item" asp-action="Index" asp-route-view="Inquiry" target="_top">
+                    <div class="cnt-block equal-hight" style="height: 349px;">
+                      <p><b>30001</b></p>
+                      <figure><img src="https://via.placeholder.com/150" class="img-responsive" alt=""></figure>
+                      <h5>MINSA CORN FLOUR REG 2KG</h5>
+                      <p><span class="text-success">ACTIVE</span> - 09/09/14</p>
+                    </div>
+                  </a>
                 </li>
-            }
+              }
 
 
-            <li class="col-12 col-lg-3 col-xxl-2">
-                <a href="@Url.Action("Edit", null, new { area = string.Empty, controller = "Item" }, Request.Url.Scheme)">
-                    <div class="cnt-block equal-hight" style="height: 349px;">
-                        <p><b>30900</b></p>
-                        <figure><img src="https://via.placeholder.com/150" class="img-responsive" alt=""></figure>
-                        <h5>OM RAW EP 26/30 WT SHRIMP</h5>
-                        <p><span class="text-danger">INACTIVE</span> - 09/09/14</p>
-                    </div>
+              <li class="col-12 col-lg-3 col-xxl-2">
+                <a class="nav-link" asp-area="" asp-controller="Item" asp-action="Index" asp-route-view="Inquiry" target="_top">
+                  <div class="cnt-block equal-hight" style="height: 349px;">
+                    <p><b>30900</b></p>
+                    <figure><img src="https://via.placeholder.com/150" class="img-responsive" alt=""></figure>
+                    <h5>OM RAW EP 26/30 WT SHRIMP</h5>
+                    <p><span class="text-danger">INACTIVE</span> - 09/09/14</p>
+                  </div>
                 </a>
-            </li>
-            <li class="col-12 col-lg-3 col-xxl-2">
-                <a href="@Url.Action("Create", null, new { area = string.Empty, controller = "Item" }, Request.Url.Scheme)">
-                    <div class="cnt-block equal-hight" style="height: 349px;">
-                        <p><b>87678</b></p>
-                        <figure><img src="https://via.placeholder.com/150" class="img-responsive" alt=""></figure>
-                        <h5>New Item Desc</h5>
-                        <p><span class="text-info">Draft</span> - 02/07/19</p>
-                    </div>
+              </li>
+              <li class="col-12 col-lg-3 col-xxl-2">
+                <a class="nav-link" asp-area="" asp-controller="Item" asp-action="Index" asp-route-view="Inquiry" target="_top">
+                  <div class="cnt-block equal-hight" style="height: 349px;">
+                    <p><b>87678</b></p>
+                    <figure><img src="https://via.placeholder.com/150" class="img-responsive" alt=""></figure>
+                    <h5>New Item Desc</h5>
+                    <p><span class="text-info">Draft</span> - 02/07/19</p>
+                  </div>
                 </a>
-            </li>
-            <li class="col-12 col-lg-3 col-xxl-2">
+              </li>
+              <li class="col-12 col-lg-3 col-xxl-2">
                 <a href="#?">
-                    <div class="cnt-block equal-hight" style="height: 349px;">
-                        <p><b>56455</b></p>
-                        <figure><img src="https://via.placeholder.com/150" class="img-responsive" alt=""></figure>
-                        <h5>BRM MUESLI 8 CS SHIPPER</h5>
-                        <p><span class="text-success">ACTIVE</span> - 09/09/14</p>
-                    </div>
+                  <div class="cnt-block equal-hight" style="height: 349px;">
+                    <p><b>56455</b></p>
+                    <figure><img src="https://via.placeholder.com/150" class="img-responsive" alt=""></figure>
+                    <h5>BRM MUESLI 8 CS SHIPPER</h5>
+                    <p><span class="text-success">ACTIVE</span> - 09/09/14</p>
+                  </div>
                 </a>
-            </li>
-            <li class="col-12 col-lg-3 col-xxl-2">
+              </li>
+              <li class="col-12 col-lg-3 col-xxl-2">
                 <a href="#?">
-                    <div class="cnt-block equal-hight" style="height: 349px;">
-                        <p><b>30001</b></p>
-                        <figure><img src="https://via.placeholder.com/150" class="img-responsive" alt=""></figure>
-                        <h5>MINSA CORN FLOUR REG 2KG</h5>
-                        <p><span class="text-success">ACTIVE</span> - 09/09/14</p>
-                    </div>
+                  <div class="cnt-block equal-hight" style="height: 349px;">
+                    <p><b>30001</b></p>
+                    <figure><img src="https://via.placeholder.com/150" class="img-responsive" alt=""></figure>
+                    <h5>MINSA CORN FLOUR REG 2KG</h5>
+                    <p><span class="text-success">ACTIVE</span> - 09/09/14</p>
+                  </div>
                 </a>
-            </li>
-            <li class="col-12 col-lg-3 col-xxl-2">
+              </li>
+              <li class="col-12 col-lg-3 col-xxl-2">
                 <a href="#?">
-                    <div class="cnt-block equal-hight" style="height: 349px;">
-                        <p><b>30001</b></p>
-                        <figure><img src="https://via.placeholder.com/150" class="img-responsive" alt=""></figure>
-                        <h5>MINSA CORN FLOUR REG 2KG</h5>
-                        <p><span class="text-success">ACTIVE</span> - 09/09/14</p>
-                    </div>
+                  <div class="cnt-block equal-hight" style="height: 349px;">
+                    <p><b>30001</b></p>
+                    <figure><img src="https://via.placeholder.com/150" class="img-responsive" alt=""></figure>
+                    <h5>MINSA CORN FLOUR REG 2KG</h5>
+                    <p><span class="text-success">ACTIVE</span> - 09/09/14</p>
+                  </div>
                 </a>
-            </li>
-            <li class="col-12 col-lg-3 col-xxl-2">
+              </li>
+              <li class="col-12 col-lg-3 col-xxl-2">
                 <a href="#?">
-                    <div class="cnt-block equal-hight" style="height: 349px;">
-                        <p><b>30001</b></p>
-                        <figure><img src="https://via.placeholder.com/150" class="img-responsive" alt=""></figure>
-                        <h5>MINSA CORN FLOUR REG 2KG</h5>
-                        <p><span class="text-success">ACTIVE</span> - 09/09/14</p>
-                    </div>
+                  <div class="cnt-block equal-hight" style="height: 349px;">
+                    <p><b>30001</b></p>
+                    <figure><img src="https://via.placeholder.com/150" class="img-responsive" alt=""></figure>
+                    <h5>MINSA CORN FLOUR REG 2KG</h5>
+                    <p><span class="text-success">ACTIVE</span> - 09/09/14</p>
+                  </div>
                 </a>
-            </li>
-            <li class="col-12 col-lg-3 col-xxl-2">
+              </li>
+              <li class="col-12 col-lg-3 col-xxl-2">
                 <a href="#?">
-                    <div class="cnt-block equal-hight" style="height: 349px;">
-                        <p><b>30001</b></p>
-                        <figure><img src="https://via.placeholder.com/150" class="img-responsive" alt=""></figure>
-                        <h5>MINSA CORN FLOUR REG 2KG</h5>
-                        <p><span class="text-success">ACTIVE</span> - 09/09/14</p>
-                    </div>
+                  <div class="cnt-block equal-hight" style="height: 349px;">
+                    <p><b>30001</b></p>
+                    <figure><img src="https://via.placeholder.com/150" class="img-responsive" alt=""></figure>
+                    <h5>MINSA CORN FLOUR REG 2KG</h5>
+                    <p><span class="text-success">ACTIVE</span> - 09/09/14</p>
+                  </div>
                 </a>
-            </li>
+              </li>
 
 
 
-        </ul>
-        <table id="listview" class="table table-bordered    table-striped">
+            </ul>*@
+        <table id="listview" class="table table-bordered table-striped">
             <thead>
                 <tr>
                     <th>ID</th>
@@ -130,13 +166,15 @@
                 <tr>
                     <td><b>57187</b></td>
                     <td>00041390001901</td>
-                    <td><a href="@Url.Action("Inquiry", null, new { area = string.Empty, controller = "Item" }, Request.Url.Scheme)"><h6>MINSA CORN FLOUR REG 2KG</h6></a></td>
+                    <td><a class="nav-link" asp-area="" asp-controller="Item" asp-action="Index" asp-route-view="Inquiry" target="_top"><h6>MINSA CORN FLOUR REG 2KG</h6></a></td>
                     <td><span class="text-success">ACTIVE</span></td>
                     <td>09/09/14</td>
                 </tr>
             }
         </table>
     </div>
-
 </div>
-<!-- /.container-fluid -->
+@section Scripts{
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.7/dist/js/bootstrap-select.min.js"></script>
+    <script src="~/js/search-view-toggle.js"></script>
+}

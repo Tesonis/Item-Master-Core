@@ -1,16 +1,17 @@
-﻿<div class="col-md-12">
-    <form id="search-form" role="search" asp-controller="Search">
-        <div class="input-group mb-3">
-            <input class="form-control form-control-lg" placeholder="Search by Item #, Description or UPC" id="query" name="query" type="text" value="@(ViewData["Query"] != null  ? (string) ViewData["Query"] : "")">
-            <div class="input-group-append">
-                <button class="btn btn-success" type="submit"><i class="fa fa-search px-3" aria-hidden="true"></i></button>
-            </div>
+﻿<form id="search-form" role="search" action="post">
+    <div class="input-group mb-3">
+        <input class="form-control form-control-lg" placeholder="Search by Item #, Description or UPC" id="query" name="query" type="text" value="@(ViewData["Query"] != null  ? (string) ViewData["Query"] : "")">
+        <div class="input-group-append">
+            <button class="btn btn-success" type="submit"><i class="fa fa-search px-3" aria-hidden="true"></i></button>
         </div>
-        <a href="#?" data-toggle="collapse" data-target="#demo" class="float-right">Advanced Search Options</a><br />
+    </div>
+    <a href="#?" data-toggle="collapse" data-target="#demo" class="float-right">Advanced Search Options</a><br />
 
-        <div id="demo" class="collapse">
-            <div class="row">
-                <div class="col-md-3">
+    <div id="demo" class="collapse container">
+        <div class="row">
+            <div class="col-md-6">
+                <h4 class="text-primary">Filter by Tag</h4><hr />
+                <div class="mt-2">
                     <label>Status</label>
                     <select class="selectpicker form-control search-result-filter" multiple>
                         <option selected>Active</option>
@@ -18,20 +19,21 @@
                         <option selected>Draft</option>
                     </select>
                 </div>
-                <div class="col-md-3">
+                <div class="mt-2">
                     <label>Vendor</label>
-                    <select class="selectpicker form-control search-result-filter" data-live-search="true" multiple>
+                    <select class="selectpicker form-control search-result-filter" data-live-search="true">
+                        <option id='Sondra Sautner  '>All</option>
                         <option id='Sondra Sautner  '>Tostitos</option>
                         <option id='Boris Brunett  '>Ziggy's </option>
                         <option id='Dayna Daw  '>Lindor</option>
                         <option id='Noble Nealon  '>Meilson</option>
                         <option id='Jada Justin  '>Black Diamond</option>
                         <option id='Robbie Reason  '>Coeur de Lion</option>
-                        <option id='Jeremiah Jinkins'>Kikkoman</option>
+                        <option id='Jeremiah Jinkins  '>Kikkoman</option>
                         <option id='Jeremiah Jinkins  '>Thai Kitchen</option>
                     </select>
                 </div>
-                <div class="col-md-3">
+                <div class="mt-2">
                     <label>Pillar</label>
                     <select class="selectpicker form-control search-result-filter" multiple>
                         <option selected>Natural & Organic</option>
@@ -40,34 +42,74 @@
                         <option selected>Meats</option>
                     </select>
                 </div>
-                <div class="col-md-3">
+                <div class="mt-2">
                     <label>Brand</label>
                     <select class="selectpicker form-control search-result-filter" data-live-search="true">
+                        <option id='Sondra Sautner  '>All</option>
                         <option id='Sondra Sautner  '>Tostitos</option>
                         <option id='Boris Brunett  '>Ziggy's </option>
                         <option id='Dayna Daw  '>Lindor</option>
                         <option id='Noble Nealon  '>Meilson</option>
                         <option id='Jada Justin  '>Black Diamond</option>
                         <option id='Robbie Reason  '>Coeur de Lion</option>
-                        <option id='Jeremiah Jinkins  ' selected>Kikkoman</option>
+                        <option id='Jeremiah Jinkins  '>Kikkoman</option>
                         <option id='Jeremiah Jinkins  '>Thai Kitchen</option>
                     </select>
                 </div>
-                <div class="col-md-3 mt-3">
-                    <div class="custom-control custom-checkbox">
-                        <input type="checkbox" class="custom-control-input" id="chk_gluten" name="chk_gluten">
-                        <label class="custom-control-label" for="chk_gluten">Gluten Free</label>
-                    </div>
+            </div>
+            <div class="col-md-6">
+                <h4 class="text-primary">Exclude Allergens</h4><hr />
+                <div class="custom-control custom-checkbox">
+                    <input type="checkbox" class="custom-control-input" id="chk_gluten" name="chk_gluten">
+                    <label class="custom-control-label" for="chk_gluten">Crustaceans and molluscs</label>
                 </div>
-                <div class="col-md-3 mt-3">
-                    <div class="custom-control custom-checkbox">
-                        <input type="checkbox" class="custom-control-input" id="chk_halal" name="chk_halal">
-                        <label class="custom-control-label" for="chk_halal">Halal</label>
-                    </div>
+                <div class="custom-control custom-checkbox">
+                    <input type="checkbox" class="custom-control-input" id="chk_gluten" name="chk_gluten">
+                    <label class="custom-control-label" for="chk_gluten">Eggs</label>
                 </div>
+                <div class="custom-control custom-checkbox">
+                    <input type="checkbox" class="custom-control-input" id="chk_gluten" name="chk_gluten">
+                    <label class="custom-control-label" for="chk_gluten">Fish</label>
+                </div>
+                <div class="custom-control custom-checkbox">
+                    <input type="checkbox" class="custom-control-input" id="chk_gluten" name="chk_gluten">
+                    <label class="custom-control-label" for="chk_gluten">Gluten</label>
+                </div>
+                <div class="custom-control custom-checkbox">
+                    <input type="checkbox" class="custom-control-input" id="chk_gluten" name="chk_gluten">
+                    <label class="custom-control-label" for="chk_gluten">Milk</label>
+                </div>
+                <div class="custom-control custom-checkbox">
+                    <input type="checkbox" class="custom-control-input" id="chk_gluten" name="chk_gluten">
+                    <label class="custom-control-label" for="chk_gluten">Mustard</label>
+                </div>
+                <div class="custom-control custom-checkbox">
+                    <input type="checkbox" class="custom-control-input" id="chk_gluten" name="chk_gluten">
+                    <label class="custom-control-label" for="chk_gluten">Peanuts</label>
+                </div>
+                <div class="custom-control custom-checkbox">
+                    <input type="checkbox" class="custom-control-input" id="chk_gluten" name="chk_gluten">
+                    <label class="custom-control-label" for="chk_gluten">Sesame</label>
+                </div>
+                <div class="custom-control custom-checkbox">
+                    <input type="checkbox" class="custom-control-input" id="chk_gluten" name="chk_gluten">
+                    <label class="custom-control-label" for="chk_gluten">Soy</label>
+                </div>
+                <div class="custom-control custom-checkbox">
+                    <input type="checkbox" class="custom-control-input" id="chk_gluten" name="chk_gluten">
+                    <label class="custom-control-label" for="chk_gluten">Sulphites</label>
+                </div>
+                <div class="custom-control custom-checkbox">
+                    <input type="checkbox" class="custom-control-input" id="chk_gluten" name="chk_gluten">
+                    <label class="custom-control-label" for="chk_gluten">Tree Nuts</label>
+                </div>
+                <div class="custom-control custom-checkbox">
+                    <input type="checkbox" class="custom-control-input" id="chk_gluten" name="chk_gluten">
+                    <label class="custom-control-label" for="chk_gluten">Wheat and triticale</label>
+                </div>
+            </div>
 
-                <div class="col-12 text-center mt-4"><button class="btn btn-success btn-lg mx-auto">Apply Filter</button></div>
-            </div>
-            </div>
-    </form>
-</div>
+            <div class="col-12 text-center mt-4"><button class="btn btn-success btn-lg mx-auto">Apply Filter</button></div>
+        </div>
+    </div>
+</form>
