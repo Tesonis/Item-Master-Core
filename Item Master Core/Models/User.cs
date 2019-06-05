@@ -10,6 +10,7 @@ namespace Item_Master_Core.Models
     {
         [Key]
         public string Username { get; set; }
+
         public string FullName {get;set;}
         public string Email { get; set; }
     }

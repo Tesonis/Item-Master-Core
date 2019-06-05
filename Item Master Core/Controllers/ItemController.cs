@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using Item_Master_Core.Models;
+using Item_Master_Core.Models.ItemViewModels;
 using TOLC.ERP.Application;
 
 namespace Item_Master_Core.Controllers
@@ -44,13 +45,15 @@ namespace Item_Master_Core.Controllers
                 BrandManager = "Keira Hall",
                 UnitUPC = "00041390001901",
                 CaseUPC = "10041390001908",
-                Size = "1 Carton / 6 Case / 296ML",
+                Size = "1 Carton /  6 Case / 296ML",
                 Brand = "Kikkoman",
                 Purchaser = "Bianca Ceoca",
                 Perishable = false
 
             };
-            return View(item);
+            InquiryViewModel inquiryViewModel = new InquiryViewModel();
+            inquiryViewModel.item = item;
+            return View(inquiryViewModel);
         }
         public ActionResult SalesReport(int ItemID)
         {

@@ -38,6 +38,7 @@ namespace Item_Master_Core.Controllers
         [HttpPost]
         public ActionResult Search(SearchViewModel searchViewModel)
         {
+            
             return View();
         }
 
@@ -48,23 +49,6 @@ namespace Item_Master_Core.Controllers
             ViewData["ReturnUrl"] = returnUrl;
             return View();
         }
-        [HttpPost]
-        [AllowAnonymous]
-        public ActionResult Login(LoginViewModel model)
-        {
-            Security sec = new Security();
-            Session session = sec.Logon("txhuang", "485657");
-            //Session session = sec.Logon(model.Username, model.Password);
-            if (session == null)
-            {
-                RedirectToAction("Login", "Account");
-            }
-
-            HttpCookie usercookie = new HttpCookie("userinfo");
-            usercookie.Value = session.FullName;
-            usercookie.Expires = DateTime.Now.AddMinutes(1);
-            Response.Cookies.Add(usercookie);
-            return View();
-        }
+        
     }
 }

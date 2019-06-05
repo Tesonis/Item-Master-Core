@@ -1,6 +1,7 @@
 ﻿<form id="search-form" role="search" action="post">
     <div class="input-group mb-3">
-        <input class="form-control form-control-lg" placeholder="Search by Item #, Description or UPC" id="query" name="query" type="text" value="@(ViewData["Query"] != null  ? (string) ViewData["Query"] : "")">
+        <input class="form-control form-control-lg" placeholder="Item #" id="searchItemNum" type="number" style="max-width:200px;">
+        <input class="form-control form-control-lg" placeholder="Search by Description or UPC" id="searchInput" type="text" value="@(ViewData["Query"] != null  ? (string) ViewData["Query"] : "")">
         <div class="input-group-append">
             <button class="btn btn-success" type="submit"><i class="fa fa-search px-3" aria-hidden="true"></i></button>
         </div>
@@ -113,3 +114,19 @@
         </div>
     </div>
 </form>
+@section scripts {
+    <script src="~/Scripts/View-scripts/queryString.js"></script>
+    <script type="text/javascript">
+        $('#form').submit(function () {
+            $.ajax({
+                url: $('#search-form').attr('action'),
+                type: 'POST',
+                data: parseSearchString($('#searchInput').text),
+                success: function () {
+                    console.log('form submitted.');
+                }
+            });
+            return false;
+        });
+    </script>
+}

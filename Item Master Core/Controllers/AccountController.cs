@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using IBM.Data.DB2.iSeries;
 using Item_Master_Core.Models;
 using Item_Master_Core.Models.AccountViewModels;
 using TOLC.ERP.Application;
@@ -17,11 +18,7 @@ namespace Item_Master_Core.Controllers
         [AllowAnonymous]
         public ActionResult Login()
         {
-            //DB2ConnectionStringBuilder cnstr = new DB2ConnectionStringBuilder();
-            //cnstr.UserID = "TXHUANG";
-            //cnstr.Password = "485657";
-            //cnstr.Server = "TOLC400:446";
-            //cnstr.Database = "CANADA";
+            
             //iDB2ConnectionStringBuilder cnstr = new iDB2ConnectionStringBuilder();
             //cnstr.UserID = "TXHUANG";
             //cnstr.DataSource = "TOLC400";
@@ -54,7 +51,10 @@ namespace Item_Master_Core.Controllers
                 user.FullName = session.FullName;
                 user.Email = session.EmailAddress;
                 HttpCookie userCookie = new HttpCookie("SecToken");
-                userCookie.Value = session.securityIdentifier;
+                userCookie["FullName"] = session.FullName;
+                userCookie["Email"] = session.EmailAddress;
+                userCookie["Username"] = session.Username;
+                userCookie["SecurityKey"] = session.securityIdentifier;
                 HttpContext.Response.Cookies.Add(userCookie);
                 return RedirectToAction("Search", "Home", new { area = "" }); ;
             }
