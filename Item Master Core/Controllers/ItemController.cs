@@ -11,6 +11,7 @@ namespace Item_Master_Core.Controllers
 {
     public class ItemController : Controller
     {
+
         // GET: Item
         public ActionResult Edit()
         {
@@ -19,6 +20,10 @@ namespace Item_Master_Core.Controllers
 
         public ActionResult Create()
         {
+            if (HttpContext.Session == null || HttpContext.Session["SecurityKey"] == null)
+            {
+                RedirectToAction("Login", "Account", new { area = "" }); ;
+            }
             string date = String.Format("{0:D}", DateTime.Now);
             ViewBag.currentDate = date;
             
@@ -30,7 +35,10 @@ namespace Item_Master_Core.Controllers
         {
             //Call GET method to obtain Item
             //Use URL itemID as parameter
-            
+            if (HttpContext.Session == null || HttpContext.Session["SecurityKey"] == null)
+            {
+                RedirectToAction("Login", "Account", new { area = "" }); ;
+            }
             ViewBag.ItemID = ItemID;
             Item item = new Item()
             {
@@ -51,12 +59,14 @@ namespace Item_Master_Core.Controllers
                 Perishable = false
 
             };
-            InquiryViewModel inquiryViewModel = new InquiryViewModel();
-            inquiryViewModel.item = item;
-            return View(inquiryViewModel);
+            return View(item);
         }
         public ActionResult SalesReport(int ItemID)
         {
+            if (HttpContext.Session == null || HttpContext.Session["SecurityKey"] == null)
+            {
+                RedirectToAction("Login", "Account", new { area = "" }); ;
+            }
             //Call GET method to obtain Item
             //Use URL itemID as parameter
             ViewBag.ItemID = ItemID;

@@ -1,18 +1,29 @@
 ﻿function parseSearchString(searchString) {
-    var search = "test search String 001";
+    var search = searchString;
     var descriptionWords = [];
-    var partialUPC;
+    var partialUPC = "";
     if (search != "" || search != null) {
         var searchWords = search.split(" ");
 
         if (searchWords.length != 0) {
             for (i = 0; i < searchWords.length; i++) {
                 var substr = searchWords[i];
-                if (parseInt(substr) == null || parseInt(substr) != null && substr.length <= 3) {
+                if (isNaN(parseInt(substr)) || ( !isNaN(parseInt(substr)) && substr.length <= 3)) {
                     descriptionWords.push(substr);
                 }
-                else {
+                if (!isNaN(parseInt(substr)) && substr.length == 4) {
+                    descriptionWords.push(substr);
                     partialUPC = substr;
+                }
+                else {
+                    if (substr.length > partialUPC.length) {
+                        descriptionWords.push(partialUPC);
+                        partialUPC = substr;
+                    }
+                    else {
+                        partialUPC = substr;
+                    }
+                    
                 }
             }
         }
@@ -20,7 +31,7 @@
     
     var searchObject = {
         description: descriptionWords,
-        upc: partialUpc
+        upc: partialUPC
     };
 
     return searchObject;

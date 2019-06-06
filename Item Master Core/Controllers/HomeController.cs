@@ -11,6 +11,7 @@ namespace Item_Master_Core.Controllers
 {
     public class HomeController : Controller
     {
+        
         public ActionResult Index()
         {
 
@@ -33,6 +34,10 @@ namespace Item_Master_Core.Controllers
         [HttpGet]
         public ActionResult Search()
         {
+            if (HttpContext.Session == null || HttpContext.Session["SecurityKey"] == null)
+            {
+                RedirectToAction("Login", "Account", new { area = "" }); ;
+            }
             return View();
         }
         [HttpPost]
@@ -42,13 +47,6 @@ namespace Item_Master_Core.Controllers
             return View();
         }
 
-        [HttpGet]
-        [AllowAnonymous]
-        public ActionResult Login(string returnUrl = null)
-        {
-            ViewData["ReturnUrl"] = returnUrl;
-            return View();
-        }
         
     }
 }

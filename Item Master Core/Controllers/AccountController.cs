@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Security;
 using IBM.Data.DB2.iSeries;
 using Item_Master_Core.Models;
 using Item_Master_Core.Models.AccountViewModels;
@@ -13,7 +14,8 @@ namespace Item_Master_Core.Controllers
     [Route("")]
     public class AccountController : Controller
     {
-        
+        public object Formathentication { get; private set; }
+
         [HttpGet]
         [AllowAnonymous]
         public ActionResult Login()
@@ -46,16 +48,21 @@ namespace Item_Master_Core.Controllers
             }
             else
             {
-                User user = new User();
-                user.Username = session.Username;
-                user.FullName = session.FullName;
-                user.Email = session.EmailAddress;
-                HttpCookie userCookie = new HttpCookie("SecToken");
-                userCookie["FullName"] = session.FullName;
-                userCookie["Email"] = session.EmailAddress;
-                userCookie["Username"] = session.Username;
-                userCookie["SecurityKey"] = session.securityIdentifier;
-                HttpContext.Response.Cookies.Add(userCookie);
+                //User user = new User();
+                //user.Username = session.Username;
+                //user.FullName = session.FullName;
+                //user.Email = session.EmailAddress;
+                //HttpCookie userCookie = new HttpCookie("SecToken");
+                //userCookie["FullName"] = session.FullName;
+                //userCookie["Email"] = session.EmailAddress;
+                //userCookie["Username"] = session.Username;
+                //userCookie["SecurityKey"] = session.securityIdentifier;
+                //HttpContext.Response.Cookies.Add(userCookie);
+                //FormsAuthentication.SetAuthCookie(userCookie["SecurityKey"], true);
+                Session["FullName"] = session.FullName;
+                Session["Email"] = session.EmailAddress;
+                Session["Username"] = session.Username;
+                Session["SecurityKey"] = session.securityIdentifier;
                 return RedirectToAction("Search", "Home", new { area = "" }); ;
             }
 
