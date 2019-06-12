@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using Item_Master_Core.Models.ItemViewModels;
 using Item_Master_Core.Models.AccountViewModels;
 using TOLC.ERP.Application;
+using IBM.Data.DB2.iSeries;
 
 namespace Item_Master_Core.Controllers
 {
@@ -38,15 +39,33 @@ namespace Item_Master_Core.Controllers
             {
                 RedirectToAction("Login", "Account", new { area = "" }); ;
             }
-            return View();
+            SearchViewModel vm = new SearchViewModel();
+            List<string> brandlist = new List<string>();
+            Brand Brands = new Brand();
+            iDB2DataReader reader = null;
+            Brands.List(HttpContext.Session["SecurityKey"].ToString(), ref reader);
+
+            if (reader == null)
+            {
+                return RedirectToAction("Index", "Home", new { area = "" });
+            }
+            else
+            {
+                string test;
+                while (reader.Read()) {
+                    test = reader["PRNNAM"].ToString();
+                    brandlist.Add(test);
+                }
+                vm.Brands = brandlist;
+            }
+            return View(vm);
         }
         [HttpPost]
         public ActionResult Search(SearchViewModel searchViewModel)
         {
-            
             return View();
         }
 
-        
+
     }
 }

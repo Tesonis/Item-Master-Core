@@ -12,7 +12,7 @@
     <div class="mx-auto text-center py-5"><h1>Item Master Inquiry</h1></div>
 
     <div class="col-md-12">
-        @Html.Partial("_SearchPartial");
+        @Html.Partial("_SearchPartial")
     </div>
 
     <div id="searchResults" class="my-5 searchresult mx-4">
@@ -31,7 +31,7 @@
             {
                 <div class="col-12 col-lg-3 col-xl-2">
                     <div class="card mb-3">
-                        <a href="@Url.Action("Inquiry", new { controller = "Item", ItemID=57187})", protocol: Request.Url.Scheme >
+                        <a href="@Url.Action("Inquiry", new { controller = "Item", ItemID = 57187 })", protocol: Request.Url.Scheme >
                             <img class="mx-auto d-block img-fluid" src="https://www.kikkomanusa.com/images/homecooks/products/00070.png" alt="Card image cap" style="height:250px;">
                             <div class="card-body">
                                 <p class="card-text text-center text-primary"><b>ID: 57187</b></p>
@@ -172,6 +172,7 @@
                 </tr>
             }
         </table>
+        @Html.DropDownListFor(x => x.Brands,new SelectList(Model.Brands, "Value", "Text"))
     </div>
 </div>
 @section Scripts{

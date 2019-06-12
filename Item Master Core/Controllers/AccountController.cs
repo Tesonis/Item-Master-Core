@@ -20,7 +20,7 @@ namespace Item_Master_Core.Controllers
         [AllowAnonymous]
         public ActionResult Login()
         {
-            
+
             //iDB2ConnectionStringBuilder cnstr = new iDB2ConnectionStringBuilder();
             //cnstr.UserID = "TXHUANG";
             //cnstr.DataSource = "TOLC400";
@@ -34,37 +34,46 @@ namespace Item_Master_Core.Controllers
             //Security security = new Security();
             //Session session = security.Logon("txhuang", "485657");
             //Session session = security.Logon(model.Username, model.Password);
-
-            return View();
+            LoginViewModel model = new LoginViewModel();
+            return View(model);
         }
         [HttpPost]
         [AllowAnonymous]
         public ActionResult Login(LoginViewModel model)
         {
-            Session session = new Security().Logon("txhuang", "485657");
-            if (session.securityIdentifier == null)
+            try
+            {
+                Session session = new Security().Logon(model.Username, model.Password);
+                if (session.securityIdentifier == null)
+                {
+                    return RedirectToAction("Login", "Account", new { area = "" });
+                }
+                else
+                {
+                    //User user = new User();
+                    //user.Username = session.Username;
+                    //user.FullName = session.FullName;
+                    //user.Email = session.EmailAddress;
+                    //HttpCookie userCookie = new HttpCookie("SecToken");
+                    //userCookie["FullName"] = session.FullName;
+                    //userCookie["Email"] = session.EmailAddress;
+                    //userCookie["Username"] = session.Username;
+                    //userCookie["SecurityKey"] = session.securityIdentifier;
+                    //HttpContext.Response.Cookies.Add(userCookie);
+                    //FormsAuthentication.SetAuthCookie(userCookie["SecurityKey"], true);
+                    Session["FullName"] = session.FullName;
+                    Session["Email"] = session.EmailAddress;
+                    Session["Username"] = session.Username;
+                    Session["SecurityKey"] = session.securityIdentifier;
+                    return RedirectToAction("Search", "Home", new { area = "" }); ;
+                }
+            }
+            catch(InvalidCastException e)
             {
                 return RedirectToAction("Login", "Account", new { area = "" });
             }
-            else
-            {
-                //User user = new User();
-                //user.Username = session.Username;
-                //user.FullName = session.FullName;
-                //user.Email = session.EmailAddress;
-                //HttpCookie userCookie = new HttpCookie("SecToken");
-                //userCookie["FullName"] = session.FullName;
-                //userCookie["Email"] = session.EmailAddress;
-                //userCookie["Username"] = session.Username;
-                //userCookie["SecurityKey"] = session.securityIdentifier;
-                //HttpContext.Response.Cookies.Add(userCookie);
-                //FormsAuthentication.SetAuthCookie(userCookie["SecurityKey"], true);
-                Session["FullName"] = session.FullName;
-                Session["Email"] = session.EmailAddress;
-                Session["Username"] = session.Username;
-                Session["SecurityKey"] = session.securityIdentifier;
-                return RedirectToAction("Search", "Home", new { area = "" }); ;
-            }
+            
+            
 
 
             
