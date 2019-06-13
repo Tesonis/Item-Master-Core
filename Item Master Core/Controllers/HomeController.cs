@@ -32,32 +32,42 @@ namespace Item_Master_Core.Controllers
 
             return View();
         }
-        [HttpGet]
-        public ActionResult Search()
+        private IEnumerable<SelectListItem> GetBrands()
         {
-            if (HttpContext.Session == null || HttpContext.Session["SecurityKey"] == null)
-            {
-                RedirectToAction("Login", "Account", new { area = "" }); ;
-            }
-            SearchViewModel vm = new SearchViewModel();
-            List<string> brandlist = new List<string>();
+            List<SelectListItem> brandlist = new List<SelectListItem>();
             Brand Brands = new Brand();
             iDB2DataReader reader = null;
             Brands.List(HttpContext.Session["SecurityKey"].ToString(), ref reader);
 
             if (reader == null)
             {
-                return RedirectToAction("Index", "Home", new { area = "" });
+                return null;
             }
             else
             {
-                string test;
-                while (reader.Read()) {
-                    test = reader["PRNNAM"].ToString();
-                    brandlist.Add(test);
+                while (reader.Read())
+                {
+                    var brand = new SelectListItem
+                    {
+                        Value = reader["PRNNAM"].ToString(),
+                        Text = reader["PRNNAM"].ToString()
+                    };
+                    brandlist.Add(brand);
                 }
-                vm.Brands = brandlist;
+                return brandlist;
             }
+        }
+        [HttpGet]
+        public ActionResult Search()
+        {
+
+            if (HttpContext.Session == null || HttpContext.Session["SecurityKey"] == null)
+            {
+                RedirectToAction("Login", "Account", new { area = "" }); ;
+            }
+
+            SearchViewModel vm = new SearchViewModel();
+            vm.Brands = GetBrands();
             return View(vm);
         }
         [HttpPost]

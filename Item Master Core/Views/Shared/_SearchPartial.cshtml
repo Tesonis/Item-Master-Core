@@ -1,4 +1,5 @@
-﻿<form id="search-form" role="search" action="post">
+﻿@model Item_Master_Core.Models.ItemViewModels.SearchViewModel
+<form id="search-form" role="search" action="post">
     <div class="input-group mb-3">
         <input class="form-control form-control-lg" placeholder="Item #" id="searchItemNum" type="number" style="max-width:200px;">
         <input class="form-control form-control-lg" placeholder="Search by Description or UPC" id="searchInput" type="text" value="@(ViewData["Query"] != null  ? (string) ViewData["Query"] : "")">
@@ -44,18 +45,9 @@
                     </select>
                 </div>
                 <div class="mt-2">
-                    <label>Brand</label>
-                    <select class="selectpicker form-control search-result-filter" data-live-search="true">
-                        <option id='Sondra Sautner  '>All</option>
-                        <option id='Sondra Sautner  '>Tostitos</option>
-                        <option id='Boris Brunett  '>Ziggy's </option>
-                        <option id='Dayna Daw  '>Lindor</option>
-                        <option id='Noble Nealon  '>Meilson</option>
-                        <option id='Jada Justin  '>Black Diamond</option>
-                        <option id='Robbie Reason  '>Coeur de Lion</option>
-                        <option id='Jeremiah Jinkins  '>Kikkoman</option>
-                        <option id='Jeremiah Jinkins  '>Thai Kitchen</option>
-                    </select>
+                    
+                    @Html.LabelFor(x => x.Brands)
+                    @Html.DropDownListFor(x => x.Brands, Model.Brands, new { @class = "selectpicker form-control search-result-filter", data_live_search = "true" })
                 </div>
             </div>
             <div class="col-md-6">
