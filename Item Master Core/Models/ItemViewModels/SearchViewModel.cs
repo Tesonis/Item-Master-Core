@@ -11,6 +11,8 @@ namespace Item_Master_Core.Models.ItemViewModels
     {
         public IEnumerable<SelectListItem> Brands;
 
+        public IEnumerable<SelectListItem> Vendors;
+
         public string SearchString { get; set; }
         public string Status { get; set; }
         public string SalesRep { get; set; }

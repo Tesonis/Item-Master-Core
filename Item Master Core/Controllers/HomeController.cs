@@ -36,26 +36,45 @@ namespace Item_Master_Core.Controllers
         {
             List<SelectListItem> brandlist = new List<SelectListItem>();
             Brand Brands = new Brand();
-            iDB2DataReader reader = null;
-            Brands.List(HttpContext.Session["SecurityKey"].ToString(), ref reader);
+            iDB2DataReader readerPRN = null;
+            Brands.List(HttpContext.Session["SecurityKey"].ToString(), ref readerPRN);
 
-            if (reader == null)
+            if (readerPRN != null)
             {
-                return null;
-            }
-            else
-            {
-                while (reader.Read())
+                while (readerPRN.Read())
                 {
                     var brand = new SelectListItem
                     {
-                        Value = reader["PRNNAM"].ToString(),
-                        Text = reader["PRNNAM"].ToString()
+                        Value = readerPRN["PRNNAM"].ToString(),
+                        Text = readerPRN["PRNNAM"].ToString()
                     };
                     brandlist.Add(brand);
                 }
-                return brandlist;
+                
             }
+            return brandlist;
+        }
+        private IEnumerable<SelectListItem> GetVendors()
+        {
+            List<SelectListItem> vendorlist = new List<SelectListItem>();
+            Supplier Vendors = new Supplier();
+            iDB2DataReader readerVEN = null;
+            Vendors.List(HttpContext.Session["SecurityKey"].ToString(), ref readerVEN);
+
+            if (readerVEN != null)
+            {
+                while (readerVEN.Read())
+                {
+                    var vendor = new SelectListItem
+                    {
+                        Value = readerVEN["VENNAM"].ToString(),
+                        Text = readerVEN["VENNAM"].ToString()
+                    };
+                    vendorlist.Add(vendor);
+                }
+                
+            }
+            return vendorlist;
         }
         [HttpGet]
         public ActionResult Search()
@@ -68,6 +87,7 @@ namespace Item_Master_Core.Controllers
 
             SearchViewModel vm = new SearchViewModel();
             vm.Brands = GetBrands();
+            vm.Vendors = GetVendors();
             return View(vm);
         }
         [HttpPost]
