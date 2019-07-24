@@ -104,7 +104,9 @@ ul {
             line-height: 20px;
             font-weight: 400;
         }
-
+.custom-control-label::before {
+    background-color:white !important;
+}
 @media (min-width:1920px){
     .col-xxl-2 {
         -ms-flex: 0 0 16.666667%;

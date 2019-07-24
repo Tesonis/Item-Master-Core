@@ -43,7 +43,9 @@ namespace Item_Master_Core.Controllers
         {
             try
             {
-                Session session = new Security().Logon(model.Username, model.Password);
+                ReturnValue rv = new ReturnValue();
+                Session session = null;
+                rv = new Security().Logon(model.Username, model.Password, ref session);
                 if (session.securityIdentifier == null)
                 {
                     return RedirectToAction("Login", "Account", new { area = "" });

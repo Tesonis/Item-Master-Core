@@ -4,6 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 using Item_Master_Core.Models.ItemPartialModels;
+using TOLC.ERP.Application;
 
 namespace Item_Master_Core.Models
 {
@@ -11,16 +12,11 @@ namespace Item_Master_Core.Models
     {
         [Key]
         public string ItemID { get; set; }
-        [Required]
         public string Imgsrc { get; set; }
-        [Required]
         public string Status { get; set; }
-        [Required]
         public DateTime Date { get; set; }
-        [Required]
         public string ItemDescEng { get; set; }
         public string ItemDescEngShort { get; set; }
-        [Required]
         public string ItemDescFr { get; set; }
         public string ItemDescFrShort { get; set; }
         public string Vendor { get; set; }
@@ -43,4 +39,5 @@ namespace Item_Master_Core.Models
         public PricingDetailsModel PricingDetails { get; set; }
         public PODetailsModel PODetails { get; set; }
     }
+    
 }

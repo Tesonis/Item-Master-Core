@@ -12,9 +12,9 @@ namespace Item_Master_Core.Models.ItemViewModels
         public IEnumerable<SelectListItem> Brands;
 
         public IEnumerable<SelectListItem> Vendors;
-
+        public string ItemID { get; set; }
         public string SearchString { get; set; }
-        public string Status { get; set; }
+        public bool ShowNonActive { get; set; }
         public string SalesRep { get; set; }
         public string Pillar { get; set; }
         public string BrandPrincipal { get; set; }

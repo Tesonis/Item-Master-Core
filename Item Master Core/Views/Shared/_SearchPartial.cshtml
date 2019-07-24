@@ -1,12 +1,14 @@
 ﻿@model Item_Master_Core.Models.ItemViewModels.SearchViewModel
-<form id="search-form" role="search" action="post">
-    <div class="input-group mb-3">
-        <input class="form-control form-control-lg" placeholder="Item #" id="searchItemNum" type="number" style="max-width:200px;">
-        <input class="form-control form-control-lg" placeholder="Search by Description or UPC" id="searchInput" type="text" value="@(ViewData["Query"] != null  ? (string) ViewData["Query"] : "")">
-        <div class="input-group-append">
-            <button class="btn btn-success" type="submit"><i class="fa fa-search px-3" aria-hidden="true"></i></button>
-        </div>
+
+@using (Html.BeginForm("Search", "Home", FormMethod.Post))
+{
+<div class="input-group mb-3">
+    @Html.TextBoxFor(x => x.ItemID, new { @class = "form-control form-control-lg", @placeholder = "Item #", @id = "searchItemNum", @type = "number", @style = "max-width:200px;" })
+    @Html.TextBoxFor(x => x.SearchString, new { @class = "form-control form-control-lg", @placeholder = "Search by Description or UPC", @id = "searchInput", @type = "text"})
+    <div class="input-group-append">
+        <button class="btn btn-success" type="submit"><i class="fa fa-search px-3" aria-hidden="true"></i></button>
     </div>
+</div>
     <a href="#?" data-toggle="collapse" data-target="#demo" class="float-right">Advanced Search Options</a><br />
 
     <div id="demo" class="collapse container">
@@ -14,12 +16,10 @@
             <div class="col-md-6">
                 <h4 class="text-primary">Filter by Tag</h4><hr />
                 <div class="mt-2">
-                    <label>Status</label>
-                    <select class="selectpicker form-control search-result-filter" multiple>
-                        <option selected>Active</option>
-                        <option selected>Inactive</option>
-                        <option selected>Draft</option>
-                    </select>
+                    <div class="custom-control custom-checkbox">
+                    @Html.CheckBoxFor(x => x.ShowNonActive, new { @class="custom-control-input", @id="chk_status", @name="chk_status"})
+                    <label class="custom-control-label" for="chk_status">Show Non Active Items</label>
+                    </div>
                 </div>
                 <div class="mt-2">
                     @Html.LabelFor(x => x.Vendors)
@@ -35,7 +35,7 @@
                     </select>
                 </div>
                 <div class="mt-2">
-                    
+
                     @Html.LabelFor(x => x.Brands)
                     @Html.DropDownListFor(x => x.Brands, Model.Brands, new { @class = "selectpicker form-control search-result-filter", data_live_search = "true" })
                 </div>
@@ -95,7 +95,7 @@
             <div class="col-12 text-center mt-4"><button class="btn btn-success btn-lg mx-auto">Apply Filter</button></div>
         </div>
     </div>
-</form>
+}
 @section scripts {
     <script src="~/Scripts/View-scripts/queryString.js"></script>
     <script type="text/javascript">
