@@ -1,0 +1,623 @@
+﻿
+@{
+    ViewBag.Title = "PCEAdd";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@Styles.Render("~/Content/bs-select")
+@Styles.Render("~/Content/css")
+@Styles.Render("~/Content/Site.css")
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="@Url.Action("PCEMain", null, new { area = string.Empty, controller = "Home" }, Request.Url.Scheme)"><i class="fa fa-lg fa-home pr-2"></i><b><u>Price Change Management</u></b></a></li>
+        <li class="breadcrumb-item active" aria-current="page"><b>Price Change Proposal</b></li>
+    </ol>
+</nav>
+<div class="bg-white py-5 multi_step_form">
+
+    <div class="mx-auto text-center py-4"><h2 class="text-muted">Price Change Proposal</h2></div>
+    <div class="row col-10 mx-auto">
+        <ul class="progressbar col-12">
+            <li class="active">Create Price Change</li>
+            <li>Select Programs</li>
+            <li>Add Customer Components</li>
+            <li>Review Price Proposal</li>
+        </ul>
+    </div>
+    <hr />
+    <div class="row container-fluid">
+
+        <div class="col-9 mx-auto">
+            
+            <div class="modal fade" id="modalDetails" tabindex="-1" role="dialog" aria-labelledby="modalDetails" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="modalItemGroup1Label">KIKKOMAN BRAND - 091619 Item Groups</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="item-group">
+                                <h5 class="text-muted">Soy Sauce</h5>
+                                <ul id="group1list" class="list-group">
+                                    <li class="list-group-item">57187 - KIKKOMAN ORGANIC SOY SAUCE - 296 ML</li>
+                                    <li class="list-group-item">57220 - KIKKOMAN LITE SOY SAUCE - 296 ML</li>
+                                    <li class="list-group-item">57221 - KIKKOMAN LITE SOY SAUCE 591ML - 591 ML</li>
+                                </ul>
+                                <hr />
+                            </div>
+                            <div class="item-group">
+                                <h5 class="text-muted">Bread Crumbs</h5>
+                                <ul id="group2list" class="list-group">
+                                    <li class="list-group-item">57188 - KIKKOMAN PANKO BREAD CRUMBS - 227 GR</li>
+                                </ul>
+                                <hr />
+                            </div>
+                            <div class="item-group">
+                                <h5 class="text-muted">Hoisin Sauce</h5>
+                                <ul id="group3list" class="list-group">
+                                    <li class="list-group-item">57192 - KIKKOMAN HOISIN SAUCE RESTAURANT SERIES - 210 ML</li>
+                                </ul>
+                                <hr />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <section id="step1" class="mt-3 step">
+
+                <h5 class="text-muted"><span class="text-primary">Step 1</span> - Create Price Change</h5>
+                <div class="row pt-4">
+                    <div class="col-12">
+                        <div>
+                            <b>Selected Costing Model: </b>
+
+                            <select class="selectpicker form-control search-result-filter col-4 pl-3" id="selunusedpnl" data-live-search="true" data-style="btn-white border-secondary">
+                                @*<option>--- No Model Selected ---</option>*@
+                                <option selected>Midel - Oct 1 2019</option>
+                                <option>Kikkoman - 091619</option>
+                                <option>Kikkoman - 071519</option>
+                                <option>Carrs - 062119</option>
+                            </select>
+                            <a class="pl-3" href="@Url.Action("PCEPNL", null, new { area = string.Empty, controller = "Home" }, Request.Url.Scheme)" target="_blank"><u>View Details</u></a>
+                            <a class="pl-2" href="#?" data-toggle="modal" data-target="#modalDetails"><u>View Items</u></a>
+                        </div>
+                        <hr />
+                        <div class="row form-group col-12">
+                            <label for="sel1">Select Item Group(s):</label>
+                            <div class="input-group">
+                                <span class="input-group-prepend">
+                                    <button class="btn btn-primary" type="button" onclick="selectAllitemgroups()">
+                                        Select All
+                                    </button>
+                                </span>
+                                <select class="selectpicker form-control" id="selitemGroups" multiple data-style="btn-white border-secondary">
+                                    <option>Midel Bagged items</option>
+                                    <option>Midel Sandwich Cookies</option>
+                                </select>
+                            </div>
+                            
+                        </div>
+                        <div class="row col-12 form-group">
+                            <label for="usr">Price Change Name:</label>
+                            <input type="text" class="form-control" id="pceName" value="Midel - Oct 1 2019">
+                        </div>
+                        <div class="row col-12 form-group">
+                            <label for="usr">Effective Date (optional):</label>
+                            <input type="date" class="form-control" id="pceimplementationDate">
+                        </div>
+                        <div class="row">
+                            <div class="col-3 form-group">
+                                <label for="selWarehousecat">Zones Applied:</label>
+                                <select id="selBrandcat" class="form-control">
+                                    <option selected>All</option>
+                                    <option>Zone 1 only</option>
+                                    <option>Zone 3 Only</option>
+                                </select>
+                            </div>
+                            
+                            @*<div class="col-3 form-group">
+                                <label for="selWarehousecat">Shelf Life:</label>
+                                <select id="selBrandcat" class="form-control">
+                                    <option selected>More than 180 days</option>
+                                    <option>Less than 180 days</option>
+                                    <option>Contains Items from both</option>
+                                </select>
+                            </div>*@
+                            <div class="col-3 form-group">
+                                <label for="selWarehousecat">Warehouse Category:</label>
+                                <select id="selBrandcat" class="form-control">
+                                    <option selected>None</option>
+                                    <option>Frozen</option>
+                                    <option>Perishable</option>
+                                </select>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+                <hr />
+                <div class="row pt-4">
+                    <button class="btn btn-lg btn-outline-success ml-auto" onclick="Step2()">Next Step</button>
+                </div>
+            </section>
+            <section id="step2" class="mt-3 step d-none">
+                <!-- PO Details -->
+                <a href="#?" onclick="Step1()"><i class="fa fa-long-arrow-left pr-2"></i>Previous Step</a><hr />
+                <h5 class="text-muted py-3"><span class="text-primary">Step 2</span> - Select Programs</h5>
+                <div class="card shadow mb-2">
+                    <!-- Card Header - Accordion -->
+                    <div class="d-block card-header bg-dark py-3">
+                        <h6 class="m-0 font-weight-bold text-white">Programs</h6>
+                    </div>
+                    <!-- Card Content - Collapse -->
+                    <div id="detailed-poinfo">
+                        <div class="card-body">
+                            <div class="form-group d-inline-flex">
+                                <button id="btn-programSelectAll" class="btn btn-outline-primary mx-1">Select All</button>
+                                <button id="btn-programDeselectAll" class="btn btn-outline-primary mx-1">Clear All</button>
+                                <button id="btn-programShowOverride" class="btn btn-outline-warning mx-1">Toggle Show Override Programs</button>
+                            </div>
+                            <hr />
+                            <table class="table table-bordered datatable table-hover" id="dataTable-program" style="cursor:pointer;">
+                                <thead class="thead-light">
+                                    <tr>
+                                        <th>Name</th>
+                                        <th>Price Type</th>
+                                        <th>Zone</th>
+                                        <th>Pillar</th>
+                                        <th>Department</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>LCL DSD DELI SEAFOOD</td>
+                                        <td>A</td>
+                                        <td>All</td>
+                                        <td>PR - Fresh</td>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <td>FCL TGP DSD</td>
+                                        <td>AL</td>
+                                        <td>All</td>
+                                        <td>PR - Fresh</td>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <td>FARM BOY</td>
+                                        <td>AM</td>
+                                        <td>All</td>
+                                        <td>PR - Fresh</td>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <td>SOBEYS NATIONAL DSD CH</td>
+                                        <td>AN</td>
+                                        <td>All</td>
+                                        <td>PR - Fresh</td>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <td>SOBEYS NATIONAL WHS CH</td>
+                                        <td>AO</td>
+                                        <td>All</td>
+                                        <td>PR - Fresh</td>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <td>CORE-MARK 180 DAYS</td>
+                                        <td>AP</td>
+                                        <td>All</td>
+                                        <td>PR - Fresh</td>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <td>WALLACE AND CAREY</td>
+                                        <td>AQ</td>
+                                        <td>All</td>
+                                        <td>PR - Fresh</td>
+                                        <td></td>
+                                    <tr>
+                                        <td>LOBLAW COMPANIES WHS</td>
+                                        <td>B</td>
+                                        <td>All</td>
+                                        <td>PR - Fresh</td>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <td>METRO WAREHOUSE</td>
+                                        <td>I</td>
+                                        <td>All</td>
+                                        <td>PR - Fresh</td>
+                                        <td>
+                                            <select class="form-control search-result-filter" id="selDepartment" title="--- Select Department ---" data-style="btn-white border-secondary" >
+                                                <option>Dairy / Grocery</option>
+                                                <option>Bakery</option>
+                                                <option>Deli</option>
+                                            </select>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>METRO DSD</td>
+                                        <td>P</td>
+                                        <td>All</td>
+                                        <td>PR - Fresh</td>
+                                        <td>
+                                            <select class="form-control search-result-filter" id="selDepartment2" title="--- Select Department ---" data-style="btn-white border-secondary">
+                                                <option>Dairy / Grocery</option>
+                                                <option>Bakery</option>
+                                                <option>Deli</option>
+                                            </select>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <hr />
+                <div class="row pt-4">
+                    <button class="btn btn-lg btn-outline-success ml-auto" onclick="Step3()">Next Step</button>
+                </div>
+            </section>
+            <section id="step3" class="mt-3 step d-none">
+                <a href="#?" onclick="Step2()"><i class="fa fa-long-arrow-left pr-2"></i>Previous Step</a><hr />
+                <h5 class="text-muted py-3"><span class="text-primary">Step 3</span> - Additional Customer Components</h5>
+                <div class="card shadow mb-2">
+                    <!-- Card Header - Accordion -->
+                    <div class="d-block card-header bg-dark py-3">
+                        <h6 class="m-0 font-weight-bold text-white">Required component value(s) required - based on selection</h6>
+                    </div>
+                    <!-- Card Content - Collapse -->
+                    <div id="detailed-poinfo">
+                        <div class="card-body">
+                            <div class="row col-6 form-group">
+                                <label for="usr"><b>Walmart</b><br />Walmart MCB EDLP:</label>
+                                <input type="number" class="form-control" id="pceName" placeholder="Enter if billback applicable">
+                            </div>
+                            <div class="row form-group col-6">
+                                <label for="usr"><b>Loblaw Companies WHS</b><br />Enterprise Costing:</label>
+                                <select class="form-control" id="selBrandManager">
+                                    <option selected>--- Select Category ---</option>
+                                    <option>Category 1</option>
+                                    <option>Category 2</option>
+                                </select>
+                            </div>
+                            <div class="row col-6 form-group">
+                                <label for="usr"><b>Save On Foods</b><br />Over and Above OFG MCB:</label>
+                                <input type="number" class="form-control" id="pceName" placeholder="Enter if billback applicable">
+                                <label for="usr"><br />Off Invoice OFG MCB:</label>
+                                <input type="number" class="form-control" id="pceName" placeholder="Enter if billback applicable">
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <hr />
+                <div class="row pt-4">
+                    <button class="btn btn-lg btn-outline-success ml-auto" onclick="Step4()">Next Step</button>
+                </div>
+            </section>
+            <section id="step4" class="mt-3 step d-none">
+                <a href="#?" onclick="Step3()"><i class="fa fa-long-arrow-left pr-2"></i>Previous Step</a><hr />
+                <h5 class="text-muted py-3"><span class="text-primary">Step 4</span> - Review Price Changes</h5>
+                <div id="div-listbyprogram" class="card shadow mb-2">
+                    <!-- Card Header - Accordion -->
+                    <a href="#detailed-poinfo" class="d-block card-header bg-dark py-3" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="detailed-poinfo">
+                        <h6 class="m-0 font-weight-bold text-white">Price Changes</h6>
+                    </a>
+                    <!-- Card Content - Collapse -->
+                    <div class="collapse show" id="detailed-poinfo">
+                        <div class="card-body">
+                            <div>
+                                <div class="btn-group">
+                                    <button type="button" class="btn btn-outline-primary active">List By Program</button>
+                                    <button type="button" class="btn btn-outline-primary" onclick="listbyitem()">List By Item</button>
+                                </div>
+                            </div><hr />
+                            <div class="row">
+                                <div class="form-group col-6">
+                                    <label for="selPricetype" class="row col-12">Price Type :</label>
+                                    <select class="selectpicker form-control search-result-filter col-6" id="selPricetype" data-live-search="true" data-style="btn-white border-secondary">
+                                        <option>0 - Retail</option>
+                                        <option>1 -STORE D</option>
+                                        <option>2 -WHOLESALE</option>
+                                        <option>3 -AMAZON</option>
+                                        <option>6 -WAL-MART</option>
+                                        <option>7 -LCL DSD AFFILIATE</option>
+                                        <option>9 -BAY ZELLERS</option>
+                                        <option>B -LOBLAW COMPANIES WHS</option>
+                                        <option>D -SHOPPERS DRUG MART</option>
+                                        <option>E -MCKESSON</option>
+                                        <option>I -METRO INC WHSE</option>
+                                        <option>K -LONGOS</option>
+                                        <option>N -LCL DSD NON AFFILIAT</option>
+                                        <option>P -METRO INC DSD/Z3DELI</option>
+                                        <option>Q -FOOD SERVICE ZONE A</option>
+                                        <option>AL-FCL TGP DSD</option>
+                                        <option>AM-FARMBOY</option>
+                                        <option selected>AN-SOBEYS NTL DSD CH</option>
+                                        <option>AO-SOBEYS NTL WHS CH</option>
+                                    </select>
+                                </div>
+                                <div class="col-6">
+                                    <span class="row col-12">Effective Date:</span>
+                                    <h5 class="text-muted">10/27/2019</h5>
+                                    <br />
+                                    <span class="row col-12">Price Formula: <span data-toggle="tooltip" title="7.12% PROGRAM + 2.00% INVESTMENT"><i class="fa fa-lg fa-question-circle pl-2"></i></span></span>
+                                    <h5 class="text-muted">Store Door/(1-(PROGRAM+INVESTMENT))</h5>
+                                </div>
+
+                            </div>
+                            <hr />
+                            <table class="table table-bordered table-striped datatable" id="table-listbyprogram">
+                                <thead class="thead-light">
+                                    <tr>
+                                        <th>Item</th>
+                                        <th>Description</th>
+                                        <th>Pack</th>
+                                        <th>Size</th>
+                                        <th>Current Z1</th>
+                                        <th>New Z1</th>
+                                        <th>% Change Z1</th>
+                                        <th>New Unit Price</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>59543</td>
+                                        <td>MIDEL GF ARROWROOT CK 8PK</td>
+                                        <td>8</td>
+                                        <td>227 GR</td>
+                                        <td>5.37</td>
+                                        <td >5.99</td>
+                                        <td class="text-success">13.41</td>
+                                        <td>5.99</td>
+                                    </tr>
+                                    <tr>
+                                        <td>59544</td>
+                                        <td>MIDEL GF CHOCO CHIP CK 8PK</td>
+                                        <td>8</td>
+                                        <td>227 GR</td>
+                                        <td>5.37</td>
+                                        <td >5.99</td>
+                                        <td class="text-success">13.41</td>
+                                        <td>5.99</td>
+                                    </tr>
+                                    <tr>
+                                        <td>59545</td>
+                                        <td>MIDEL GF GINGER SNAP CK 8PK</td>
+                                        <td>8</td>
+                                        <td>227 GR</td>
+                                        <td>5.37</td>
+                                        <td >5.99</td>
+                                        <td class="text-success">13.41</td>
+                                        <td>5.99</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <div id="div-listbyitem" class="card shadow mb-2" style="display:none">
+                    <!-- Card Header - Accordion -->
+                    <a href="#detailed-poinfo" class="d-block card-header bg-dark py-3" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="detailed-poinfo">
+                        <h6 class="m-0 font-weight-bold text-white">Price Changes</h6>
+                    </a>
+                    <!-- Card Content - Collapse -->
+                    <div class="collapse show" id="detailed-poinfo">
+                        <div class="card-body">
+                            <div class="row col-12">
+                                <div class="btn-group">
+                                    <button type="button" class="btn btn-outline-primary" onclick="listbyprogram()">List By Program</button>
+                                    <button type="button" class="btn btn-outline-primary active">List By Item</button>
+                                </div>
+                            </div><hr />
+                            <div class="row">
+                                <div class="form-group col-6  border-right">
+                                    <label for="selPricetype" class="row col-12">Item :</label>
+                                    <select class="selectpicker form-control search-result-filter col-8" id="selPricetype" data-live-search="true" data-style="btn-white border-secondary">
+                                        <option selected>59543 - MIDEL GF ARROWROOT CK 8PK</option>
+                                        <option>59544 - MIDEL GF CHOCO CHIP CK 8PK</option>
+                                        <option>59545 - MIDEL GF GINGER SNAP CK 8PK</option>
+                                    </select>
+                                </div>
+                                <div class="col-6">
+                                    <span class="mr-2">Pack:</span>
+                                    <b class="text-muted">8</b><br /><br />
+                                    <span class="mr-2">Size:</span>
+                                    <b class="text-muted">227 GR</b>
+                                </div>
+
+                            </div>
+                            <hr />
+                            <table class="table table-bordered table-striped datatable" id="table-listbyprogram">
+                                <thead class="thead-light">
+                                    <tr>
+                                        <th>Code</th>
+                                        <th>Price Type Desc.</th>
+                                        <th>Customer Effective Date</th>
+                                        <th>Current Z1</th>
+                                        <th>New Z1</th>
+                                        <th>% Change Z1</th>
+                                        <th>New Unit Price</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>0</td>
+                                        <td>RETAIL</td>
+                                        <td>10/27/2019</td>
+                                        <td>5.37</td>
+                                        <td>5.99</td>
+                                        <td> 13.41 </td>
+                                        <td>5.99</td>
+                                    </tr>
+                                    <tr>
+                                        <td>1</td>
+                                        <td>STORE DOOR</td>
+                                        <td>10/27/2019</td>
+                                        <td>29.60</td>
+                                        <td>31.68</td>
+                                        <td>7.03</td>
+                                        <td>3.960</td>
+                                    </tr>
+                                    <tr>
+                                        <td>2</td>
+                                        <td>WHOLESALE</td>
+                                        <td>10/27/2019</td>
+                                        <td>27.30</td>
+                                        <td>29.20</td>
+                                        <td>6.96</td>
+                                        <td>3.650</td>
+                                    </tr>
+                                    <tr>
+                                        <td>3</td>
+                                        <td>AMAZON</td>
+                                        <td>HOLD</td>
+                                        <td>32.32</td>
+                                        <td>33.60</td>
+                                        <td>3.96</td>
+                                        <td>4.200</td>
+                                    </tr>
+                                    <tr>
+                                        <td>6</td>
+                                        <td>WALMART</td>
+                                        <td>10/27/2019</td>
+                                        <td>22.24</td>
+                                        <td>24.46</td>
+                                        <td>10</td>
+                                        <td>3.060</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <hr />
+                <div id="PCEWorkButtons">
+                    <div class="row pt-4">
+                        <button id="btn-exportExcel" class="btn btn-lg btn-outline-success ml-auto">Export to Excel</button>
+                        <a href="#?" id="btn-submitPCE" class="btn btn-lg btn-primary ml-3" data-toggle="modal" data-target="#modalDraft">Save as Draft</a>
+                        <a href="#?" id="btn-submitPCE" class="btn btn-lg  btn-success ml-3" data-toggle="modal" data-target="#modalApprove">Submit for Approval</a>
+                    </div>
+                </div>
+                <div class="modal fade" id="modalDraft" tabindex="-1" role="dialog" aria-labelledby="modalDraft" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="modalItemGroup1Label">Confirm submission</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                Your price change entry will be processed.<br /><br />Further changes can be done through editing the record from the home page.
+                            </div>
+                            <div class="modal-footer">
+                                <a id="btn-CompleteApprove" class="btn btn-lg btn-block btn-success" href="@Url.Action("PCEMain", null, new { area = string.Empty, controller = "Home" }, Request.Url.Scheme)">Confirm</a>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="modal fade" id="modalApprove" tabindex="-1" role="dialog" aria-labelledby="modalApprove" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="modalItemGroup1Label">Confirm submission</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                A confirmation email will be sent to you and your team lead.
+                            </div>
+                            <div class="modal-footer">
+                                <a id="btn-CompleteApprove" class="btn btn-lg btn-block btn-success" href="@Url.Action("PCEMain", null, new { area = string.Empty, controller = "Home" }, Request.Url.Scheme)">Confirm</a>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+            </section>
+        </div>
+    </div>
+</div>
+@section Scripts{
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('.datatable').DataTable({
+                dom: 'Bfrtip',
+                buttons: [
+                    'excel'
+                ]
+            });
+
+            $('#dataTable-program tbody').on('click', 'tr', function () {
+                    $(this).toggleClass('table-primary');
+                
+            });
+            $('[data-toggle="tooltip"]').tooltip();
+            $("#btn-programDeselectAll").hide();
+        });
+        $("#btn-programSelectAll").click(function () {
+            $('#dataTable-program tbody tr').addClass('table-primary')
+            $("#btn-programSelectAll").hide();
+            $("#btn-programDeselectAll").show();
+        });
+        $("#btn-programDeselectAll").click(function () {
+            $('#dataTable-program tbody tr').removeClass('table-primary')
+            $("#btn-programDeselectAll").hide();
+            $("#btn-programSelectAll").show();
+        });
+
+        function listbyitem() {
+            $("#div-listbyprogram").hide();
+            $("#div-listbyitem").show()
+        }
+        function listbyprogram() {
+            $("#div-listbyprogram").show();
+            $("#div-listbyitem").hide()
+        }
+        function Step1() {
+            $(".step").addClass("d-none");
+            $("#step1").removeClass("d-none");
+            $(".progressbar li").removeClass("active");
+            $(".progressbar li").eq(0).addClass("active");
+        }
+        function Step2() {
+            $(".step").addClass("d-none");
+            $("#step2").removeClass("d-none");
+            $(".progressbar li").removeClass("active");
+            $(".progressbar li").eq(0).addClass("active");
+            $(".progressbar li").eq(1).addClass("active");
+        }
+        function Step3() {
+            $(".step").addClass("d-none");
+            $("#step3").removeClass("d-none");
+            $(".progressbar li").removeClass("active");
+            $(".progressbar li").eq(0).addClass("active");
+            $(".progressbar li").eq(1).addClass("active");
+            $(".progressbar li").eq(2).addClass("active");
+        }
+        function Step4() {
+            $(".step").addClass("d-none");
+            $("#step4").removeClass("d-none");
+            $(".progressbar li").addClass("active");
+        }
+        function selectAllitemgroups() {
+            $('#selitemGroups option').attr('selected', true);
+            $("#selitemGroups").data("selectpicker").refresh()
+        }
+        $('#btn-exportExcel').on('click', function () {
+            $('.buttons-excel').click()
+        });
+    </script>
+}

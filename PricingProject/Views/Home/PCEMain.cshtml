@@ -1,0 +1,624 @@
+﻿
+@{
+    ViewBag.Title = "PCEMain";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@{
+    ViewBag.Title = "About";
+}
+@model PricingProject.Models.ItemViewModels.SearchViewModel
+@Styles.Render("~/Content/bs-select")
+@Styles.Render("~/Content/css")
+@Styles.Render("~/Content/Site.css")
+<link href="~/Content/Site.css" rel="stylesheet" />
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item active" aria-current="page"><h5 class="text-muted">Price Change Management</h5></li>
+    </ol>
+</nav>
+<div class="py-2">
+    <div class="row">
+        <div class="col-12">
+            <section id="section_review" class="mb-4 p-3 bg-white border">
+                <div class="p-3 d-flex align-items-center">
+                    <i class="fa fa-exclamation bg-warning p-3 font-2xl mr-3"></i>
+                    <div>
+                        <div class="text-value-sm text-warning">Outstanding Tasks</div>
+                        @*<div class="text-muted text-uppercase font-weight-bold small">Income</div>*@
+                    </div>
+                </div>
+                <table class="table table-bordered datatable" id="table-tasks">
+                    <thead class="thead-light">
+                        <tr>
+                            <th></th>
+                            <th>Type</th>
+                            <th>Implement Date</th>
+                            <th>Name</th>
+                            <th>Brand Manager</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="rowRejected">
+                            <td><button class="btn btn-block btn-outline-warning" data-toggle="modal" data-target="#modalReject">Review</button></td>
+                            <td>Price Change Proposal</td>
+                            <td>11/14/19</td>
+                            <td>KIKKOMAN - Nov 14 2019</td>
+
+                            <td>Anne Mergelas</td>
+                            <td class="rowStatus"><span class="text-danger">Rejected</span></td>
+
+                        </tr>
+                        <tr>
+                            <td><a href="@Url.Action("PCEMain", null, new { area = string.Empty, controller = "Home" }, Request.Url.Scheme)" class="btn btn-block  btn-outline-warning">Review</a></td>
+                            <td>Price Change Proposal</td>
+                            <td>12/24/19</td>
+                            <td>GODIVA - Dec 24 2019</td>
+
+                            <td>Anabela Neves</td>
+                            <td><span class="text-warning">Approval Requested</span></td>
+
+
+                        </tr>
+                        <tr>
+                            <td><a href="#?" class="btn btn-block  btn-outline-warning">Review</a></td>
+                            <td>Price Change Proposal</td>
+                            <td>11/24/19</td>
+                            <td>KIKKOMAN - Feb 1 2019</td>
+
+                            <td>Anabela Neves</td>
+                            <td><span class="text-info">Draft</span></td>
+
+
+                        </tr>
+                        <tr>
+                            <td><a href="#?" class="btn btn-block  btn-outline-warning">Review</a></td>
+                            <td>Costing Model</td>
+                            <td></td>
+                            <td>Kikkoman - 091619</td>
+                            <td>Anabela Neves</td>
+                            <td><span class="text-info">Draft</span></td>
+
+
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+            <section id="section_dash" class="p-3 bg-white border">
+                @*<div class="alert alert-warning alert-dismissible fade show p-3">
+                    <button type="button" class="close" data-dismiss="alert">&times;</button>
+                    <strong>Notice: </strong> You have outstanding tasks that requires your attention.<strong class="pl-2"><a href="#anchor_review"><u>Review</u></a></strong>
+                </div>*@
+                <div class="row">
+                    <div class="col-6">
+                        <div class="card">
+                            <div class="card-body ">
+                                <div class="p-3 d-flex align-items-center">
+                                    <i class="fa fa-calculator bg-primary p-3 font-2xl mr-3"></i>
+                                    <div>
+                                        <div class="text-value-sm text-primary">Costing Models</div>
+                                        @*<div class="text-muted text-uppercase font-weight-bold small">Income</div>*@
+                                    </div>
+                                    <a href="@Url.Action("PCEPNL", null, new { area = string.Empty, controller = "Home" }, Request.Url.Scheme)" class="btn btn-lg btn-primary ml-auto">Create New</a>
+                                </div>
+
+                                <div class="col-12">
+
+                                    <hr class="mt-0">
+                                    <div class="text-muted text-uppercase font-weight-bold">Recently Viewed</div>
+                                    <br />
+                                    <table class="table table-responsive-sm">
+                                        <tbody>
+
+                                            <tr>
+                                                <td><a href="#?">Kikkoman - 091619</a></td>
+                                                <td>Kikkoman Brand</td>
+                                                <td>4 items</td>
+                                            </tr>
+                                            <tr>
+                                                <td><a href="#?">Godiva - 070819</a></td>
+                                                <td>GODIVA</td>
+                                                <td>3 items</td>
+                                            </tr>
+                                            <tr>
+                                                <td><a href="#?">Kikkoman - 071519</a></td>
+                                                <td>Kikkoman Brand</td>
+                                                <td>2 items</td>
+                                            </tr>
+                                            <tr>
+                                                <td><a href="#?">Carrs - 062119</a></td>
+                                                <td>Kikkoman Brand</td>
+                                                <td>8 items</td>
+                                            </tr>
+                                            <tr>
+                                                <td><a href="#?">Thai Kitchen - 021619</a></td>
+                                                <td>Thai Kitchen</td>
+                                                <td>2 items</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+
+                                </div>
+                            </div>
+                            <div class="card-footer px-3 py-2">
+                                <a class="btn-block text-muted d-flex justify-content-between align-items-center" href="#anchor_models">
+                                    <span class="font-weight-bold text-primary">View All Models</span>
+                                    <i class="fa fa-angle-right"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="card">
+                            <div class="card-body ">
+                                <div class="p-3 d-flex align-items-center">
+                                    <i class="fa fa-usd bg-success p-3 font-2xl mr-3"></i>
+                                    <div>
+                                        <div class="text-value-sm text-success">Price Change Proposal</div>
+                                        @*<div class="text-muted text-uppercase font-weight-bold small">Income</div>*@
+                                    </div>
+                                    <a href="@Url.Action("PCEAdd", null, new { area = string.Empty, controller = "Home" }, Request.Url.Scheme)" class="btn btn-lg btn-success ml-auto">Create New</a>
+                                </div>
+
+                                <div class="col-12">
+
+                                    <hr class="mt-0">
+                                    <div class="text-muted text-uppercase font-weight-bold">Recently Viewed</div>
+                                    <br />
+                                    <table class="table table-responsive-sm">
+                                        <tbody>
+                                            <tr>
+                                                <td><a href="#?">KIKKOMAN BRAND BCH 0000548</a></td>
+                                                <td><span class="text-info">Draft</span></td>
+                                            </tr>
+                                            <tr>
+                                                <td><a href="#?">KIKKOMAN BRAND BCH 0000547</a></td>
+                                                <td><span class="text-success">Approved</span></td>
+                                            </tr>
+                                            <tr>
+                                                <td><a href="#?">CARRS ENTERTAINMENT COLLECT</a></td>
+                                                <td><span class="text-success">Implemented</span></td>
+                                            </tr>
+                                            <tr>
+                                                <td><a href="#?">KKM - 6% PI - METRO PVA</a></td>
+                                                <td><span class="text-success">Implemented</span></td>
+                                            </tr>
+                                            <tr>
+                                                <td><a href="#?">GODIVA NEW LISTING</a></td>
+                                                <td><span class="text-info">Draft</span></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+
+                                </div>
+                            </div>
+                            <div class="card-footer px-3 py-2">
+                                <a class="btn-block text-muted d-flex justify-content-between align-items-center" href="#anchor_pricechange">
+                                    <span class="font-weight-bold text-success">View All Proposals</span>
+                                    <i class="fa fa-angle-right"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <span id="anchor_review" />
+
+            <span id="anchor_models" />
+            <section id="section_models" class="my-4 p-3 bg-white border">
+                <h5 class="text-muted">All Costing Models</h5>
+                <br />
+                <table class="table table-bordered dataTable" id="datatable-costing">
+                    <thead class="thead-light">
+                        <tr>
+                            <th>Date Created</th>
+                            <th>Name</th>
+                            <th>Brand</th>
+                            <th>Vendor</th>
+                            <th>Brand Manager</th>
+                            <th>Status</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="rowRejected">
+                            <td>09/16/19</td>
+                            <td><a href="#?">Kikkoman - 091619</a></td>
+                            <td>Kikkoman Brand</td>
+                            <td>Kikkoman</td>
+                            <td>Anabela Neves</td>
+                            <td class="rowStatus"><span class="text-primary">Draft</span></td>
+                            <td>
+                                <a class="btn btn-outline-primary" href="#?">
+                                    <i class="fa fa-pencil"></i>
+                                </a>
+                                <a class="btn btn-outline-danger" href="#?">
+                                    <i class="fa fa-trash"></i>
+                                </a>
+                            </td>
+
+                        </tr>
+                        <tr class="rowRejected">
+                            <td>07/08/19</td>
+                            <td><a href="#?">Godiva - 070819</a></td>
+                            <td>Godiva</td>
+                            <td>Godiva</td>
+                            <td>Anabela Neves</td>
+                            <td class="rowStatus"><span class="text-success">Approved</span></td>
+                            <td>
+                                <a class="btn btn-outline-primary" href="#?">
+                                    <i class="fa fa-eye"></i>
+                                </a>
+                                <a class="btn btn-outline-danger disabled" href="#?">
+                                    <i class="fa fa-trash"></i>
+                                </a>
+                            </td>
+                        </tr>
+                        <tr class="rowRejected">
+                            <td>07/15/19</td>
+                            <td><a href="#?">Kikkoman - 071519</a></td>
+                            <td>Kikkoman Brand</td>
+                            <td>Kikkoman</td>
+                            <td>Anabela Neves</td>
+                            <td class="rowStatus"><span class="text-danger">In Use</span></td>
+                            <td>
+                                <a class="btn btn-outline-primary" href="#?">
+                                    <i class="fa fa-eye"></i>
+                                </a>
+                                <a class="btn btn-outline-danger disabled" href="#?">
+                                    <i class="fa fa-trash"></i>
+                                </a>
+                            </td>
+                        </tr>
+                        <tr class="rowRejected">
+                            <td>06/21/19</td>
+                            <td><a href="#?">Carrs - 062119</a></td>
+                            <td>Carrs</td>
+                            <td>Carrs</td>
+                            <td>Anabela Neves</td>
+                            <td class="rowStatus"><span class="text-warning">Approval Requested</span></td>
+                            <td>
+                                <a class="btn btn-outline-primary" href="#?">
+                                    <i class="fa fa-eye"></i>
+                                </a>
+                                <a class="btn btn-outline-danger disabled" href="#?">
+                                    <i class="fa fa-trash"></i>
+                                </a>
+                            </td>
+                        </tr>
+                        <tr class="rowRejected">
+                            <td>02/16/19</td>
+                            <td><a href="#?">Thai Kitchen - 021619</a></td>
+                            <td>Thai Kitchen</td>
+                            <td>Thai Kitchen</td>
+                            <td>Anabela Neves</td>
+                            <td class="rowStatus"><span class="text-muted">Changes Needed</span></td>
+                            <td>
+                                <a class="btn btn-outline-primary" href="#?">
+                                    <i class="fa fa-pencil"></i>
+                                </a>
+                                <a class="btn btn-outline-danger" href="#?">
+                                    <i class="fa fa-trash"></i>
+                                </a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+            <span id="anchor_pricechange" />
+            <section id="step2" class="my-4 p-3 bg-white border">
+                <h5 class="text-muted">All Price Change Proposals</h5>
+                <b class="text-muted">Showing Entries For: <span class="text-primary">Anabela Neves, Anne Mergelas</span></b>
+                <br />
+                <div class="form-group d-inline-flex mb-0 my-3">
+                    <button id="btn-programSelectAll" class="btn btn-success mx-1">Show Implemented: On</button>
+                    <button class="btn btn-primary mx-1" data-toggle="collapse" data-target="#step1">Change Search Settings</button>
+                </div>
+                <section id="step1" class="collapse">
+                    <form class="col-7 mx-auto">
+                        <hr />
+                        <h5 class="text-muted">Search Settings</h5>
+                        <div class="form-group col-12">
+                            <label for="sel1">Brand Manager:</label>
+                            <select class="selectpicker form-control search-result-filter" id="selBrandManager" data-live-search="true" data-style="btn-white border-secondary" multiple>
+                                <option selected>Anabela Neves</option>
+                                <option>Anne Mergelas</option>
+                                <option>Asif Ahmad NT</option>
+                                <option>ASIF AHMAD PT</option>
+                                <option>Barry Sheldrick</option>
+                                <option>Bill Rait</option>
+                                <option>Craig Ambeau</option>
+                                <option>CONNIE VETRO</option>
+                                <option>Darlene Thomas</option>
+                                <option>David Hazzard</option>
+                                <option>Keira Hall</option>
+                            </select>
+                        </div>
+
+                        <div class="row col-12">
+                            <div class="form-group col-4">
+                                <label for="selPricetype" class="row col-12">Price Type :</label>
+                                <select class="selectpicker form-control search-result-filter" id="selPricetype" data-live-search="true" data-style="btn-white border-secondary">
+                                    <option selected>0 - Retail</option>
+                                    <option>1 -STORE D</option>
+                                    <option>2 -WHOLESALE</option>
+                                    <option>3 -AMAZON</option>
+                                    <option>6 -WAL-MART</option>
+                                    <option>7 -LCL DSD AFFILIATE</option>
+                                    <option>9 -BAY ZELLERS</option>
+                                    <option>B -LOBLAW COMPANIES WHS</option>
+                                    <option>D -SHOPPERS DRUG MART</option>
+                                    <option>E -MCKESSON</option>
+                                    <option>I -METRO INC WHSE</option>
+                                    <option>K -LONGOS</option>
+                                    <option>N -LCL DSD NON AFFILIAT</option>
+                                    <option>P -METRO INC DSD/Z3DELI</option>
+                                    <option>Q -FOOD SERVICE ZONE A</option>
+                                    <option>AL-FCL TGP DSD</option>
+                                    <option>AM-FARMBOY</option>
+                                    <option>AN-SOBEYS NTL DSD CH</option>
+                                    <option>AO-SOBEYS NTL WHS CH</option>
+                                </select>
+                            </div>
+                            <div class="form-group col-4">
+                                <label for="sel1">Status:</label>
+                                <select class="selectpicker form-control" id="selBrandManager" multiple data-style="btn-white border-secondary">
+                                    <option selected>All</option>
+                                    <option>Draft</option>
+                                    <option>Approval Requested</option>
+                                    <option>Approved</option>
+                                    <option>Rejected</option>
+                                </select>
+                            </div>
+                            <div class="form-group col-4">
+                                <label for="txt-PriceType">Item Number:</label>
+                                <input type="text" class="form-control" id="txtPriceType" placeholder="">
+                            </div>
+                        </div>
+                        <div class="row col-12">
+                            <div class="col-6">
+                                <label for="sel1">Filter by P&L:</label>
+                                <select class="selectpicker form-control search-result-filter" id="selunusedpnl" data-live-search="true" data-style="btn-white border-secondary">
+                                    <option>GODIVA - 091619</option>
+                                    <option>KIKKOMAN BRAND - 031619</option>
+                                    <option>KIKKOMAN BRAND - 112618</option>
+                                </select>
+                            </div>
+                            <div class="col-6">
+                                <div class="form-group">
+                                    <label>Show Records from</label>
+                                    <div class="row">
+                                        <input type="date" max="2025-12-31"
+                                               min="1900-01-01" class="form-control col-6">
+                                        <input type="date" min="1900-01-01"
+                                               max="2025-12-31" class="form-control col-6">
+                                    </div>
+
+                                </div>
+                            </div>
+                            <hr />
+                        </div>
+                        <div class="row mx-auto py-5">
+                            <button id="submitsearch-PCE" type="button" class="btn btn-block btn-lg btn-success">Submit</button>
+                        </div>
+
+                    </form>
+                </section>
+
+
+                <hr />
+                <table class="table table-bordered datatable" id="dataTable-PCE">
+                    <thead class="thead-light">
+                        <tr>
+                            <th>Implement Date</th>
+                            <th>Name</th>
+                            <th>Zone</th>
+                            <th>Brand Manager</th>
+                            <th>Status</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>09/01/19</td>
+                            <td>@*<a href="#?" class="text-primary"><u>*@KKM - 6% PI - METRO PVA@*</u></a>*@</td>
+                            <td>Z1</td>
+                            <td>Anabela Neves</td>
+                            <td><span class="text-success">Implemented</span></td>
+                            <td>
+                                <a class="btn btn-outline-primary" href="#?">
+                                    <i class="fa fa-eye"></i>
+                                </a>
+                                <a class="btn btn-outline-danger disabled" href="#?">
+                                    <i class="fa fa-trash"></i>
+                                </a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>11/01/18</td>
+                            <td>CARRS ENTERTAINMENT COLLECT</td>
+                            <td>All</td>
+                            <td>Anabela Neves</td>
+                            <td><span class="text-success">Implemented</span></td>
+                            <td>
+                                <a class="btn btn-outline-primary" href="#?">
+                                    <i class="fa fa-eye"></i>
+                                </a>
+                                <a class="btn btn-outline-danger disabled" href="#?">
+                                    <i class="fa fa-trash"></i>
+                                </a>
+                            </td>
+                        </tr>
+                        <tr class="rowRejected">
+                            <td>11/14/19</td>
+                            <td>GODIVA NEW LISTING</td>
+                            <td>All</td>
+                            <td>Anne Mergelas</td>
+                            <td class="rowStatus"><span class="text-danger">Rejected</span></td>
+                            <td>
+                                <a class="btn btn-outline-primary" href="#?">
+                                    <i class="fa fa-pencil"></i>
+                                </a>
+                                <a class="btn btn-outline-danger" href="#?">
+                                    <i class="fa fa-trash"></i>
+                                </a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>11/14/19</td>
+                            <td>GODIVA GM VLTN HEART - 14 PC</td>
+                            <td>All</td>
+                            <td>Anabela Neves</td>
+                            <td><span class="text-success">Approved</span></td>
+                            <td>
+                                <a class="btn btn-outline-primary" href="#?">
+                                    <i class="fa fa-eye"></i>
+                                </a>
+                                <a class="btn btn-outline-danger" href="#?">
+                                    <i class="fa fa-trash"></i>
+                                </a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>11/15/19</td>
+                            <td>GODIVA VLTN HEART - 20 PC</td>
+                            <td>All</td>
+                            <td>Anne Mergelas</td>
+                            <td><span class="text-warning">Approval Requested</span></td>
+                            <td>
+                                <a class="btn btn-outline-primary" href="#?">
+                                    <i class="fa fa-eye"></i>
+                                </a>
+                                <a class="btn btn-outline-danger" href="#?">
+                                    <i class="fa fa-trash"></i>
+                                </a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>11/15/19</td>
+                            <td>GODIVA VLTN HEART - 28 PC</td>
+                            <td>All</td>
+                            <td>Anne Mergelas</td>
+                            <td><span class="text-success">Approved</span></td>
+                            <td>
+                                <a class="btn btn-outline-primary" href="#?">
+                                    <i class="fa fa-eye"></i>
+                                </a>
+                                <a class="btn btn-outline-danger" href="#?">
+                                    <i class="fa fa-trash"></i>
+                                </a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>12/24/19</td>
+                            <td>KIKKOMAN BRAND BCH 0000547</td>
+                            <td>All</td>
+                            <td>Anabela Neves</td>
+                            <td><span class="text-success">Approved</span></td>
+                            <td>
+                                <a class="btn btn-outline-primary" href="#?">
+                                    <i class="fa fa-eye"></i>
+                                </a>
+                                <a class="btn btn-outline-danger" href="#?">
+                                    <i class="fa fa-trash"></i>
+                                </a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>11/24/19</td>
+                            <td>KIKKOMAN BRAND BCH 0000548</td>
+                            <td>All</td>
+                            <td>Anabela Neves</td>
+                            <td><span class="text-info">Draft</span></td>
+                            <td>
+                                <a class="btn btn-outline-primary" href="#?">
+                                    <i class="fa fa-pencil"></i>
+                                </a>
+                                <a class="btn btn-outline-danger" href="#?">
+                                    <i class="fa fa-trash"></i>
+                                </a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+
+            </section>
+            <div class="modal fade" id="modalReject" tabindex="-1" role="dialog" aria-labelledby="modalReject" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="modalItemGroup1Label">Price change rejected</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="form-group">
+                                <label for="comment">Reason for Rejection:</label>
+                                <textarea class="form-control" rows="5" id="comment" contenteditable="false">Comment about why the entry is rejected. This can range from a P&L issue to a typo or even a date problem.</textarea>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <a id="btn-RejecttoPNL" class="btn btn-lg btn-block btn-outline-primary" href="@Url.Action("PCEPNL", null, new { area = string.Empty, controller = "Home" }, Request.Url.Scheme)">Go to Costing Model</a>
+                            <a id="btn-RejecttoAdd" class="btn btn-lg btn-block btn-outline-primary" href="@Url.Action("PCEAdd", null, new { area = string.Empty, controller = "Home" }, Request.Url.Scheme)">Go to Price Change Proposal</a>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+</div>
+@section Scripts{
+    <script src="~/Scripts/Site/formwizard.js"></script>
+    @*<script type="text/javascript">
+        $("#submitsearch-PCE").click(function () {
+            $("#step1").slideToggle();
+            $("#step2").slideDown();
+            $("#showsearch").slideDown();
+        });
+        $("#showsearch-PCE").click(function () {
+            $("#step1").slideToggle();
+            $("#showsearch").slideToggle();
+        });
+    </script>*@
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#dataTable-PCE').dataTable();
+            $('#dataTable-costing').dataTable();
+            $('#table-tasks').dataTable({
+                "columnDefs": [
+                    { "orderable": false, "targets": 0 }
+                ],
+                "order": [[5, "desc"]]
+            });
+
+            
+            //$('#dataTable-PCE tbody').on('click', 'tr', function () {
+            //    if (!$(this).hasClass('table-success') ) {
+            //        $(this).toggleClass('table-primary');
+            //        var selectedRows = table.rows('.table-primary').data().length;
+            //        if (selectedRows > 0) {
+            //            $("#options-PCE").slideDown();
+            //            if (selectedRows > 1) {
+            //                $("#btn-optionsEdit").addClass('disabled');
+            //                $("#btn-optionsDisplay").addClass('disabled');
+            //            }
+            //            else {
+            //                $("#btn-optionsEdit").removeClass('disabled');
+            //                $("#btn-optionsDisplay").removeClass('disabled');
+            //            }
+            //        }
+            //        else {
+            //            $("#options-PCE").slideUp();
+            //        }
+            //    }
+                
+            //});
+
+            
+        });
+    </script>
+}

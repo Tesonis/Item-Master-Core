@@ -1,0 +1,1230 @@
+﻿@{
+    ViewBag.Title = "About";
+    ViewBag.Name = Request.Cookies["SecToken"]["FullName"];
+}
+@model PricingProject.Models.ItemViewModels.SearchViewModel
+@Styles.Render("~/Content/bs-select")
+@Styles.Render("~/Content/css")
+@Styles.Render("~/Content/Site.css")
+<link href="~/Content/Site.css" rel="stylesheet" />
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="@Url.Action("PCEMain", null, new { area = string.Empty, controller = "Home" }, Request.Url.Scheme)"><i class="fa fa-lg fa-home pr-2"></i><b><u>Price Change Management</u></b></a></li>
+        <li class="breadcrumb-item active" aria-current="page"><b>Costing Model</b></li>
+    </ol>
+</nav>
+<div class="bg-white py-3 multi_step_form">
+    <div class="mx-auto text-center py-4"><h2 class="text-muted">Costing Model</h2></div>
+    <div class="row ">
+        <ul class="progressbar col-8 mx-auto">
+            <li class="active">Select Brand</li>
+            <li>Create Costing Analysis</li>
+            <li>Review Financial P&L</li>
+            <li>Provide Documentation & Submission</li>
+        </ul>
+    </div>
+    <hr />
+    <div class="row container-fluid">
+
+        <div id="multiForm" class="container-fluid mx-auto">
+            <section id="step1" class="step mx-auto col-8">
+                <div class="col-12 mx-auto text-left">
+                    <div class="mt-2">
+                        <div class="py-3"><b>Select Supplier</b></div>
+                        @Html.DropDownListFor(x => x.Vendors, Model.Vendors, new { @class = "selectpicker form-control search-result-filter", data_live_search = "true", data_style = "btn-white border-secondary", title = "--- No Supplier Selected ---" })
+                    </div>
+
+                    <div class="mt-2">
+
+                        <div class="py-3"><b>Select Brand</b></div>
+                        @Html.DropDownListFor(x => x.Brands, Model.Brands, new { @class = "selectpicker form-control search-result-filter", data_live_search = "true", data_style = "btn-white border-secondary", title = "--- No Brand Selected ---" })
+                    </div>
+                </div>
+                <div class="row py-5 col-12 mx-auto">
+                    <button class="btn btn-lg btn-outline-success btn-block" onclick="Step2()">Search All Items</button>
+                </div>
+            </section>
+
+            <div class="modal fade" id="modalWarningSave" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-danger" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 class="modal-title">You have unsaved work</h4>
+                            <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">×</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <p>Leaving this page will result in loss of unsaved work. Would you like to save your work?</p>
+                        </div>
+                        <div class="modal-footer">
+                            <button class="btn btn-danger" type="button" data-dismiss="modal">Continue without saving</button>
+                            <button class="btn btn-success" type="button">Save changes</button>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+            <div class="modal fade" id="modalSalesAnalysis" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 class="modal-title">You have unsaved work</h4>
+                            <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">×</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <p>Leaving this page will result in loss of unsaved work. Would you like to save your work?</p>
+                        </div>
+                        <div class="modal-footer">
+                            <button class="btn btn-danger" type="button" data-dismiss="modal">Continue without saving</button>
+                            <button class="btn btn-success" type="button">Save changes</button>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+            <section id="step2" class="d-none step">
+                <a href="#" onclick="Step1()"><i class="fa fa-long-arrow-left pr-2"></i>Previous Step</a>
+                <hr />
+                <div>
+                    @*<div class="alert alert-warning alert-dismissible fade d-none">
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+            <strong>Warning. </strong> Item Group contains more than 1 item. Data shown will reflect the <strong>averages</strong> of all items (If Applicable).
+        </div>*@
+                    <div id="group-short" class="row col-12 p-0 m-0">
+                        <h5 class="pt-2 mr-2">Name of Item Group:</h5>
+                        <div class="input-group col-6">
+                            <div class="input-group-prepend">
+                                <button class="btn btn-outline-info dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="true">
+                                    Completed Item Groups
+                                    <span class="caret"></span>
+                                </button>
+                                <div id="sel-itemgroups" class="dropdown-menu dropdown-menu-right" x-placement="top-end" style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(317px, -188px, 0px);">
+                                    <a class="dropdown-item" href="#?" onclick="warningSave()">
+                                        <button class="btn btn-sm btn-danger mr-2"><i class="fa fa-trash text-white m-0"></i></button>
+                                        MIDEL cookies 255gr
+                                        <span class="badge badge-primary badge-pill ml-3" style="position: static;">9</span>
+                                    </a>
+                                    <a class="dropdown-item" href="#?" onclick="warningSave()">
+                                        <button class="btn btn-sm btn-danger mr-2" data-role="remove"><i class="fa fa-trash text-white m-0"></i></button>
+                                        MIDEL cookies 227gr
+                                    </a>
+                                </div>
+                            </div>
+                            <input class="form-control" id="new-itemgroup-name" type="text" value=" MIDEL Group 1">
+                            <div class="input-group-append">
+                                <label class="input-group-text"><span id="numitemsselected">0</span> &nbsp; Item(s) Selected</label>
+                                <a href="#PriceUpdateCalc" class="btn btn-success">
+                                    Go To Costing Analysis
+                                </a>
+                            </div>
+
+
+
+                        </div>
+                        
+
+
+                    </div>
+                    <hr />
+                    <button type="button" class="btn btn-outline-primary btn-sm mb-2" onclick="togglepnltable()">
+                        Show / Hide Items Table
+                    </button>
+
+                    <div id="pnltable">
+                        <table id="table_groupitems" class="table table-bordered datatable">
+                            <thead class="thead-light">
+                                <tr>
+                                    <th></th>
+                                    <th>Item Description</th>
+                                    <th>Unit Size</th>
+                                    <th>Units per Case</th>
+                                    <th>Purchase Price per Case</th>
+                                    <th>Wholesale Price</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><a href="#?" class="group-item"><i class="fa fa-plus-circle"></i></a></td>
+                                    <td>MIDEL CANDY CANE CREMES GF</td>
+                                    <td>255 GR</td>
+                                    <td>12</td>
+                                    <td>$2.64</td>
+                                    <td>$53.00</td>
+                                </tr>
+                                <tr>
+                                    <td><a href="#?" class="group-item"><i class="fa fa-plus-circle"></i></a></td>
+                                    <td>MIDEL GF ARROWROOT CK 8PK</td>
+                                    <td>227 GR</td>
+                                    <td>8</td>
+                                    <td>$2.36</td>
+                                    <td>$27.30</td>
+                                </tr>
+                                <tr>
+                                    <td><a href="#?" class="group-item"><i class="fa fa-plus-circle"></i></a></td>
+                                    <td>MIDEL GF CHOC SAND. COOKIES</td>
+                                    <td>227 GR</td>
+                                    <td>12</td>
+                                    <td>$2.12</td>
+                                    <td>$38.88</td>
+                                </tr>
+                                <tr>
+                                    <td><a href="#?" class="group-item"><i class="fa fa-plus-circle"></i></a></td>
+                                    <td>MIDEL GF CHOC SNAP PIE CRUST</td>
+                                    <td>200 GR</td>
+                                    <td>12</td>
+                                    <td>$2.56</td>
+                                    <td>$43.44</td>
+                                </tr>
+                                <tr>
+                                    <td><a href="#?" class="group-item"><i class="fa fa-plus-circle"></i></a></td>
+                                    <td>MIDEL GF CHOCO CHIP CK 8PK</td>
+                                    <td>227 GR</td>
+                                    <td>8</td>
+                                    <td>$2.36</td>
+                                    <td>$27.30</td>
+                                </tr>
+                                <tr>
+                                    <td><a href="#?" class="group-item"><i class="fa fa-plus-circle"></i></a></td>
+                                    <td>MIDEL GF GINGER SNAP CK 8PK</td>
+                                    <td>227 GR</td>
+                                    <td>8</td>
+                                    <td>$2.12</td>
+                                    <td>$27.30</td>
+                                </tr>
+                                <tr>
+                                    <td><a href="#?" class="group-item"><i class="fa fa-plus-circle"></i></a></td>
+                                    <td>MIDEL GF GRAHAM PIE CRST</td>
+                                    <td>200 GR</td>
+                                    <td>12</td>
+                                    <td>$2.56</td>
+                                    <td>$43.44</td>
+                                </tr>
+                                <tr>
+                                    <td><a href="#?" class="group-item"><i class="fa fa-plus-circle"></i></a></td>
+                                    <td>MIDEL GF VANILLA SAND.COOKIE</td>
+                                    <td>227 GR</td>
+                                    <td>12</td>
+                                    <td>$2.10</td>
+                                    <td>$38.88</td>
+                                </tr>
+                                <tr>
+                                    <td><a href="#?" class="group-item"><i class="fa fa-plus-circle"></i></a></td>
+                                    <td>MIDEL MAPLE GINGER CREMES GF</td>
+                                    <td>255 GR</td>
+                                    <td>12</td>
+                                    <td>$2.64</td>
+                                    <td>$53.00</td>
+                                </tr>
+                                <tr>
+                                    <td><a href="#?" class="group-item"><i class="fa fa-plus-circle"></i></a></td>
+                                    <td>MIDEL PIE CRST SHIPPR GRAH</td>
+                                    <td>200 GR</td>
+                                    <td>48</td>
+                                    <td>$0.00</td>
+                                    <td>$173.76</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <hr />
+                    </div>
+                </div>
+
+                <section id="PriceUpdateCalc">
+                    <div class="row">
+                        <div class="col-6 text-left">
+                            <p>Currency: <b>CAD</b></p>
+                            <p>Freight Terms : <b>FOB</b></p>
+                            <a href="#SalesMarginAnalysis" class="btn btn-info text-white">
+                                Sales & Margin Impact Analysis
+                            </a>
+                        </div>
+                        <div class="col-6 text-right">
+                            <p>Units per case: <b>8</b></p>
+                            <p>Unit Size : <b>227 GR</b></p>
+                        </div>
+                    </div>
+                    <hr />
+                    <table class="table table-light text-right">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th style="width:30%" class="text-left">Category</th>
+                                <th style="width:15%"></th>
+                                <th style="width:27.5%">Current Pricing</th>
+                                <th style="width:27.5%"><span class="text-danger">Proposed Pricing</span></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="text-left">Purchase Price Per Case</td>
+                                <td></td>
+                                <td id="current-PurchasePricePerCase">18.88</td>
+                                <td><input type="number" class="form-control col-6 float-right text-right" id="proposed-PurchasePricePerCase" value="18.88"></td>
+                            </tr>
+                            <tr>
+                                <td class="text-left">CAD Exchange Rate</td>
+                                <td>
+                                    <div class="input-group">
+                                        <input type="number" class="form-control" id="pnl-CADExchangeRate" value="1.00">
+                                        <span class="input-group-append">
+                                            <button class="btn btn-light" type="button"><i class="fa fa-refresh"></i></button>
+                                        </span>
+                                    </div>
+                                </td>
+                                <td colspan="2"></td>
+                            </tr>
+                            <tr>
+                                <td class="text-left">CAD Equivalent</td>
+                                <td colspan="2"></td>
+                                <td>
+                                    $<span id="pnl-CADEquivalent">18.88</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="text-left">Duty </td>
+                                <td>
+                                    <div class="input-group">
+                                        <input type="number" class="form-control" id="input-duty" value="0">
+                                        <div class="input-group-append">
+                                            <span class="input-group-text">%</span>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td></td>
+                                <td>
+                                    $<span id="pnl-Duty">0.00</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="text-left">Estimated Freight Costing</td>
+                                <td>
+                                    <div class="input-group">
+
+                                        <input type="number" class="form-control" id="input-duty" value="1.30">
+                                        <div class="input-group-append">
+                                            <span class="input-group-text">$</span>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td></td>
+                                <td>
+                                    $<span>1.30</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="text-left">Landed Cost</td>
+                                <td></td>
+                                <td>
+                                    $20.18
+                                </td>
+                                <td>
+                                    $20.18
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="text-left">Deal Accruals</td>
+                                <td>
+                                    <div class="input-group">
+                                        <input type="number" class="form-control" id="input-duty" value="0">
+                                        <div class="input-group-append">
+                                            <span class="input-group-text">%</span>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>
+                                    $0.00
+                                </td>
+                                <td>
+                                    $0.00
+                                </td>
+                            </tr>
+                            <tr class="table-secondary text-left">
+                                <td colspan="4">Other</td>
+                            </tr>
+                            <tr>
+                                <td class="text-left">Cash Terms</td>
+                                <td>
+                                    <div class="input-group">
+                                        <input type="number" class="form-control" id="input-USDCAD" value="1.50" disabled>
+                                        <div class="input-group-append">
+                                            <span class="input-group-text">%</span>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>$0.00</td>
+                                <td>
+                                    $0.00
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td class="text-left">Other</td>
+                                <td>
+                                    <div class="input-group">
+                                        <input type="number" class="form-control" id="input-USDCAD" value="0">
+                                        <div class="input-group-append">
+                                            <span class="input-group-text">%</span>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>$0.00</td>
+                                <td>
+                                    $0.00
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="text-left">Spoilage/Credits</td>
+                                <td>
+                                    <div class="input-group">
+                                        <input type="number" class="form-control" id="input-USDCAD" value="0">
+                                        <div class="input-group-append">
+                                            <span class="input-group-text">%</span>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>$0.00</td>
+                                <td>
+                                    $0.00
+                                </td>
+                            </tr>
+                            <tr class="table-secondary text-left">
+                                <td colspan="4">Support</td>
+                            </tr>
+                            <tr>
+                                <td class="text-left">Brand Development Fund (ad's etc)</td>
+                                <td>
+                                    <div class="input-group">
+                                        <input type="number" class="form-control" id="input-USDCAD" value="0">
+                                        <div class="input-group-append">
+                                            <span class="input-group-text">%</span>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>$0.00</td>
+                                <td>
+                                    $0.00
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="text-left">Billback to Support Price</td>
+                                <td>
+                                    <div class="input-group">
+                                        <input type="number" class="form-control" id="input-USDCAD" value="0">
+                                        <div class="input-group-append">
+                                            <span class="input-group-text">%</span>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>$0.00</td>
+                                <td>
+                                    $0.00
+                                </td>
+                            </tr>
+                        </tbody>
+
+                    </table>
+                    <table class="table table-light text-right">
+                        <thead class="thead-light">
+                            <tr>
+                                <th style="width:30%" class="text-left">Wholesale Pricing</th>
+                                <th style="width:15%"></th>
+                                <th style="width:27.5%"></th>
+                                <th style="width:27.5%"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="text-left">Price Per Case</td>
+                                <td></td>
+                                <td id="form-PricePerCase">$29.20</td>
+                                <td><input type="number" class="form-control col-6 float-right" id="input-PricePerCase" value="29.20"></td>
+                            </tr>
+                            <tr>
+                                <td class="text-left">Ensure Divisibility</td>
+                                <td></td>
+                                <td>
+                                    $3.6500
+                                </td>
+                                <td>
+                                    $3.6500
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="text-left">Net Invoice less Deal Accruals</td>
+                                <td></td>
+                                <td>
+                                    $29.20
+                                </td>
+                                <td>
+                                    $29.20
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="text-left">TOL Gross Margin $ Per Case</td>
+                                <td></td>
+                                <td>
+                                    $9.02
+                                </td>
+                                <td>
+                                    $9.02
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="text-left">TOL Gross Margin %</td>
+                                <td></td>
+                                <td>
+                                    30.9%
+                                </td>
+                                <td>
+                                    30.9%
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="text-left">Suggested Retail Price</td>
+                                <td></td>
+                                <td id="form-SuggestedRetailPrice">5.49</td>
+                                <td><input type="number" class="form-control col-6 float-right" id="input-SuggestedRetailPrice" value="5.49"></td>
+                            </tr>
+                            <tr>
+                                <td class="text-left">Trade Margin</td>
+                                <td></td>
+                                <td>
+                                    <div class="input-group col-6 pl-0 float-right">
+                                        <input type="number" class="form-control" id="input-duty" value="33.5">
+                                        <div class="input-group-append">
+                                            <span class="input-group-text">%</span>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="input-group col-6 pl-0 float-right">
+                                        <input type="number" class="form-control" id="input-duty" value="33.5">
+                                        <div class="input-group-append">
+                                            <span class="input-group-text">%</span>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="text-left">TOL Net Margin $ Per Case</td>
+                                <td></td>
+                                <td>
+                                    $8.58
+                                </td>
+                                <td>
+                                    $8.58
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="text-left">TOL Net Margin %</td>
+                                <td></td>
+                                <td>
+                                    29.8%
+                                </td>
+                                <td>
+                                    29.8%
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <table class="table table-light text-right">
+                        <thead class="thead-light">
+                            <tr>
+                                <th style="width:30%" class="text-left">DSD Pricing</th>
+                                <th style="width:15%"></th>
+                                <th style="width:27.5%"></th>
+                                <th style="width:27.5%"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="text-left">Price Per Case</td>
+                                <td></td>
+                                <td id="form-PricePerCase">$31.68</td>
+                                <td><input type="number" class="form-control col-6 float-right" id="input-PricePerCase" value="31.68"></td>
+                            </tr>
+                            <tr>
+                                <td class="text-left">Net Invoice less Deal Accruals</td>
+                                <td></td>
+                                <td>
+                                    $31.68
+                                </td>
+                                <td>
+                                    $31.68
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="text-left">TOL Gross Margin $ Per Case</td>
+                                <td></td>
+                                <td>
+                                    $11.50
+                                </td>
+                                <td>
+                                    $11.50
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="text-left">TOL Gross Margin %</td>
+                                <td></td>
+                                <td>
+                                    36.3%
+                                </td>
+                                <td>
+                                    36.3%
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="text-left">Suggested Retail Price</td>
+                                <td></td>
+                                <td id="form-SuggestedRetailPrice">6.09</td>
+                                <td><input type="number" class="form-control col-6 float-right" id="input-SuggestedRetailPrice" value="6.09"></td>
+                            </tr>
+                            <tr>
+                                <td class="text-left">Trade Margin</td>
+                                <td></td>
+                                <td>
+                                    <div class="input-group col-6 pl-0 float-right">
+                                        <input type="number" class="form-control" id="input-duty" value="33.5">
+                                        <div class="input-group-append">
+                                            <span class="input-group-text">%</span>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="input-group col-6 pl-0 float-right">
+                                        <input type="number" class="form-control" id="input-duty" value="33.5">
+                                        <div class="input-group-append">
+                                            <span class="input-group-text">%</span>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="text-left">TOL Net Margin $ Per Case</td>
+                                <td></td>
+                                <td>
+                                    $8.58
+                                </td>
+                                <td>
+                                    $8.58
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="text-left">TOL Net Margin %</td>
+                                <td></td>
+                                <td>
+                                    31.5%
+                                </td>
+                                <td>
+                                    29.6%
+                                </td>
+                            </tr>
+
+                        </tbody>
+                    </table>
+                    <div id="SalesMarginAnalysis" class="card">
+                        <div class="card-header bg-info text-white">
+                            <span class="font-lg font-weight-bold ">Sales & Margin Impact Analysis</span>
+                            <div class="card-header-actions">
+                                <a class="card-header-action btn-minimize" href="#" data-toggle="collapse" data-target="#collapse-SalesMargin" aria-expanded="true">
+                                    <i class="fa fa-chevron-down fa-lg text-white"></i>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="collapse" id="collapse-SalesMargin" style="">
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-12">
+
+                                        <table class="table text-right">
+                                            <thead>
+                                                <tr>
+                                                    <th>Actual Case Volume L 12 Months</th>
+                                                    <th>Projected Case Volume</th>
+                                                </tr>
+                                                <tr>
+                                                    <th>500</th>
+                                                    <th><input type="number" class="form-control text-right col-6 float-right" id="input-ProjectedCaseVolume" value="500"></th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td>
+                                                        Average Selling Price/cs
+                                                    </td>
+                                                    <td>
+                                                        New Average Selling Price/cs
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        $24.00
+                                                    </td>
+                                                    <td>
+                                                        $26.49
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        Total Sales L 12 Months
+                                                    </td>
+                                                    <td>
+                                                        Total Est. Sales Next 12 Months
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        $12,000
+                                                    </td>
+                                                    <td>
+                                                        $10,597
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        Actual Margin L 12 Months
+                                                    </td>
+                                                    <td>
+                                                        Estimated New Gross Margin 12 Months
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        $8.77
+                                                    </td>
+                                                    <td>
+                                                        $9.01
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        Net Margin $ Per Case
+                                                    </td>
+                                                    <td>
+                                                        New Net Margin $ Per Case
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        $8.58
+                                                    </td>
+                                                    <td>
+                                                        $8.58
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        Net Margin $ Total
+                                                    </td>
+                                                    <td>
+                                                        New Net Margin $ Total
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        $4290
+                                                    </td>
+                                                    <td>
+                                                        $3832
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+
+                <hr />
+                <div class="row pt-4">
+                    <button class="btn btn-lg btn-outline-primary" data-toggle="modal" data-target="#savePNL-modal">Save as Draft</button>
+                    <button class="btn btn-lg btn-outline-primary ml-auto" onclick="AddNewGroup()">Add New Item Group</button>
+                    <a href="#" class="btn btn-lg btn-outline-success ml-3" onclick="Step3()">Save Items Groups and Continue</a>
+                </div>
+            </section>
+            <section id="step3" class="d-none step">
+                <a href="#" onclick="Step2()"><i class="fa fa-long-arrow-left pr-2"></i>Previous Step</a>
+                <hr />
+                <div class="row col-12 m-0 p-0">
+                    <div>
+                        <h5 class="text-muted">Financial Impact on Brand:</h5>
+                    </div>
+                    <div class="buttons ml-auto my-3">
+                        <button class="btn btn-outline-primary active" id="btn-FinancialAllItems">All Items</button>
+                        <button class="btn btn-outline-primary" id="btn-FinancialAffectedItems">Affected Items Only</button>
+                    </div>
+                </div>
+
+
+                <div id="div-FinancialAllItems">
+                    <table class="table text-right mt-4">
+                        <thead>
+                            <tr class="text-center">
+                                <th class="w-30"></th>
+                                <th class="w-20" colspan="2">Affected items</th>
+                                <th class="w-20" colspan="2">Unaffected items</th>
+                                <th class="w-30 table-success" colspan="4">All items</th>
+                            </tr>
+                            <tr class="table-light">
+                                <th></th>
+                                <th>Last 12M</th>
+                                <th>Next 12M</th>
+                                <th>Last 12M</th>
+                                <th>Next 12M</th>
+                                <th>Last 12M</th>
+                                <th>Next 12M</th>
+                                <th>Change</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="text-left"><b>Cases</b></td>
+                                <td id="val-L12affectedcases"><span id="val-L12affectedcases">2500</span></td>
+                                <td><input type="number" class="form-control text-right col-6 float-right" id="input-N12affectedCases" value="2500"></td>
+                                <td id="val-L12unaffectedcases"><span id="val-L12unaffectedcases">2500</span></td>
+                                <td><input type="number" class="form-control text-right col-6 float-right" id="input-N12unaffectedCases" value="2500"></td>
+                                <td><span id="val-L12totalcases"></span></td>
+                                <td><span id="val-N12totalcases"></span></td>
+                                <td id="val-Changetotalcases"></td>
+                            </tr>
+                            <tr>
+                                <td class="text-left"><b>Average Price / Case (CAD)</b></td>
+                                <td id="val-L12affectedappc">20</td>
+                                <td id="val-N12affectedappc">21</td>
+                                <td id="val-L12unaffectedappc">20</td>
+                                <td id="val-N12unaffectedappc">20</td>
+                                <td id="val-L12appc"></td>
+                                <td id="val-N12appc"></td>
+                                <td id="val-Changeappc"></td>
+                            </tr>
+
+                            <tr>
+                                <td class="text-left"><b>Gross Sales</b></td>
+                                <td id="val-L12affectedgrosssales">50000.00</td>
+                                <td id="val-N12affectedgrosssales"></td>
+                                <td id="val-L12unaffectedgrosssales">50000.00</td>
+                                <td id="val-N12unaffectedgrosssales"></td>
+                                <td id="val-L12totalgrosssales"></td>
+                                <td id="val-N12totalgrosssales"></td>
+                                <td id="val-Changegrosssales"></td>
+                            </tr>
+                            <tr>
+                                <td class="text-left"><b>Sales Deductions</b></td>
+                                <td id="val-L12affecteddeductions">5000</td>
+                                <td id="val-N12affecteddeductions">5250</td>
+                                <td id="val-L12unaffecteddeductions">5000</td>
+                                <td id="val-N12unaffecteddeductions">5000</td>
+                                <td id="val-L12totaldeductions"></td>
+                                <td id="val-N12totaldeductions"></td>
+                                <td id="val-Changedeductions"></td>
+                            </tr>
+                            <tr>
+                                <td class="text-left"><b>Net Sales</b></td>
+                                <td id="val-L12affectednetsales"></td>
+                                <td id="val-N12affectednetsales"></td>
+                                <td id="val-L12unaffectednetsales"></td>
+                                <td id="val-N12unaffectednetsales"></td>
+                                <td id="val-L12totalnetsales"></td>
+                                <td id="val-N12totalnetsales"></td>
+                                <td id="val-Changenetsales"></td>
+                            </tr>
+                            <tr>
+                                <td class="text-left"><b>Cost of Goods Sold</b></td>
+                                <td id="val-L12affectedcogs">32500</td>
+                                <td id="val-N12affectedcogs"></td>
+                                <td id="val-L12unaffectedcogs">32500</td>
+                                <td id="val-N12unaffectedcogs"></td>
+                                <td id="val-L12totalcogs"></td>
+                                <td id="val-N12totalcogs"></td>
+                                <td id="val-Changecogs"></td>
+                            </tr>
+                            <tr>
+                                <td class="text-left"><b>Gross Margin</b></td>
+                                <td id="val-L12affectedgrossmargin"></td>
+                                <td id="val-N12affectedgrossmargin"></td>
+                                <td id="val-L12unaffectedgrossmargin"></td>
+                                <td id="val-N12unaffectedgrossmargin"></td>
+                                <td id="val-L12totalgrossmargin"></td>
+                                <td id="val-N12totalgrossmargin"></td>
+                                <td id="val-Changegrossmargin"></td>
+                            </tr>
+                            <tr>
+                                <td class="text-left text-success"><b>Gross Margin $ / Case</b></td>
+                                <td id="val-L12affectedgrossmargincase"></td>
+                                <td id="val-N12affectedgrossmargincase"></td>
+                                <td id="val-L12unaffectedgrossmargincase"></td>
+                                <td id="val-N12unaffectedgrossmargincase"></td>
+                                <td id="val-L12totalgrossmargincase"></td>
+                                <td id="val-N12totalgrossmargincase"></td>
+                                <td id="val-Changegrossmargincase"></td>
+                            </tr>
+                            <tr>
+                                <td class="text-left"><b>Variable Operating Expense</b></td>
+                                <td id="val-L12affectedvaropex"></td>
+                                <td id="val-N12affectedvaropex"></td>
+                                <td id="val-L12unaffectedvaropex"></td>
+                                <td id="val-N12unaffectedvaropex"></td>
+                                <td id="val-L12totalvaropex"></td>
+                                <td id="val-N12totalvaropex"></td>
+                                <td id="val-Changevaropex"></td>
+                            </tr>
+                            <tr>
+                                <td class="text-left text-success"><b>Variable Operating Expense $ / case</b></td>
+                                <td id="val-L12affectedvaropexcase">1.47</td>
+                                <td id="val-N12affectedvaropexcase">1.47</td>
+                                <td id="val-L12unaffectedvaropexcase">1.47</td>
+                                <td id="val-N12unaffectedvaropexcase">1.47</td>
+                                <td id="val-L12totalvaropexcase">1.47</td>
+                                <td id="val-N12totalvaropexcase">1.47</td>
+                                <td id="val-Changevaropexcase">0</td>
+                            </tr>
+                            <tr>
+                                <td class="text-left"><b>Contribution Margin</b></td>
+                                <td id="val-L12affectedconmargin"></td>
+                                <td id="val-N12affectedconmargin"></td>
+                                <td id="val-L12unaffectedconmargin"></td>
+                                <td id="val-N12unaffectedconmargin"></td>
+                                <td id="val-L12totalconmargin"></td>
+                                <td id="val-N12totalconmargin"></td>
+                                <td id="val-Changeconmargin"></td>
+                            </tr>
+                            <tr>
+                                <td class="text-left text-success"><b>Contribution Margin $ / Case</b></td>
+                                <td id="val-L12affectedconmargincase"></td>
+                                <td id="val-N12affectedconmargincase"></td>
+                                <td id="val-L12unaffectedconmargincase"></td>
+                                <td id="val-N12unaffectedconmargincase"></td>
+                                <td id="val-L12totalconmargincase"></td>
+                                <td id="val-N12totalconmargincase"></td>
+                                <td id="val-Changeconmargincase"></td>
+                            </tr>
+                            <tr>
+                                <td class="text-left"><b>Direct Operating Expense (Sales/Marketing)</b></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td id="val-L12totaldirectopex">4000</td>
+                                <td id="val-N12totaldirectopex">4000</td>
+                                <td id="val-Changedirectopex">0</td>
+                            </tr>
+                            <tr class="table-success">
+                                <td class="text-left"><b>Contribution Margin (After Direct OpEx)</b></td>
+                                <td id="val-L12affectedconmarginA"></td>
+                                <td id="val-N12affectedconmarginA"></td>
+                                <td id="val-L12unaffectedconmarginA"></td>
+                                <td id="val-N12unaffectedconmarginA"></td>
+                                <td id="val-L12totalconmarginA"></td>
+                                <td id="val-N12totalconmarginA"></td>
+                                <td id="val-ChangeconmarginA"></td>
+                            </tr>
+                            <tr class="table-success">
+                                <td class="text-left"><b>Contribution Margin (After Direct OpEx) $ / Case</b></td>
+                                <td id="val-L12affectedconmarginAcase"></td>
+                                <td id="val-N12affectedconmarginAcase"></td>
+                                <td id="val-L12unaffectedconmarginAcase"></td>
+                                <td id="val-N12unaffectedconmarginAcase"></td>
+                                <td id="val-L12totalconmarginAcase"></td>
+                                <td id="val-N12totalconmarginAcase"></td>
+                                <td id="val-ChangeconmarginAcase"></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div id="div-FinancialAffectedItems" class="d-none">
+                    <table class="table text-right mt-4">
+                        <thead>
+                            <tr>
+                                <th class="w-50"></th>
+                                <th class="w-25" colspan="2">Last 12 Months Actual</th>
+                                <th class="w-25" colspan="2">Next 12 Months Estimated</th>
+                            </tr>
+                            <tr>
+                                <th></th>
+                                <th>$</th>
+                                <th>%</th>
+                                <th>$</th>
+                                <th>%</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="text-left"><b>Cases</b></td>
+                                <td>5000</td>
+                                <td></td>
+                                <td><input type="number" class="form-control text-right col-6 float-right" id="input-FinancialCases" value="5000"></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td class="text-left"><b>Gross Sales</b></td>
+                                <td>100000</td>
+                                <td>111.8%</td>
+                                <td>105000</td>
+                                <td>111.8%</td>
+                            </tr>
+                            <tr>
+                                <td class="text-left"><b>Sales Deductions</b></td>
+                                <td>10533</td>
+                                <td>11.8%</td>
+                                <td>11049</td>
+                                <td>11.8%</td>
+                            </tr>
+                            <tr>
+                                <td class="text-left"><b>Net Sales</b></td>
+                                <td>89467</td>
+                                <td>100%</td>
+                                <td>93951</td>
+                                <td>100%</td>
+                            </tr>
+                            <tr>
+                                <td class="text-left"><b>Cost of Goods Sold</b></td>
+                                <td>75000</td>
+                                <td>83.8%</td>
+                                <td>78750</td>
+                                <td>83.8%</td>
+                            </tr>
+                            <tr>
+                                <td class="text-left"><b>Gross Margin</b></td>
+                                <td>14467</td>
+                                <td>16.2%</td>
+                                <td>15201</td>
+                                <td>16.2%</td>
+                            </tr>
+                            <tr>
+                                <td class="text-left text-success"><b>Gross Margin $ / case</b></td>
+                                <td>2.63</td>
+                                <td></td>
+                                <td>3.04</td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td class="text-left"><b>Variable Operating Expense</b></td>
+                                <td>7350</td>
+                                <td>8.2%</td>
+                                <td>7350</td>
+                                <td>7.8%</td>
+                            </tr>
+                            <tr>
+                                <td class="text-left text-success"><b>Variable Operating Expense $ / case</b></td>
+                                <td>1.47</td>
+                                <td></td>
+                                <td>1.47</td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td class="text-left"><b>Contribution Margin</b></td>
+                                <td>7117</td>
+                                <td>8.0%</td>
+                                <td>7851</td>
+                                <td>8.4%</td>
+                            </tr>
+                            <tr>
+                                <td class="text-left text-success"><b>Contribution Margin $ / Case</b></td>
+                                <td>1.42</td>
+                                <td></td>
+                                <td>1.57</td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td class="text-left"><b>Direct Operating Expense (Sales/Marketing)</b></td>
+                                <td>4000</td>
+                                <td>4.5%</td>
+                                <td>4000</td>
+                                <td>4.3%</td>
+                            </tr>
+                            <tr class="table-success">
+                                <td class="text-left"><b>Contribution Margin (After Direct OpEx)</b></td>
+                                <td>3117</td>
+                                <td>3.5%</td>
+                                <td>3851</td>
+                                <td>4.1%</td>
+                            </tr>
+                            <tr class="table-success">
+                                <td class="text-left"><b>Contribution Margin (After Direct OpEx) $ / Case</b></td>
+                                <td>0.62</td>
+                                <td></td>
+                                <td>0.77</td>
+                                <td></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <hr />
+                @*<div class="chartView">
+                <div class="row">
+                    <div class="col-6">
+                        <canvas id="canvas" style="display: block; width:100%; height:auto" class="chartjs-render-monitor"></canvas>
+                    </div>
+                    <div class="col-6">
+                        <canvas id="canvas2" style="display: block; width:100%; height:auto" class="chartjs-render-monitor"></canvas>
+                    </div>
+                </div>
+
+            </div>*@
+                <div class="row pt-4">
+                    <button class="btn btn-lg btn-outline-primary" data-toggle="modal" data-target="#savePNL-modal">Save as Draft</button>
+                    <a href="#?" class="btn btn-lg btn-outline-success ml-auto" onclick="Step4()">Finalize Costing Model</a>
+                </div>
+            </section>
+            <section id="step4" class="d-none step">
+                <a href="#" onclick="Step3()"><i class="fa fa-long-arrow-left pr-2"></i>Previous Step</a>
+                <hr />
+                <h5>Reason for creating P&L proposal:</h5>
+                <textarea class="form-control" rows="5" id="comment"></textarea>
+                <hr />
+                <div>
+                    <h5>Existing Documents</h5>
+                    <div data-role="dynamic-fields">
+                        <div id="files-form">
+                            <div class="form-inline form-row col-6 p-0">
+
+                                <input input type="text" class="form-control mb-2 mr-sm-2 col-6" id="field-name" value="File Name 1">
+                                <!-- file upload start-->
+                                <div class="mb-2 mr-sm-2 col-sm-4 wrap-input-container">
+                                    <label class="custom-file-upload form-control">
+                                        <i class="fa fa-cloud-upload"></i> Upload Document
+                                    </label>
+                                    <input class="file-upload" name="file_name" type="file">
+                                </div>
+                                <!-- file upload ends-->
+                                <button class="btn btn-sm btn-primary mb-2" >
+                                    <i class="fa fa-link"></i>
+                                </button>
+                                <button class="btn btn-sm btn-danger mb-2" data-role="remove">
+                                    <i class="fa fa-trash"></i>
+                                </button>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <hr />
+                <h5>Upload New Documents</h5>
+                <div data-role="dynamic-fields">
+                    <div id="files-form">
+                        <div class="form-inline form-row col-6 p-0">
+
+                            <input input type="text" class="form-control mb-2 mr-sm-2 col-6" id="field-name" placeholder="Name this File">
+                            <!-- file upload start-->
+                            <div class="mb-2 mr-sm-2 col-sm-4 wrap-input-container">
+                                <label class="custom-file-upload form-control">
+                                    <i class="fa fa-cloud-upload"></i> Upload Document
+                                </label>
+                                <input class="file-upload" name="file_name" type="file">
+                            </div>
+                            <!-- file upload ends-->
+
+                            <button class="btn btn-sm btn-danger mb-2" data-role="remove">
+                                <i class="fa fa-trash"></i>
+                            </button>
+
+                        </div>
+                    </div>
+                    <div class="row col-6 file-upload-add">
+                        <button class="btn btn-primary btn-block mb-2" data-role="add">
+                            <i class="fa fa-plus">Add Another File</i>
+                        </button>
+                    </div>
+                </div>
+                <hr />
+                <p>Created On: <span id="step4Date"></span></p>
+                <p>Created By: <span id="step4User">@ViewBag.Name</span></p>
+                <div class="row pt-4">
+                    <button class="btn btn-lg btn-outline-primary ml-auto" data-toggle="modal" data-target="#savePNL-modal">Save as Draft</button>
+                    <button class="btn btn-lg btn-outline-success ml-3" data-toggle="modal" data-target="#savePNL-modal">Submit For Approval</button>
+
+                </div>
+
+            </section>
+            <div class="modal fade" id="savePNL-modal">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+
+                        <!-- Modal Header -->
+                        <div class="modal-header">
+                            <h4 class="modal-title">Save as</h4>
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        </div>
+
+                        <!-- Modal body -->
+                        <div class="modal-body">
+                            <input class="form-control form-control-lg active" id="new-itemgroup-name" type="text" value="Midel - Oct 1 2019">
+                        </div>
+
+                        <!-- Modal footer -->
+                        <div class="modal-footer text-center">
+                            <a href="#?" class="btn btn-outline-dark row">Save</a>
+                            <hr />
+                            <a href="@Url.Action("PCEMain", null, new { area = string.Empty, controller = "Home" }, Request.Url.Scheme)" class="btn btn-outline-success row">Save and Exit</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts{
+    <script src="~/Scripts/Site/formwizard.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('[data-toggle="popover"]').popover();
+            $('#table_groupitems').DataTable({
+                "columnDefs": [
+                    { "orderable": false, "targets": 0 }
+                ],
+                "order": [[1, "desc"]]
+            });
+            $('#input-N12affectedCases, #input-N12unaffectedCases').change(calculateFinancialAllItems);
+            
+        });
+           
+
+
+    </script>
+    
+    <script>
+        // Dynamically add-on fields
+            // Remove button click
+            $(document).on(
+                'click',
+                '#files-form > .form-inline [data-role="remove"]',
+                function (e) {
+                    e.preventDefault();
+                    $(this).closest('.form-inline').remove();
+                }
+            );
+            // Add button click
+            $(document).on(
+                'click',
+                '[data-role="dynamic-fields"] > .file-upload-add [data-role="add"]',
+                function (e) {
+                    e.preventDefault();
+                    var container = $('#files-form');
+                    new_field_group = container.children().filter('.form-inline:first-child').clone();
+                    new_field_group.find('label').html('Upload Document'); new_field_group.find('input').each(function () {
+                        $(this).val('');
+                    });
+                    container.append(new_field_group);
+                }
+            );
+
+
+
+        // file upload
+
+        $(document).on('change', '.file-upload', function () {
+            var i = $(this).prev('label').clone();
+            var file = this.files[0].name;
+            $(this).prev('label').text(file);
+        });
+    </script>
+
+}

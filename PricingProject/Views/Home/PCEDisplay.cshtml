@@ -1,0 +1,510 @@
+﻿
+@{
+    ViewBag.Title = "PCEAdd";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@Styles.Render("~/Content/bs-select")
+@Styles.Render("~/Content/css")
+@Styles.Render("~/Content/Site.css")
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="@Url.Action("PCEMain", null, new { area = string.Empty, controller = "Home" }, Request.Url.Scheme)"><i class="fa fa-lg fa-home pr-2"></i><b><u>Price Change Management</u></b></a></li>
+        <li class="breadcrumb-item active" aria-current="page"><b>Review Price Change</b></li>
+    </ol>
+</nav>
+<div class="bg-white py-5 multi_step_form">
+    <div class="mx-auto text-center py-4"><h2 class="text-muted">Review Price Entry</h2></div>
+    <hr />
+    <div class="row container-fluid">
+
+        <div class="col-9 mx-auto">
+            
+            <b>Selected P&L: </b>KIKKOMAN BRAND - 091619
+            <hr />
+            <div class="item-group">
+                <b class="text-muted">Flowerbox</b>
+                <ul id="group1list" class="list-group">
+                    <li class="list-group-item">40347 - GODIVA MASTERPIECE VALENTINE CHOCOLATE STRAWBERRY FLOWERBOX - 209 GR</li>
+                    <li class="list-group-item">57220 - 25 - GODIVA MASTERPIECE VALENTINE ASSORTED FLOWERBOX - 209 GR</li>
+                </ul>
+                <hr />
+            </div>
+            <div class="item-group">
+                <b class="text-muted">Assorted</b>
+                <ul id="group2list" class="list-group">
+                    <li class="list-group-item">40346 - GODIVA GOLDMARK ASSORTED VALENTINE HEART9 PIECES - 95 GR</li>
+                </ul>
+                <hr />
+            </div>
+            <section id="step1" class="mt-5 step">
+                <div class="row pt-4">
+                    <div class="col-12">
+                        <div class="row col-12 form-group">
+                            <label for="usr">Effective Date:</label>
+                            <input type="text" class="form-control" id="pceimplementationDate" placeholder="MM/DD/YY or leave blank to submit as proposal" value="11/15/19" disabled>
+                        </div>
+                        <div class="row col-12 form-group">
+                            <label for="usr">Name:</label>
+                            <input type="text" class="form-control" id="pceName" placeholder="Enter Name of Price Change" value="GODIVA VLTN HEART - 20 PC" disabled>
+                        </div>
+                        <div class="row">
+                            <div class="col-3 form-group">
+                                <label for="selWarehousecat">Zones Applied:</label>
+                                <select id="selBrandcat" class="form-control" disabled>
+                                    <option selected>All</option>
+                                    <option>Zone 1 only</option>
+                                    <option>Zone 3 Only</option>
+                                </select>
+                            </div>
+                            <div class="col-3 form-group">
+                                <label for="selWarehousecat">Shelf Life:</label>
+                                <select id="selBrandcat" class="form-control" disabled>
+                                    <option selected>More than 180 days</option>
+                                    <option>Less than 180 days</option>
+                                    <option>Contains Items from both</option>
+                                </select>
+                            </div>
+                            <div class="col-3 form-group">
+                                <label for="selWarehousecat">Warehouse Category:</label>
+                                <select id="selBrandcat" class="form-control" disabled>
+                                    <option selected>None</option>
+                                    <option>Frozen</option>
+                                    <option>Perishable</option>
+                                </select>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+            </section>
+            <hr />
+            <section id="step2" class="mt-3">
+                <div class="card shadow mb-2">
+                    <!-- Card Header - Accordion -->
+                    <div class="d-block card-header bg-dark py-3">
+                        <h6 class="m-0 font-weight-bold text-white">Selected Programs</h6>
+                    </div>
+                    <!-- Card Content - Collapse -->
+                    <div id="detailed-poinfo">
+                        <div class="card-body">
+                            <hr />
+                            <table class="table table-bordered datatable table-striped" id="dataTable-program">
+                                <thead class="thead-light">
+                                    <tr>
+                                        <th>Name</th>
+                                        <th>Price Type</th>
+                                        <th>Zone</th>
+                                        <th>Pillar</th>
+                                        <th>Warehouse Category</th>
+                                        <th>Department</th>
+                                        <th>Effective Date</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>LCL DSD DELI SEAFOOD</td>
+                                        <td>A</td>
+                                        <td>All</td>
+                                        <td>PR</td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <td>FCL TGP DSD</td>
+                                        <td>AL</td>
+                                        <td>All</td>
+                                        <td>PR</td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <td>FARM BOY</td>
+                                        <td>AM</td>
+                                        <td>All</td>
+                                        <td>PR</td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <td>SOBEYS NATIONAL DSD CH</td>
+                                        <td>AN</td>
+                                        <td>All</td>
+                                        <td>PR</td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <td>SOBEYS NATIONAL WHS CH</td>
+                                        <td>AO</td>
+                                        <td>All</td>
+                                        <td>PR</td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <td>CORE-MARK 180 DAYS</td>
+                                        <td>AP</td>
+                                        <td>All</td>
+                                        <td>PR</td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <td>WALLACE AND CAREY</td>
+                                        <td>AQ</td>
+                                        <td>All</td>
+                                        <td>PR</td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                    <tr>
+                                        <td>LOBLAW COMPANIES WHS</td>
+                                        <td>B</td>
+                                        <td>All</td>
+                                        <td>PR</td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <hr />
+            <section id="step3" class="mt-3">
+                <!-- PO Details -->
+                <div class="card shadow mb-2">
+                    <!-- Card Header - Accordion -->
+                    <div class="d-block card-header bg-dark py-3">
+                        <h6 class="m-0 font-weight-bold text-white">Enterprise Costing values</h6>
+                    </div>
+                    <!-- Card Content - Collapse -->
+                    <div id="detailed-poinfo">
+                        <div class="card-body">
+                            <div class="row col-12 form-group">
+                                <label for="usr"><b>Walmart</b><br />Walmart MCB EDLP:</label>
+                                <input type="text" class="form-control" id="pceName" placeholder="Enter if billback applicable" disabled>
+                            </div>
+                            <hr />
+                            <div class="row form-group col-12">
+                                <label for="usr"><b>Loblaw Companies WHS</b><br />Enterprise Costing:</label>
+                                <select class="form-control" id="selBrandManager" disabled>
+                                    <option selected>--- Select Category ---</option>
+                                    <option>Category 1</option>
+                                    <option>Category 2</option>
+                                </select>
+                            </div>
+                            <hr />
+                            <div class="row col-12 form-group">
+                                <label for="usr"><b>Save On Foods</b><br />Over and Above OFG MCB:</label>
+                                <input type="text" class="form-control" id="pceName" placeholder="Enter if billback applicable" disabled>
+                                <label for="usr"><br />Off Invoice OFG MCB:</label>
+                                <input type="text" class="form-control" id="pceName" placeholder="Enter if billback applicable" disabled>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <hr />
+            <section id="step4" class="mt-3">
+                <div id="div-listbyprogram" class="card shadow mb-2">
+                    <!-- Card Header - Accordion -->
+                    <a href="#detailed-poinfo" class="d-block card-header bg-dark py-3" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="detailed-poinfo">
+                        <h6 class="m-0 font-weight-bold text-white">Price Change Breakdown</h6>
+                    </a>
+                    <!-- Card Content - Collapse -->
+                    <div class="collapse show" id="detailed-poinfo">
+                        <div class="card-body">
+                            <div>
+                                <div class="btn-group">
+                                    <button type="button" class="btn btn-outline-primary active">List By Program</button>
+                                    <button type="button" class="btn btn-outline-primary" onclick="listbyitem()">List By Item</button>
+                                </div>
+                            </div><hr />
+                            <div class="row">
+                                <div class="form-group col-6">
+                                    <label for="selPricetype" class="row col-12">Price Type :</label>
+                                    <select class="selectpicker form-control search-result-filter col-6" id="selPricetype" data-live-search="true" data-style="btn-white border-secondary">
+                                        <option selected>0 - Retail</option>
+                                        <option>1 -STORE D</option>
+                                        <option>2 -WHOLESALE</option>
+                                        <option>3 -AMAZON</option>
+                                        <option>6 -WAL-MART</option>
+                                        <option>7 -LCL DSD AFFILIATE</option>
+                                        <option>9 -BAY ZELLERS</option>
+                                        <option>B -LOBLAW COMPANIES WHS</option>
+                                        <option>D -SHOPPERS DRUG MART</option>
+                                        <option>E -MCKESSON</option>
+                                        <option>I -METRO INC WHSE</option>
+                                        <option>K -LONGOS</option>
+                                        <option>N -LCL DSD NON AFFILIAT</option>
+                                        <option>P -METRO INC DSD/Z3DELI</option>
+                                        <option>Q -FOOD SERVICE ZONE A</option>
+                                        <option>AL-FCL TGP DSD</option>
+                                        <option>AM-FARMBOY</option>
+                                        <option>AN-SOBEYS NTL DSD CH</option>
+                                        <option>AO-SOBEYS NTL WHS CH</option>
+                                    </select>
+                                </div>
+                                <div class="col-6">
+                                    <span class="row col-12">Effective Date:</span>
+                                    <h5 class="text-muted">HOLD</h5>
+                                    <br />
+                                    <span class="row col-12">Price Formula:</span>
+                                    <h5 class="text-muted">{(DS/PS)/(1-AS+CV)}*PS+A </h5>
+                                </div>
+
+                            </div>
+                            <hr />
+                            <table class="table table-bordered table-striped datatable" id="table-listbyprogram">
+                                <thead class="thead-light">
+                                    <tr>
+                                        <th>Item</th>
+                                        <th>Description</th>
+                                        <th>Pack</th>
+                                        <th>Size</th>
+                                        <th>Current Z1</th>
+                                        <th>New Z1</th>
+                                        <th>% Change Z1</th>
+                                        <th>New Unit Price</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>54147</td>
+                                        <td>CB CORNED BEEF</td>
+                                        <td>12</td>
+                                        <td>55 GR</td>
+                                        <td>1.39</td>
+                                        <td>1.39</td>
+                                        <td>0.00</td>
+                                        <td>1.39</td>
+                                    </tr>
+                                    <tr>
+                                        <td>54149</td>
+                                        <td>CB SMOKED PASTRAMI</td>
+                                        <td>12</td>
+                                        <td>55 GR</td>
+                                        <td>1.39</td>
+                                        <td>1.39</td>
+                                        <td>0.00</td>
+                                        <td>1.39</td>
+                                    </tr>
+                                    <tr>
+                                        <td>55390</td>
+                                        <td>CB CORNED BEEF RETAIL PK</td>
+                                        <td>30</td>
+                                        <td>55 GR</td>
+                                        <td>1.39</td>
+                                        <td>1.39</td>
+                                        <td>0.00</td>
+                                        <td>1.39</td>
+                                    </tr>
+                                    <tr>
+                                        <td>55391</td>
+                                        <td>CB SM PASTRAMI RETAIL PK</td>
+                                        <td>30</td>
+                                        <td>55 GR</td>
+                                        <td>1.39</td>
+                                        <td>1.39</td>
+                                        <td>0.00</td>
+                                        <td>1.39</td>
+                                    </tr>
+                                    <tr>
+                                        <td>54207</td>
+                                        <td>CB TUB CORNED BEEF</td>
+                                        <td>8</td>
+                                        <td>250 GR</td>
+                                        <td>5.69</td>
+                                        <td>5.69</td>
+                                        <td>0.00</td>
+                                        <td>5.69</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <div id="div-listbyitem" class="card shadow mb-2" style="display:none">
+                    <!-- Card Header - Accordion -->
+                    <a href="#detailed-poinfo" class="d-block card-header bg-dark py-3" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="detailed-poinfo">
+                        <h6 class="m-0 font-weight-bold text-white">Price Changes</h6>
+                    </a>
+                    <!-- Card Content - Collapse -->
+                    <div class="collapse show" id="detailed-poinfo">
+                        <div class="card-body">
+                            <div>
+                                <div class="btn-group">
+                                    <button type="button" class="btn btn-outline-primary" onclick="listbyprogram()">List By Program</button>
+                                    <button type="button" class="btn btn-outline-primary active">List By Item</button>
+                                </div>
+                            </div><hr />
+                            <div class="row">
+                                <div class="form-group col-6  border-right">
+                                    <label for="selPricetype" class="row col-12">Item :</label>
+                                    <select class="selectpicker form-control search-result-filter col-8" id="selPricetype" data-live-search="true" data-style="btn-white border-secondary">
+                                        <option selected>54147 - CB CORNED BEEF</option>
+                                        <option>54149 - CB SMOKED PASTRAMI</option>
+
+                                    </select>
+                                </div>
+                                <div class="col-6">
+                                    <span class="mr-2">Pack:</span>
+                                    <b class="text-muted">12</b><br /><br />
+                                    <span class="mr-2">Size:</span>
+                                    <b class="text-muted">55 GR</b>
+                                </div>
+
+                            </div>
+                            <hr />
+                            <table class="table table-bordered table-striped datatable" id="table-listbyprogram">
+                                <thead class="thead-light">
+                                    <tr>
+                                        <th>Code</th>
+                                        <th>Price Type Desc.</th>
+                                        <th>Customer Effective Date</th>
+                                        <th>Current Z1</th>
+                                        <th>New Z1</th>
+                                        <th>% Change Z1</th>
+                                        <th>New Unit Price</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>0</td>
+                                        <td>RETAIL</td>
+                                        <td>06/24/2019</td>
+                                        <td>1.39</td>
+                                        <td>1.39</td>
+                                        <td>0.00</td>
+                                        <td>1.39</td>
+                                    </tr>
+                                    <tr>
+                                        <td>1</td>
+                                        <td>STORE DOOR</td>
+                                        <td>06/24/2019</td>
+                                        <td>10.80</td>
+                                        <td>10.80</td>
+                                        <td>0.00</td>
+                                        <td>0.900</td>
+                                    </tr>
+                                    <tr>
+                                        <td>2</td>
+                                        <td>WHOLESALE</td>
+                                        <td>06/24/2019</td>
+                                        <td>10.32</td>
+                                        <td>10.32</td>
+                                        <td>0.00</td>
+                                        <td>0.860</td>
+                                    </tr>
+                                    <tr>
+                                        <td>3</td>
+                                        <td>AMAZON</td>
+                                        <td>HOLD</td>
+                                        <td>11.88</td>
+                                        <td>1.39</td>
+                                        <td>0.00</td>
+                                        <td>0.990</td>
+                                    </tr>
+                                    <tr>
+                                        <td>6</td>
+                                        <td>WALMART</td>
+                                        <td>HOLD</td>
+                                        <td>10.32</td>
+                                        <td>10.32</td>
+                                        <td>0.00</td>
+                                        <td>0.860</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <hr />
+                <div id="PCEWorkButtons" class="row col-12">
+                    <div class="col-4 offset-1">
+                        @*<a href="@Url.Action("PCEDisplay", null, new { area = string.Empty, controller = "Home" , target="_blank"}, Request.Url.Scheme)" id="btn-print" class="btn btn-lg btn-block btn-primary">Print / Save as PDF</a>*@
+                        <a id="btn-reject" class="btn btn-lg btn-block btn-danger" href="#?" data-toggle="modal" data-target="#modalReject">Reject Proposal</a>
+                    </div>
+                    <div class="col-4 offset-2">
+                        @*<a href="@Url.Action("PCEDisplay", null, new { area = string.Empty, controller = "Home" , target="_blank"}, Request.Url.Scheme)" id="btn-print" class="btn btn-lg btn-block btn-primary">Print / Save as PDF</a>*@
+                        <a id="btn-submitPCE" class="btn btn-lg btn-block btn-success" href="#?" data-toggle="modal" data-target="#modalApprove">Approve Proposal</a>
+                    </div>
+                </div>
+            </section>
+            <div class="modal fade" id="modalReject" tabindex="-1" role="dialog" aria-labelledby="modalReject" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="modalItemGroup1Label">Price change rejected</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="form-group">
+                                <label for="comment">Reason for Price Change:</label>
+                                <textarea class="form-control" rows="5" id="comment"></textarea>
+                            </div>
+                            <div class="custom-control custom-checkbox">
+                                <input type="checkbox" class="custom-control-input" id="customCheck1">
+                                <label class="custom-control-label" for="customCheck1">CC Confirmation Email to you</label>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <a id="btn-CompleteReject" class="btn btn-lg btn-block btn-success" href="@Url.Action("PCEMain", null, new { area = string.Empty, controller = "Home" }, Request.Url.Scheme)">Submit</a>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+            <div class="modal fade" id="modalApprove" tabindex="-1" role="dialog" aria-labelledby="modalApprove" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="modalItemGroup1Label">Confirmation of approval for price change</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            A confirmation email will be sent to you and the brand manager.
+                        </div>
+                        <div class="modal-footer"> 
+                            <a id="btn-CompleteApprove" class="btn btn-lg btn-block btn-success" href="@Url.Action("PCEMain", null, new { area = string.Empty, controller = "Home" }, Request.Url.Scheme)">Confirm</a>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@section Scripts{
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('.datatable').DataTable();
+        });
+
+        function listbyitem() {
+            $("#div-listbyprogram").hide();
+            $("#div-listbyitem").show()
+        }
+        function listbyprogram() {
+            $("#div-listbyprogram").show();
+            $("#div-listbyitem").hide()
+        }
+
+    </script>
+}
