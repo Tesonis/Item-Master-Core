@@ -92,8 +92,8 @@ namespace Item_Master_Core.Controllers
                     string formatYMD;
                     newitem.ItemID = readerITM["ITMITM"].ToString();
                     newitem.Brand = readerITM["ITMPG3"].ToString();
-                    newitem.Size = readerITM["ITMPG4"].ToString();
-                    newitem.ItemDescEng = readerITM["ITMDSE"].ToString();
+                    newitem.Size = readerITM["ITMDSS"].ToString();
+                    newitem.ItemDescEng = readerITM["ITMEED"].ToString();
                     
                     if (readerITM["ITMDT1"].ToString().Length == 5)
                     {

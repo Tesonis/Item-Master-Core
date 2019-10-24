@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -72,9 +73,25 @@ namespace Item_Master_Core.Controllers
             Models.Item item = new Models.Item();
             while (readerITM.Read())
             {
-
-                string id = readerITM["ITMITM"].ToString();
-                item.ItemID = id;
+                item.ItemID = readerITM["ITMITM"].ToString();
+                if(readerITM["ITMADL"].ToString() == "1")
+                    { item.Status = "Active"; }
+                else if(readerITM["ITMADL"].ToString() == "0")
+                    { item.Status = "Inactive"; }
+                if (readerITM["ITMDT1"].ToString().Length == 5)
+                    {item.Date = DateTime.ParseExact("0" + readerITM["ITMDT1"].ToString(), "yyMMdd", CultureInfo.InvariantCulture);}
+                else
+                 {item.Date = DateTime.ParseExact(readerITM["ITMDT1"].ToString(), "yyMMdd", CultureInfo.InvariantCulture);}
+                item.ItemDescEng = readerITM["ITMEED"].ToString();
+                item.ItemDescFr = readerITM["ITMEFD"].ToString();
+                item.Vendor = readerITM["ITMVEN"].ToString();
+                item.BrandManager = readerITM["ITMRMC"].ToString();
+                item.UnitUPC = readerITM["ITMUUP"].ToString();
+                item.Size = readerITM["ITME#B"].ToString() + " / " + readerITM["ITMB#U"].ToString() + " / " + readerITM["ITMDSS"].ToString();
+                item.Brand = readerITM["ITMPG3"].ToString();
+                item.Purchaser = readerITM["ITMRMC"].ToString();
+                item.CaseUPC = readerITM["ITMCUP"].ToString();
+                item.Perishable = readerITM["ITMSEA"].ToString();
             }
             return item;
         }

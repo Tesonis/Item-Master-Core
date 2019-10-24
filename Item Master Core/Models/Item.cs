@@ -16,9 +16,7 @@ namespace Item_Master_Core.Models
         public string Status { get; set; }
         public DateTime Date { get; set; }
         public string ItemDescEng { get; set; }
-        public string ItemDescEngShort { get; set; }
         public string ItemDescFr { get; set; }
-        public string ItemDescFrShort { get; set; }
         public string Vendor { get; set; }
         public string BrandManager { get; set; }
         public string UnitUPC { get; set; }
@@ -28,7 +26,7 @@ namespace Item_Master_Core.Models
         //Tentative
         public string Purchaser { get; set; }
         public string CaseUPC { get; set; }
-        public bool Perishable { get; set; }
+        public string Perishable { get; set; }
 
         //Seperated all sections into their own view model to reduce clutter
         public ProductDetailsModel ProductDetails { get; set; }
