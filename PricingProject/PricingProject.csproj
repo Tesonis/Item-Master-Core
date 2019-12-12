@@ -128,7 +128,13 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels\LoginViewModel.cs" />
+    <Compile Include="Models\CostingModel.cs" />
+    <Compile Include="Models\CostingModelData\CostingModelData.cs" />
+    <Compile Include="Models\CostingModelData\Item.cs" />
+    <Compile Include="Models\CostingModelData\ItemGroup.cs" />
     <Compile Include="Models\ItemViewModels\SearchViewModel.cs" />
+    <Compile Include="Models\PriceChange.cs" />
+    <Compile Include="Models\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -355,9 +361,11 @@
     <Content Include="Views\Account\Login.cshtml" />
     <Content Include="Views\Home\PCEMain.cshtml" />
     <Content Include="Views\Home\PCEAdd.cshtml" />
+    <Content Include="Views\Home\PCEReview.cshtml" />
+    <Content Include="Views\Shared\FileUpload.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="App_Data\" />
+    <Folder Include="App_Data\Uploads\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

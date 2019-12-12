@@ -54,7 +54,7 @@ namespace PricingProject.Controllers
                     //Session["Email"] = session.EmailAddress;
                     //Session["Username"] = session.Username;
                     //Session["SecurityKey"] = session.securityIdentifier;
-                    return RedirectToAction("PCEMain", "Home", new { area = "" }); ;
+                    return RedirectToAction("PCEMain", "Home", new { subdomain = "pcm" }); ;
                 }
             }
             catch(InvalidCastException e)

@@ -1,6 +1,6 @@
 ﻿
 @{
-    ViewBag.Title = "PCEAdd";
+    ViewBag.Title = "Review Price Change Proposal";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 @Styles.Render("~/Content/bs-select")
@@ -9,30 +9,31 @@
 <nav aria-label="breadcrumb">
     <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="@Url.Action("PCEMain", null, new { area = string.Empty, controller = "Home" }, Request.Url.Scheme)"><i class="fa fa-lg fa-home pr-2"></i><b><u>Price Change Management</u></b></a></li>
-        <li class="breadcrumb-item active" aria-current="page"><b>Review Price Change</b></li>
+        <li class="breadcrumb-item active" aria-current="page"><b>Review Price Change Proposal</b></li>
     </ol>
 </nav>
 <div class="bg-white py-5 multi_step_form">
-    <div class="mx-auto text-center py-4"><h2 class="text-muted">Review Price Entry</h2></div>
+    <div class="mx-auto text-center py-4"><h2 class="text-muted">Review Price Change Proposal</h2></div>
     <hr />
     <div class="row container-fluid">
 
         <div class="col-9 mx-auto">
-            
-            <b>Selected P&L: </b>KIKKOMAN BRAND - 091619
+
+            <b>Costing Model: </b>Midel - Oct 28 2019 <a href="#?" class="pl-2">View Details</a>
             <hr />
             <div class="item-group">
-                <b class="text-muted">Flowerbox</b>
+                <b class="text-muted">MIDEL 200gr</b>
                 <ul id="group1list" class="list-group">
-                    <li class="list-group-item">40347 - GODIVA MASTERPIECE VALENTINE CHOCOLATE STRAWBERRY FLOWERBOX - 209 GR</li>
-                    <li class="list-group-item">57220 - 25 - GODIVA MASTERPIECE VALENTINE ASSORTED FLOWERBOX - 209 GR</li>
+                    <li class="list-group-item">MIDEL GF CHOC SNAP PIE CRUST - 200 GR</li>
+                    <li class="list-group-item">MIDEL GF GRAHAM PIE CRST - 200 GR</li>
                 </ul>
                 <hr />
             </div>
             <div class="item-group">
-                <b class="text-muted">Assorted</b>
+                <b class="text-muted">MIDEL cookies 255gr</b>
                 <ul id="group2list" class="list-group">
-                    <li class="list-group-item">40346 - GODIVA GOLDMARK ASSORTED VALENTINE HEART9 PIECES - 95 GR</li>
+                    <li class="list-group-item">MIDEL MAPLE GINGER CREMES GF - 255 GR</li>
+                    <li class="list-group-item">MIDEL CANDY CANE CREMES GF - 255 GR</li>
                 </ul>
                 <hr />
             </div>
@@ -45,7 +46,7 @@
                         </div>
                         <div class="row col-12 form-group">
                             <label for="usr">Name:</label>
-                            <input type="text" class="form-control" id="pceName" placeholder="Enter Name of Price Change" value="GODIVA VLTN HEART - 20 PC" disabled>
+                            <input type="text" class="form-control" id="pceName" placeholder="Enter Name of Price Change" value="Midel price change for MAR 2020 5%" disabled>
                         </div>
                         <div class="row">
                             <div class="col-3 form-group">
@@ -54,14 +55,6 @@
                                     <option selected>All</option>
                                     <option>Zone 1 only</option>
                                     <option>Zone 3 Only</option>
-                                </select>
-                            </div>
-                            <div class="col-3 form-group">
-                                <label for="selWarehousecat">Shelf Life:</label>
-                                <select id="selBrandcat" class="form-control" disabled>
-                                    <option selected>More than 180 days</option>
-                                    <option>Less than 180 days</option>
-                                    <option>Contains Items from both</option>
                                 </select>
                             </div>
                             <div class="col-3 form-group">
@@ -89,16 +82,14 @@
                     <div id="detailed-poinfo">
                         <div class="card-body">
                             <hr />
-                            <table class="table table-bordered datatable table-striped" id="dataTable-program">
+                            <table class="table table-bordered datatable table-hover" id="dataTable-program" style="cursor:pointer;">
                                 <thead class="thead-light">
                                     <tr>
                                         <th>Name</th>
                                         <th>Price Type</th>
                                         <th>Zone</th>
                                         <th>Pillar</th>
-                                        <th>Warehouse Category</th>
                                         <th>Department</th>
-                                        <th>Effective Date</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -106,72 +97,82 @@
                                         <td>LCL DSD DELI SEAFOOD</td>
                                         <td>A</td>
                                         <td>All</td>
-                                        <td>PR</td>
-                                        <td></td>
-                                        <td></td>
+                                        <td>PR - Fresh</td>
                                         <td></td>
                                     </tr>
                                     <tr>
                                         <td>FCL TGP DSD</td>
                                         <td>AL</td>
                                         <td>All</td>
-                                        <td>PR</td>
-                                        <td></td>
-                                        <td></td>
+                                        <td>PR - Fresh</td>
                                         <td></td>
                                     </tr>
                                     <tr>
                                         <td>FARM BOY</td>
                                         <td>AM</td>
                                         <td>All</td>
-                                        <td>PR</td>
-                                        <td></td>
-                                        <td></td>
+                                        <td>PR - Fresh</td>
                                         <td></td>
                                     </tr>
                                     <tr>
                                         <td>SOBEYS NATIONAL DSD CH</td>
                                         <td>AN</td>
                                         <td>All</td>
-                                        <td>PR</td>
-                                        <td></td>
-                                        <td></td>
+                                        <td>PR - Fresh</td>
                                         <td></td>
                                     </tr>
                                     <tr>
                                         <td>SOBEYS NATIONAL WHS CH</td>
                                         <td>AO</td>
                                         <td>All</td>
-                                        <td>PR</td>
-                                        <td></td>
-                                        <td></td>
+                                        <td>PR - Fresh</td>
                                         <td></td>
                                     </tr>
                                     <tr>
                                         <td>CORE-MARK 180 DAYS</td>
                                         <td>AP</td>
                                         <td>All</td>
-                                        <td>PR</td>
-                                        <td></td>
-                                        <td></td>
+                                        <td>PR - Fresh</td>
                                         <td></td>
                                     </tr>
                                     <tr>
                                         <td>WALLACE AND CAREY</td>
                                         <td>AQ</td>
                                         <td>All</td>
-                                        <td>PR</td>
-                                        <td></td>
-                                        <td></td>
+                                        <td>PR - Fresh</td>
                                         <td></td>
                                     <tr>
                                         <td>LOBLAW COMPANIES WHS</td>
                                         <td>B</td>
                                         <td>All</td>
-                                        <td>PR</td>
+                                        <td>PR - Fresh</td>
                                         <td></td>
-                                        <td></td>
-                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <td>METRO WAREHOUSE</td>
+                                        <td>I</td>
+                                        <td>All</td>
+                                        <td>PR - Fresh</td>
+                                        <td>
+                                            <select class="form-control search-result-filter" id="selDepartment" title="--- Select Department ---" data-style="btn-white border-secondary" disabled>
+                                                <option>Dairy / Grocery</option>
+                                                <option>Bakery</option>
+                                                <option>Deli</option>
+                                            </select>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>METRO DSD</td>
+                                        <td>P</td>
+                                        <td>All</td>
+                                        <td>PR - Fresh</td>
+                                        <td>
+                                            <select class="form-control search-result-filter" id="selDepartment2" title="--- Select Department ---" data-style="btn-white border-secondary" disabled>
+                                                <option>Dairy / Grocery</option>
+                                                <option>Bakery</option>
+                                                <option>Deli</option>
+                                            </select>
+                                        </td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -226,9 +227,10 @@
                     <div class="collapse show" id="detailed-poinfo">
                         <div class="card-body">
                             <div>
-                                <div class="btn-group">
+                                <div class="btn-group p-0 col-12">
                                     <button type="button" class="btn btn-outline-primary active">List By Program</button>
                                     <button type="button" class="btn btn-outline-primary" onclick="listbyitem()">List By Item</button>
+                                    <button id="btn-exportExcel" class="btn btn-outline-success ml-auto">Export to Excel</button>
                                 </div>
                             </div><hr />
                             <div class="row">
@@ -465,7 +467,7 @@
                             <a id="btn-CompleteReject" class="btn btn-lg btn-block btn-success" href="@Url.Action("PCEMain", null, new { area = string.Empty, controller = "Home" }, Request.Url.Scheme)">Submit</a>
                         </div>
                     </div>
-                    
+
                 </div>
             </div>
             <div class="modal fade" id="modalApprove" tabindex="-1" role="dialog" aria-labelledby="modalApprove" aria-hidden="true">
@@ -480,11 +482,11 @@
                         <div class="modal-body">
                             A confirmation email will be sent to you and the brand manager.
                         </div>
-                        <div class="modal-footer"> 
+                        <div class="modal-footer">
                             <a id="btn-CompleteApprove" class="btn btn-lg btn-block btn-success" href="@Url.Action("PCEMain", null, new { area = string.Empty, controller = "Home" }, Request.Url.Scheme)">Confirm</a>
                         </div>
                     </div>
-                    
+
                 </div>
             </div>
         </div>
@@ -494,9 +496,22 @@
 
     <script type="text/javascript">
         $(document).ready(function () {
-            $('.datatable').DataTable();
+            $('#table-listbyprogram').DataTable({
+                dom: 'Bfrtip',
+                buttons: [
+                    'excel'
+                ]
+            });
+            $('#table-listbyitem').DataTable({
+                dom: 'Bfrtip',
+                buttons: [
+                    'excel'
+                ]
+            });
         });
-
+        $('#btn-exportExcel').on('click', function () {
+            $('.buttons-excel').click()
+        });
         function listbyitem() {
             $("#div-listbyprogram").hide();
             $("#div-listbyitem").show()

@@ -23,6 +23,10 @@ namespace PricingProject.Controllers
         {
             return View();
         }
+        public ActionResult PCEReview()
+        {
+            return View();
+        }
         public ActionResult PCEMain()
         {
             ViewBag.name = Request.Cookies["SecToken"]["FullName"];

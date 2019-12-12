@@ -7,6 +7,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Item Master Core", "Item Ma
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PricingProject", "PricingProject\PricingProject.csproj", "{0C53DF93-1E0E-4A4A-9DCF-B5F57748D0C3}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Launchpad", "Launchpad\Launchpad.csproj", "{E7D7B5B6-45BF-4BB2-8FE1-DD6ED4706719}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FileUploadService", "FileUploadService\FileUploadService.csproj", "{1BAB6519-6B09-41E0-A5E5-44412CBD37D4}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +25,14 @@ Global
 		{0C53DF93-1E0E-4A4A-9DCF-B5F57748D0C3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0C53DF93-1E0E-4A4A-9DCF-B5F57748D0C3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0C53DF93-1E0E-4A4A-9DCF-B5F57748D0C3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E7D7B5B6-45BF-4BB2-8FE1-DD6ED4706719}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E7D7B5B6-45BF-4BB2-8FE1-DD6ED4706719}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E7D7B5B6-45BF-4BB2-8FE1-DD6ED4706719}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E7D7B5B6-45BF-4BB2-8FE1-DD6ED4706719}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1BAB6519-6B09-41E0-A5E5-44412CBD37D4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1BAB6519-6B09-41E0-A5E5-44412CBD37D4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1BAB6519-6B09-41E0-A5E5-44412CBD37D4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1BAB6519-6B09-41E0-A5E5-44412CBD37D4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

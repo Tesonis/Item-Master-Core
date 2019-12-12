@@ -1,4 +1,6 @@
-﻿// Multistep form navigation
+﻿
+
+// Multistep form navigation
 function Step1() {
     $(".step").addClass("d-none");
     $("#step1").removeClass("d-none");
@@ -34,11 +36,25 @@ function Step4() {
 //script for grouping items
 var count = 1;
 $(".group-item").click(function () {
-    $(this).parent().parent().toggleClass("table-info");
-    $(this).children().toggleClass("fa-minus-circle");
-    $("#numitemsselected").text($(".fa-minus-circle").length);
+    if (!$(this).children().hasClass('fa-check-circle-o')) {
+        $(this).parent().parent().toggleClass("table-info");
+        $(this).children().toggleClass("fa-minus-circle");
+        $("#numitemsselected").text($(".fa-minus-circle").length);
+    }
+    if ($(".fa-minus-circle").length > 0){
+        //Run Calculations
+        $("#btnNewItemGroup").prop('disabled', false);
+        $("#btnStep3").prop('disabled', false);
+        $("#btnCostingAnalysis").prop('disabled', false);
+    }
+   
 
 });
+function displaycosting() {
+    $("#PriceUpdateCalc").prop('hidden', false);
+    $("#btnCostingAnalysis").hide();
+    document.getElementById('PriceUpdateCalc').scrollIntoView();
+}
 function scrolltotop() {
     $(window).scrollTop(0);
 }
@@ -48,7 +64,7 @@ function togglepnltable() {
 function AddNewGroup() {
     var groupname = $("#new-itemgroup-name").val().toString();
     var numofitems = $(".fa-minus-circle").length;
-    var newitemgroup = '<a class="dropdown-item" href="#?" onclick="warningSave()"><button class="btn btn-sm btn-danger mr-2"><i class="fa fa-trash text-white m-0"></i></button>' + groupname + ' <span class="badge badge-primary badge-pill ml-3" style="position: static;">' + numofitems +'</span> </a> '
+    var newitemgroup = '<a class="dropdown-item" href="#?" onclick="warningSave()"><button class="btn btn-sm btn-danger mr-2" onclick="warningDelete()"><i class="fa fa-trash text-white m-0"></i></button>' + groupname + ' <span class="badge badge-primary badge-pill ml-3" style="position: static;">' + numofitems +'</span> </a> '
     $("#sel-itemgroups").append(newitemgroup);
     count++;
     $("#new-itemgroup-name").val("MIDEL Group 2");
@@ -58,11 +74,19 @@ function AddNewGroup() {
     $(".fa-minus-circle").toggleClass("fa-check-circle-o");
     $(".fa-minus-circle").toggleClass("fa-minus-circle");
     $("#numitemsselected").text($(".fa-minus-circle").length);
+
     scrolltotop();
+    $("#PriceUpdateCalc").prop('hidden', true);
+    $("#btnCostingAnalysis").show();
+    $("#btnCostingAnalysis").prop('disabled', true);
 }
 
 function warningSave() {
-    $("#modalWarningSave").modal('show');
+    $("#modalWarningSave").modal('toggle');
+}
+function warningDelete() {
+    $("#modalDeleteGroup").modal('toggle');
+    $("#modalWarningSave").modal('toggle');
 }
 $("#btn-FinancialAllItems").click(function () {
     $("#div-FinancialAllItems").removeClass("d-none");
@@ -76,6 +100,25 @@ $("#btn-FinancialAffectedItems").click(function () {
     $("#btn-FinancialAllItems").removeClass("active");
     $("#btn-FinancialAffectedItems").addClass("active");
 });
+function calculateCostingAllItems() {
+    var currentpurchasepricepercase = parseFloat($("#data-currentpurchasepricepercase"));
+    var proposedpurchasepricepercase = parseFloat($("#input-proposedpurchasepricepercase"));
+    var exchangerate = parseFloat($("#dataExchangeRate"));
+    var purchasepriceCAD = proposedpurchasepricepercase * exchangerate;
+    var duty = purchasepriceCAD * parseFloat($("#data-duty")) / 100;
+    var freightcosting = parseFloat($("#data-freightcosting"));
+    var currentlandingcost;
+    var proposedlandingcost = purchasepriceCAD + duty + freightcosting;
+    var currentdealaccruals = parseFloat($("#data-freightcosting"));
+    var proposeddealaccruals;
+
+
+    //DSD
+    var dsdcurrentpricepercase;
+    var dsdcproposedpricepercase;
+}
+
+
 
 function calculateFinancialAllItems() {
     //CASES
@@ -260,4 +303,19 @@ function calculateFinancialAllItems() {
     $("#val-L12totalconmarginAcase").text(L12totalconmarginAcase.toFixed(2).toString());
     $("#val-N12totalconmarginAcase").text(N12totalconmarginAcase.toFixed(2).toString());
     $("#val-ChangeconmarginAcase").text(ChangeconmarginAcase.toFixed(2).toString());
+
+    //Change Color
+    changecolor();
+}
+function changecolor() {
+    $(".changenum").each(function () {
+        if (parseFloat($(this).text()) > 0) {
+            $(this).removeClass('text-danger');
+            $(this).addClass('text-success');
+        }
+        else if (parseFloat($(this).text()) < 0) {
+            $(this).removeClass('text-success');
+            $(this).addClass('text-danger');
+        }
+    });
 }

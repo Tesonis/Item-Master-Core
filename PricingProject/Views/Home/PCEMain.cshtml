@@ -1,11 +1,9 @@
 ﻿
 @{
-    ViewBag.Title = "PCEMain";
+    ViewBag.Title = "Price Change Management";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-@{
-    ViewBag.Title = "About";
-}
+
 @model PricingProject.Models.ItemViewModels.SearchViewModel
 @Styles.Render("~/Content/bs-select")
 @Styles.Render("~/Content/css")
@@ -31,8 +29,8 @@
                     <thead class="thead-light">
                         <tr>
                             <th></th>
+                            <th>Date Created</th>
                             <th>Type</th>
-                            <th>Implement Date</th>
                             <th>Name</th>
                             <th>Brand Manager</th>
                             <th>Status</th>
@@ -40,21 +38,28 @@
                     </thead>
                     <tbody>
                         <tr class="rowRejected">
-                            <td><button class="btn btn-block btn-outline-warning" data-toggle="modal" data-target="#modalReject">Review</button></td>
+                            <td><button class="btn btn-block btn-outline-warning" data-toggle="modal" data-target="#modalRejectPC">Review</button></td>
+                            <td>08/14/19</td>
                             <td>Price Change Proposal</td>
-                            <td>11/14/19</td>
-                            <td>KIKKOMAN - Nov 14 2019</td>
+                            <td>KIKKOMAN - Aug 14 2019</td>
+                            <td>Anne Mergelas</td>
+                            <td class="rowStatus"><span class="text-danger">Rejected</span></td>
 
+                        </tr>
+                        <tr class="rowRejected">
+                            <td><button class="btn btn-block btn-outline-warning" data-toggle="modal" data-target="#modalRejectCost">Review</button></td>
+                            <td>10/14/19</td>
+                            <td>Costing Model</td>
+                            <td>KIKKOMAN - Oct 14 2019</td>
                             <td>Anne Mergelas</td>
                             <td class="rowStatus"><span class="text-danger">Rejected</span></td>
 
                         </tr>
                         <tr>
-                            <td><a href="@Url.Action("PCEMain", null, new { area = string.Empty, controller = "Home" }, Request.Url.Scheme)" class="btn btn-block  btn-outline-warning">Review</a></td>
+                            <td><a href="@Url.Action("PCEDisplay", null, new { area = string.Empty, controller = "Home" }, Request.Url.Scheme)" class="btn btn-block  btn-outline-warning">Review</a></td>
+                            <td>12/24/18</td>
                             <td>Price Change Proposal</td>
-                            <td>12/24/19</td>
-                            <td>GODIVA - Dec 24 2019</td>
-
+                            <td>GODIVA - Dec 24 2018</td>
                             <td>Anabela Neves</td>
                             <td><span class="text-warning">Approval Requested</span></td>
 
@@ -62,33 +67,30 @@
                         </tr>
                         <tr>
                             <td><a href="#?" class="btn btn-block  btn-outline-warning">Review</a></td>
+                            <td>02/01/19</td>
                             <td>Price Change Proposal</td>
-                            <td>11/24/19</td>
                             <td>KIKKOMAN - Feb 1 2019</td>
-
                             <td>Anabela Neves</td>
                             <td><span class="text-info">Draft</span></td>
 
 
                         </tr>
                         <tr>
-                            <td><a href="#?" class="btn btn-block  btn-outline-warning">Review</a></td>
+                            <td><a href="@Url.Action("PCEReview", null, new { area = string.Empty, controller = "Home" }, Request.Url.Scheme)" class="btn btn-block  btn-outline-warning">Review</a></td>
+                            <td>10/28/19</td>
                             <td>Costing Model</td>
-                            <td></td>
-                            <td>Kikkoman - 091619</td>
-                            <td>Anabela Neves</td>
-                            <td><span class="text-info">Draft</span></td>
-
-
+                            <td>Midel - Oct 28 2019</td>
+                            <td>Terry Huang</td>
+                            <td><span class="text-warning">Approval Requested</span></td>
                         </tr>
                     </tbody>
                 </table>
             </section>
             <section id="section_dash" class="p-3 bg-white border">
                 @*<div class="alert alert-warning alert-dismissible fade show p-3">
-                    <button type="button" class="close" data-dismiss="alert">&times;</button>
-                    <strong>Notice: </strong> You have outstanding tasks that requires your attention.<strong class="pl-2"><a href="#anchor_review"><u>Review</u></a></strong>
-                </div>*@
+                <button type="button" class="close" data-dismiss="alert">&times;</button>
+                <strong>Notice: </strong> You have outstanding tasks that requires your attention.<strong class="pl-2"><a href="#anchor_review"><u>Review</u></a></strong>
+            </div>*@
                 <div class="row">
                     <div class="col-6">
                         <div class="card">
@@ -96,7 +98,7 @@
                                 <div class="p-3 d-flex align-items-center">
                                     <i class="fa fa-calculator bg-primary p-3 font-2xl mr-3"></i>
                                     <div>
-                                        <div class="text-value-sm text-primary">Costing Models</div>
+                                        <div class="text-value-sm text-primary">Costing Model</div>
                                         @*<div class="text-muted text-uppercase font-weight-bold small">Income</div>*@
                                     </div>
                                     <a href="@Url.Action("PCEPNL", null, new { area = string.Empty, controller = "Home" }, Request.Url.Scheme)" class="btn btn-lg btn-primary ml-auto">Create New</a>
@@ -113,27 +115,27 @@
                                             <tr>
                                                 <td><a href="#?">Kikkoman - 091619</a></td>
                                                 <td>Kikkoman Brand</td>
-                                                <td>4 items</td>
+                                                <td><span class="text-success">Implemented</span></td>
                                             </tr>
                                             <tr>
                                                 <td><a href="#?">Godiva - 070819</a></td>
                                                 <td>GODIVA</td>
-                                                <td>3 items</td>
+                                                <td><span class="text-success">Approved</span></td>
                                             </tr>
                                             <tr>
                                                 <td><a href="#?">Kikkoman - 071519</a></td>
                                                 <td>Kikkoman Brand</td>
-                                                <td>2 items</td>
+                                                <td><span class="text-primary">Draft</span></td>
                                             </tr>
                                             <tr>
                                                 <td><a href="#?">Carrs - 062119</a></td>
                                                 <td>Kikkoman Brand</td>
-                                                <td>8 items</td>
+                                                <td><span class="text-danger">Rejected</span></td>
                                             </tr>
                                             <tr>
                                                 <td><a href="#?">Thai Kitchen - 021619</a></td>
                                                 <td>Thai Kitchen</td>
-                                                <td>2 items</td>
+                                                <td><span class="text-warning">Approval Requested</span></td>
                                             </tr>
                                         </tbody>
                                     </table>
@@ -207,8 +209,10 @@
             <span id="anchor_models" />
             <section id="section_models" class="my-4 p-3 bg-white border">
                 <h5 class="text-muted">All Costing Models</h5>
-                <br />
-                <table class="table table-bordered dataTable" id="datatable-costing">
+                <div class="form-group d-inline-flex mb-0 my-3">
+                    <button id="btn-programSelectAll" class="btn btn-danger mx-1">Show 'Not Implemented': On</button>
+                </div>
+                <table class="table table-bordered dataTable" id="dataTable-costing">
                     <thead class="thead-light">
                         <tr>
                             <th>Date Created</th>
@@ -223,7 +227,7 @@
                     <tbody>
                         <tr class="rowRejected">
                             <td>09/16/19</td>
-                            <td><a href="#?">Kikkoman - 091619</a></td>
+                            <td>Kikkoman - 091619</td>
                             <td>Kikkoman Brand</td>
                             <td>Kikkoman</td>
                             <td>Anabela Neves</td>
@@ -240,7 +244,7 @@
                         </tr>
                         <tr class="rowRejected">
                             <td>07/08/19</td>
-                            <td><a href="#?">Godiva - 070819</a></td>
+                            <td>Godiva - 070819</td>
                             <td>Godiva</td>
                             <td>Godiva</td>
                             <td>Anabela Neves</td>
@@ -256,11 +260,11 @@
                         </tr>
                         <tr class="rowRejected">
                             <td>07/15/19</td>
-                            <td><a href="#?">Kikkoman - 071519</a></td>
+                            <td>Kikkoman - 071519</td>
                             <td>Kikkoman Brand</td>
                             <td>Kikkoman</td>
                             <td>Anabela Neves</td>
-                            <td class="rowStatus"><span class="text-danger">In Use</span></td>
+                            <td class="rowStatus"><span class="text-success">Implemented</span></td>
                             <td>
                                 <a class="btn btn-outline-primary" href="#?">
                                     <i class="fa fa-eye"></i>
@@ -272,7 +276,7 @@
                         </tr>
                         <tr class="rowRejected">
                             <td>06/21/19</td>
-                            <td><a href="#?">Carrs - 062119</a></td>
+                            <td>Carrs - 062119</td>
                             <td>Carrs</td>
                             <td>Carrs</td>
                             <td>Anabela Neves</td>
@@ -287,12 +291,28 @@
                             </td>
                         </tr>
                         <tr class="rowRejected">
+                            <td>06/21/19</td>
+                            <td>Carrs - 072119</td>
+                            <td>Carrs</td>
+                            <td>Carrs</td>
+                            <td>Anabela Neves</td>
+                            <td class="rowStatus"><span class="text-danger">Not Implemented</span></td>
+                            <td>
+                                <a class="btn btn-outline-primary" href="#?">
+                                    <i class="fa fa-eye"></i>
+                                </a>
+                                <a class="btn btn-outline-danger disabled" href="#?">
+                                    <i class="fa fa-trash"></i>
+                                </a>
+                            </td>
+                        </tr>
+                        <tr class="rowRejected">
                             <td>02/16/19</td>
-                            <td><a href="#?">Thai Kitchen - 021619</a></td>
+                            <td>Thai Kitchen - 021619</td>
                             <td>Thai Kitchen</td>
                             <td>Thai Kitchen</td>
                             <td>Anabela Neves</td>
-                            <td class="rowStatus"><span class="text-muted">Changes Needed</span></td>
+                            <td class="rowStatus"><span class="text-danger">Rejected</span></td>
                             <td>
                                 <a class="btn btn-outline-primary" href="#?">
                                     <i class="fa fa-pencil"></i>
@@ -543,7 +563,7 @@
                 </table>
 
             </section>
-            <div class="modal fade" id="modalReject" tabindex="-1" role="dialog" aria-labelledby="modalReject" aria-hidden="true">
+            <div class="modal fade" id="modalRejectCost" tabindex="-1" role="dialog" aria-labelledby="modalReject" aria-hidden="true">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
@@ -555,18 +575,38 @@
                         <div class="modal-body">
                             <div class="form-group">
                                 <label for="comment">Reason for Rejection:</label>
-                                <textarea class="form-control" rows="5" id="comment" contenteditable="false">Comment about why the entry is rejected. This can range from a P&L issue to a typo or even a date problem.</textarea>
+                                <textarea class="form-control" rows="5" id="comment" contenteditable="false">Comment about why the entry is rejected.</textarea>
                             </div>
                         </div>
                         <div class="modal-footer">
                             <a id="btn-RejecttoPNL" class="btn btn-lg btn-block btn-outline-primary" href="@Url.Action("PCEPNL", null, new { area = string.Empty, controller = "Home" }, Request.Url.Scheme)">Go to Costing Model</a>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="modal fade" id="modalRejectPC" tabindex="-1" role="dialog" aria-labelledby="modalReject" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="modalItemGroup1Label">Price change rejected</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="form-group">
+                                <label for="comment">Reason for Rejection:</label>
+                                <textarea class="form-control" rows="5" id="comment" contenteditable="false">Comment about why the entry is rejected. </textarea>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
                             <a id="btn-RejecttoAdd" class="btn btn-lg btn-block btn-outline-primary" href="@Url.Action("PCEAdd", null, new { area = string.Empty, controller = "Home" }, Request.Url.Scheme)">Go to Price Change Proposal</a>
                         </div>
                     </div>
 
                 </div>
             </div>
-
 
         </div>
     </div>

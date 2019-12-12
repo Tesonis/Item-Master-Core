@@ -1,6 +1,6 @@
 ﻿
 @{
-    ViewBag.Title = "PCEAdd";
+    ViewBag.Title = "Price Change Proposal";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 @Styles.Render("~/Content/bs-select")
@@ -27,7 +27,7 @@
     <div class="row container-fluid">
 
         <div class="col-9 mx-auto">
-            
+
             <div class="modal fade" id="modalDetails" tabindex="-1" role="dialog" aria-labelledby="modalDetails" aria-hidden="true">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
@@ -76,17 +76,16 @@
 
                             <select class="selectpicker form-control search-result-filter col-4 pl-3" id="selunusedpnl" data-live-search="true" data-style="btn-white border-secondary">
                                 @*<option>--- No Model Selected ---</option>*@
-                                <option selected>Midel - Oct 1 2019</option>
+                                <option selected>Midel - Oct 28 2019</option>
                                 <option>Kikkoman - 091619</option>
                                 <option>Kikkoman - 071519</option>
                                 <option>Carrs - 062119</option>
                             </select>
-                            <a class="pl-3" href="@Url.Action("PCEPNL", null, new { area = string.Empty, controller = "Home" }, Request.Url.Scheme)" target="_blank"><u>View Details</u></a>
-                            <a class="pl-2" href="#?" data-toggle="modal" data-target="#modalDetails"><u>View Items</u></a>
+                            <a class="pl-3" href="@Url.Action("PCEReview", null, new { area = string.Empty, controller = "Home" }, Request.Url.Scheme)" target="_blank"><u>View Details</u></a>
                         </div>
                         <hr />
                         <div class="row form-group col-12">
-                            <label for="sel1">Select Item Group(s):</label>
+                            <label for="sel1">Select Item Groups:</label>
                             <div class="input-group">
                                 <span class="input-group-prepend">
                                     <button class="btn btn-primary" type="button" onclick="selectAllitemgroups()">
@@ -94,19 +93,20 @@
                                     </button>
                                 </span>
                                 <select class="selectpicker form-control" id="selitemGroups" multiple data-style="btn-white border-secondary">
-                                    <option>Midel Bagged items</option>
-                                    <option>Midel Sandwich Cookies</option>
+                                    <option>Midel 200gr</option>
+                                    <option>Midel cookies 255gr</option>
+                                    <option>Midel Cookies 227gr</option>
                                 </select>
                             </div>
-                            
+
                         </div>
                         <div class="row col-12 form-group">
-                            <label for="usr">Price Change Name:</label>
-                            <input type="text" class="form-control" id="pceName" value="Midel - Oct 1 2019">
+                            <label for="pceName">Price Change Name:</label>
+                            <input type="text" class="form-control" id="pceName" value="Midel - Oct 28 2019">
                         </div>
                         <div class="row col-12 form-group">
-                            <label for="usr">Effective Date (optional):</label>
-                            <input type="date" class="form-control" id="pceimplementationDate">
+                            <label for="pceEffectiveDate">Effective Date:</label>
+                            <input type="date" class="form-control" id="pceEffectiveDate">
                         </div>
                         <div class="row">
                             <div class="col-3 form-group">
@@ -117,15 +117,15 @@
                                     <option>Zone 3 Only</option>
                                 </select>
                             </div>
-                            
+
                             @*<div class="col-3 form-group">
-                                <label for="selWarehousecat">Shelf Life:</label>
-                                <select id="selBrandcat" class="form-control">
-                                    <option selected>More than 180 days</option>
-                                    <option>Less than 180 days</option>
-                                    <option>Contains Items from both</option>
-                                </select>
-                            </div>*@
+                            <label for="selWarehousecat">Shelf Life:</label>
+                            <select id="selBrandcat" class="form-control">
+                                <option selected>More than 180 days</option>
+                                <option>Less than 180 days</option>
+                                <option>Contains Items from both</option>
+                            </select>
+                        </div>*@
                             <div class="col-3 form-group">
                                 <label for="selWarehousecat">Warehouse Category:</label>
                                 <select id="selBrandcat" class="form-control">
@@ -141,7 +141,7 @@
                 </div>
                 <hr />
                 <div class="row pt-4">
-                    <button class="btn btn-lg btn-outline-success ml-auto" onclick="Step2()">Next Step</button>
+                    <button id="btnStep2" class="btn btn-lg btn-outline-success ml-auto" onclick="Step2()" disabled>Next Step</button>
                 </div>
             </section>
             <section id="step2" class="mt-3 step d-none">
@@ -162,106 +162,120 @@
                                 <button id="btn-programShowOverride" class="btn btn-outline-warning mx-1">Toggle Show Override Programs</button>
                             </div>
                             <hr />
-                            <table class="table table-bordered datatable table-hover" id="dataTable-program" style="cursor:pointer;">
+                            <table id="table_groupitems" class="table table-bordered datatable">
                                 <thead class="thead-light">
                                     <tr>
+                                        <th></th>
                                         <th>Name</th>
                                         <th>Price Type</th>
                                         <th>Zone</th>
                                         <th>Pillar</th>
-                                        <th>Department</th>
+                                        <th>Last Price Change</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <tr>
+                                        <td><a href="#?" class="group-item"><i class="fa fa-plus-circle"></i></a></td>
                                         <td>LCL DSD DELI SEAFOOD</td>
                                         <td>A</td>
                                         <td>All</td>
                                         <td>PR - Fresh</td>
-                                        <td></td>
+                                        <td>01/01/2019</td>
                                     </tr>
                                     <tr>
+                                        <td><a href="#?" class="group-item"><i class="fa fa-plus-circle"></i></a></td>
                                         <td>FCL TGP DSD</td>
                                         <td>AL</td>
                                         <td>All</td>
                                         <td>PR - Fresh</td>
-                                        <td></td>
+                                        <td>01/01/2019</td>
                                     </tr>
                                     <tr>
+                                        <td><a href="#?" class="group-item"><i class="fa fa-plus-circle"></i></a></td>
                                         <td>FARM BOY</td>
                                         <td>AM</td>
                                         <td>All</td>
                                         <td>PR - Fresh</td>
-                                        <td></td>
+                                        <td>01/01/2019</td>
                                     </tr>
                                     <tr>
+                                        <td><a href="#?" class="group-item"><i class="fa fa-plus-circle"></i></a></td>
                                         <td>SOBEYS NATIONAL DSD CH</td>
                                         <td>AN</td>
                                         <td>All</td>
                                         <td>PR - Fresh</td>
-                                        <td></td>
+                                        <td>01/01/2019</td>
                                     </tr>
                                     <tr>
+                                        <td><a href="#?" class="group-item"><i class="fa fa-plus-circle"></i></a></td>
                                         <td>SOBEYS NATIONAL WHS CH</td>
                                         <td>AO</td>
                                         <td>All</td>
                                         <td>PR - Fresh</td>
-                                        <td></td>
+                                        <td>01/01/2019</td>
                                     </tr>
                                     <tr>
+                                        <td><a href="#?" class="group-item"><i class="fa fa-plus-circle"></i></a></td>
                                         <td>CORE-MARK 180 DAYS</td>
                                         <td>AP</td>
                                         <td>All</td>
                                         <td>PR - Fresh</td>
-                                        <td></td>
+                                        <td>01/01/2019</td>
                                     </tr>
                                     <tr>
+                                        <td><a href="#?" class="group-item"><i class="fa fa-plus-circle"></i></a></td>
                                         <td>WALLACE AND CAREY</td>
                                         <td>AQ</td>
                                         <td>All</td>
                                         <td>PR - Fresh</td>
-                                        <td></td>
+                                        <td>01/01/2019</td>
                                     <tr>
+                                        <td><a href="#?" class="group-item"><i class="fa fa-plus-circle"></i></a></td>
                                         <td>LOBLAW COMPANIES WHS</td>
                                         <td>B</td>
                                         <td>All</td>
                                         <td>PR - Fresh</td>
-                                        <td></td>
+                                        <td>01/01/2019</td>
                                     </tr>
                                     <tr>
-                                        <td>METRO WAREHOUSE</td>
-                                        <td>I</td>
-                                        <td>All</td>
-                                        <td>PR - Fresh</td>
+                                        <td><a href="#?" class="group-item"><i class="fa fa-plus-circle"></i></a></td>
                                         <td>
-                                            <select class="form-control search-result-filter" id="selDepartment" title="--- Select Department ---" data-style="btn-white border-secondary" >
+                                            METRO WAREHOUSE
+                                            <select class="form-control search-result-filter" id="selDepartment" title="--- Select Department ---" data-style="btn-white border-secondary">
                                                 <option>Dairy / Grocery</option>
                                                 <option>Bakery</option>
                                                 <option>Deli</option>
                                             </select>
                                         </td>
-                                    </tr>
-                                    <tr>
-                                        <td>METRO DSD</td>
-                                        <td>P</td>
+                                        <td>I</td>
                                         <td>All</td>
                                         <td>PR - Fresh</td>
+                                        <td>01/01/2019</td>
+                                    </tr>
+                                    <tr>
+                                        <td><a href="#?" class="group-item"><i class="fa fa-plus-circle"></i></a></td>
                                         <td>
+                                            METRO DSD
                                             <select class="form-control search-result-filter" id="selDepartment2" title="--- Select Department ---" data-style="btn-white border-secondary">
                                                 <option>Dairy / Grocery</option>
                                                 <option>Bakery</option>
                                                 <option>Deli</option>
                                             </select>
                                         </td>
+                                        <td>P</td>
+                                        <td>All</td>
+                                        <td>PR - Fresh</td>
+                                        <td>01/01/2019</td>
                                     </tr>
                                 </tbody>
                             </table>
+
                         </div>
                     </div>
                 </div>
                 <hr />
                 <div class="row pt-4">
-                    <button class="btn btn-lg btn-outline-success ml-auto" onclick="Step3()">Next Step</button>
+                    <button id="btnStep3" disabled class="btn btn-lg btn-outline-success ml-auto" onclick="Step3()">Must Select Program</button>
                 </div>
             </section>
             <section id="step3" class="mt-3 step d-none">
@@ -374,7 +388,7 @@
                                         <td>8</td>
                                         <td>227 GR</td>
                                         <td>5.37</td>
-                                        <td >5.99</td>
+                                        <td>5.99</td>
                                         <td class="text-success">13.41</td>
                                         <td>5.99</td>
                                     </tr>
@@ -384,7 +398,7 @@
                                         <td>8</td>
                                         <td>227 GR</td>
                                         <td>5.37</td>
-                                        <td >5.99</td>
+                                        <td>5.99</td>
                                         <td class="text-success">13.41</td>
                                         <td>5.99</td>
                                     </tr>
@@ -394,7 +408,7 @@
                                         <td>8</td>
                                         <td>227 GR</td>
                                         <td>5.37</td>
-                                        <td >5.99</td>
+                                        <td>5.99</td>
                                         <td class="text-success">13.41</td>
                                         <td>5.99</td>
                                     </tr>
@@ -546,6 +560,30 @@
                 </div>
 
             </section>
+            <div class="modal fade" id="savePC-modal">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+
+                        <!-- Modal Header -->
+                        <div class="modal-header">
+                            <h4 class="modal-title">Save as</h4>
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        </div>
+
+                        <!-- Modal body -->
+                        <div class="modal-body">
+                            <input class="form-control form-control-lg active" id="new-itemgroup-name" type="text" value="Midel Tariff Increase 2%">
+                        </div>
+
+                        <!-- Modal footer -->
+                        <div class="modal-footer text-center">
+                            <a href="#?" class="btn btn-outline-dark row">Save</a>
+                            <hr />
+                            <a href="@Url.Action("PCEMain", null, new { area = string.Empty, controller = "Home" }, Request.Url.Scheme)" class="btn btn-outline-success row">Save and Exit</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>
@@ -577,7 +615,44 @@
             $("#btn-programDeselectAll").hide();
             $("#btn-programSelectAll").show();
         });
+        //validation
+        var itemgroupval = false;
+        var pricechangeval = true;
+        var effectivedateval = false;
+        $("#selitemGroups").change(function () {
+            if ($("#selitemGroups").val() != "") {
+                itemgroupval = true;
+            }
+            else {
+                itemgroupval = false;
+            }
+            validatePCEStep1()
+        });
+        $("#pceEffectiveDate").change(function () {
+            if (new Date($("#pceEffectiveDate").val()) > new Date()) {
+                effectivedateval = true;
+            }
+            else {
+                effectivedateval = false;
 
+            }
+            validatePCEStep1()
+        });
+        $("#pceName").change(function () {
+            if ($("#pceName").val() != "") {
+                pricechangeval = true;
+            }
+            else {
+                pricechangeval = false;
+            }
+            validatePCEStep1()
+        });
+        function validatePCEStep1() {
+            if (itemgroupval && pricechangeval && effectivedateval) {
+                $("#btnStep2").prop('disabled', false);
+            }
+            else { $("#btnStep2").prop('disabled', true);}
+        }
         function listbyitem() {
             $("#div-listbyprogram").hide();
             $("#div-listbyitem").show()
@@ -618,6 +693,22 @@
         }
         $('#btn-exportExcel').on('click', function () {
             $('.buttons-excel').click()
+        });
+        $(".group-item").click(function () {
+            if (!$(this).children().hasClass('fa-check-circle-o')) {
+                $(this).parent().parent().toggleClass("table-info");
+                $(this).children().toggleClass("fa-minus-circle");
+            }
+            if ($(".fa-minus-circle").length > 0) {
+                $("#btnStep3").text('Next Step');
+                $("#btnStep3").prop('disabled', false);
+            }
+            else {
+                $("#btnStep3").text('Must Select Program');
+                $("#btnStep3").prop('disabled', true);
+            }
+
+
         });
     </script>
 }

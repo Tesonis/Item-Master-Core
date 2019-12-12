@@ -1,6 +1,5 @@
 ﻿@{
-    ViewBag.Title = "Costing Model";
-    ViewBag.Name = Request.Cookies["SecToken"]["FullName"];
+    ViewBag.Title = "Review Costing Model";
 }
 @model PricingProject.Models.ItemViewModels.SearchViewModel
 @Styles.Render("~/Content/bs-select")
@@ -10,267 +9,104 @@
 <nav aria-label="breadcrumb">
     <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="@Url.Action("PCEMain", null, new { area = string.Empty, controller = "Home" }, Request.Url.Scheme)"><i class="fa fa-lg fa-home pr-2"></i><b><u>Price Change Management</u></b></a></li>
-        <li class="breadcrumb-item active" aria-current="page"><b>Costing Model</b></li>
+        <li class="breadcrumb-item active" aria-current="page"><b>Review Costing Model</b></li>
     </ol>
 </nav>
-<div class="bg-white py-3 multi_step_form">
-    <div class="mx-auto text-center py-4"><h2 class="text-muted">Costing Model</h2></div>
-    <div class="row ">
-        <ul class="progressbar col-8 mx-auto">
-            <li class="active">Select Brand</li>
-            <li>Create Costing Analysis</li>
-            <li>Review Financial P&L</li>
-            <li>Provide Documentation & Submission</li>
-        </ul>
-    </div>
-    <hr />
+<div class="bg-white py-3">
+    <div class="mx-auto text-center py-4"><h2 class="text-muted">Review Costing Model</h2></div>
+
     <div class="row container-fluid">
 
         <div id="multiForm" class="container-fluid mx-auto">
-            <section id="step1" class="step mx-auto col-8">
-                <div class="col-12 mx-auto text-left">
-                    @*<div class="mt-2">
-                        <div class="py-3"><b>Select Supplier</b></div>
-                        @Html.DropDownListFor(x => x.Vendors, Model.Vendors, new { @class = "selectpicker form-control search-result-filter", data_live_search = "true", data_style = "btn-white border-secondary", title = "--- No Supplier Selected ---" })
-                    </div>*@
+            <section id="step1">
+                <div class="col-12 text-left">
+                    <div class="mt-2">
+                        <div><b>Select Supplier</b></div>
+                        <label>Midel</label>
+                    </div>
 
                     <div class="mt-2">
 
-                        <div class="py-3"><b>Select Brand</b></div>
-                        @Html.DropDownListFor(x => x.Brands, Model.Brands, new { @class = "selectpicker form-control search-result-filter", data_live_search = "true", data_style = "btn-white border-secondary", title = "--- No Brand Selected ---" })
+                        <div><b>Select Brand</b></div>
+                        <label>Midel</label>
                     </div>
-                </div>
-                <div class="row py-5 col-12 mx-auto">
-                    <button id="btnStep2" class="btn btn-lg btn-success btn-block" disabled onclick="Step2()">Brand Cannot Be Empty</button>
                 </div>
             </section>
+            <hr />
+            <section id="step2">
 
-            <div class="modal" id="modalWarningSave" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                <div class="modal-dialog modal-danger" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h4 class="modal-title">You have unsaved work</h4>
-                            <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">×</span>
-                            </button>
-                        </div>
-                        <div class="modal-body">
-                            <p>Leaving this page will result in loss of unsaved work. Would you like to save your work?</p>
-                        </div>
-                        <div class="modal-footer">
-                            <button class="btn btn-danger" type="button" data-dismiss="modal">Continue without saving</button>
-                            <button class="btn btn-success" type="button">Save changes</button>
-                        </div>
-                    </div>
-
-                </div>
-
-            </div>
-            <div class="modal fade" id="modalDeleteGroup" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                <div class="modal-dialog modal-danger" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h4 class="modal-title">This item group will be deleted</h4>
-                            <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">×</span>
-                            </button>
-                        </div>
-                        <div class="modal-body">
-                            <p>Deleting this group will remove all changes for the costing analysis. Items selected will be made available in the table.</p>
-                            <p>Delete item group?</p>
-                        </div>
-                        <div class="modal-footer">
-                            <button class="btn btn-danger" type="button" data-dismiss="modal">Remove Item Group</button>
-                        </div>
-                    </div>
-
-                </div>
-
-            </div>
-            <div class="modal fade" id="modalSalesAnalysis" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h4 class="modal-title">You have unsaved work</h4>
-                            <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">×</span>
-                            </button>
-                        </div>
-                        <div class="modal-body">
-                            <p>Leaving this page will result in loss of unsaved work. Would you like to save your work?</p>
-                        </div>
-                        <div class="modal-footer">
-                            <button class="btn btn-danger" type="button" data-dismiss="modal">Continue without saving</button>
-                            <button class="btn btn-success" type="button">Save changes</button>
-                        </div>
-                    </div>
-
-                </div>
-
-            </div>
-            <section id="step2" class="d-none step">
-                <a href="#" onclick="Step1()"><i class="fa fa-long-arrow-left pr-2"></i>Previous Step</a>
-                <hr />
                 <div>
-                    @*<div class="alert alert-warning alert-dismissible fade d-none">
-                    <button type="button" class="close" data-dismiss="alert">&times;</button>
-                    <strong>Warning. </strong> Item Group contains more than 1 item. Data shown will reflect the <strong>averages</strong> of all items (If Applicable).
-                </div>*@
                     <div id="group-short" class="row col-12 p-0 m-0">
                         <h5 class="pt-2 mr-2">Name of Item Group:</h5>
-                        <div class="input-group col-10">
+                        <div class="input-group col-6">
                             <div class="input-group-prepend">
                                 <button class="btn btn-outline-info dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="true">
-                                    Completed Item Groups
+                                    Created Item Groups
                                     <span class="caret"></span>
                                 </button>
                                 <div id="sel-itemgroups" class="dropdown-menu dropdown-menu-right" x-placement="top-end" style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(317px, -188px, 0px);">
-
+                                    <a class="dropdown-item bg-secondary disabled" href="#?">
+                                        MIDEL 200gr
+                                        <span class="badge badge-primary badge-pill ml-3" style="position: static;">3</span>
+                                    </a>
+                                    <a class="dropdown-item" href="#?">
+                                        MIDEL cookies 255gr
+                                        <span class="badge badge-primary badge-pill ml-3" style="position: static;">3</span>
+                                    </a>
+                                    <a class="dropdown-item" href="#?">
+                                        MIDEL cookies 227gr
+                                        <span class="badge badge-primary badge-pill ml-3" style="position: static;">3</span>
+                                    </a>
                                 </div>
                             </div>
-                            <input class="form-control" id="new-itemgroup-name" type="text" value=" MIDEL Group 1">
-                            <div class="input-group-append">
-                                <label class="input-group-text"><span id="numitemsselected">0</span> &nbsp; Item(s) Selected</label>
-                                
-                            </div>
-
-
+                            <input class="form-control" id="new-itemgroup-name" type="text" value="MIDEL 200gr">
 
                         </div>
 
-
-
                     </div>
                     <hr />
-                    <button type="button" class="btn btn-outline-primary btn-sm mb-2" onclick="togglepnltable()">
-                        Show / Hide Items Table
-                    </button>
-
                     <div id="pnltable">
-                        <table id="table_groupitems" class="table table-bordered datatable">
+                        <table id="table_groupitems" class="table table-bordered">
                             <thead class="thead-light">
                                 <tr>
-                                    <th></th>
                                     <th>Item Description</th>
                                     <th>Unit Size</th>
                                     <th>Units per Case</th>
                                     <th>Purchase Price per Case</th>
                                     <th>Wholesale Price</th>
-                                    <th>Pending Price Change</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td><a href="#?" class="group-item"><i class="fa fa-plus-circle"></i></a></td>
-                                    <td>MIDEL CANDY CANE CREMES GF</td>
-                                    <td>255 GR</td>
-                                    <td>12</td>
-                                    <td>$2.64</td>
-                                    <td>$53.00</td>
-                                    <td>-</td>
-                                </tr>
-                                <tr>
-                                    <td><a href="#?" class="group-item"><i class="fa fa-plus-circle"></i></a></td>
-                                    <td>MIDEL GF ARROWROOT CK 8PK</td>
-                                    <td>227 GR</td>
-                                    <td>8</td>
-                                    <td>$2.36</td>
-                                    <td>$27.30</td>
-                                    <td>-</td>
-                                </tr>
-                                <tr>
-                                    <td><a href="#?" class="group-item"><i class="fa fa-plus-circle"></i></a></td>
-                                    <td>MIDEL GF CHOC SAND. COOKIES</td>
-                                    <td>227 GR</td>
-                                    <td>12</td>
-                                    <td>$2.12</td>
-                                    <td>$38.88</td>
-                                    <td>-</td>
-                                </tr>
-                                <tr>
-                                    <td><a href="#?" class="group-item"><i class="fa fa-plus-circle"></i></a></td>
                                     <td>MIDEL GF CHOC SNAP PIE CRUST</td>
                                     <td>200 GR</td>
                                     <td>12</td>
                                     <td>$2.56</td>
                                     <td>$43.44</td>
-                                    <td>06/01/2020</td>
                                 </tr>
+
                                 <tr>
-                                    <td><a href="#?" class="group-item"><i class="fa fa-plus-circle"></i></a></td>
-                                    <td>MIDEL GF CHOCO CHIP CK 8PK</td>
-                                    <td>227 GR</td>
-                                    <td>8</td>
-                                    <td>$2.36</td>
-                                    <td>$27.30</td>
-                                    <td>06/01/2020</td>
-                                </tr>
-                                <tr>
-                                    <td><a href="#?" class="group-item"><i class="fa fa-plus-circle"></i></a></td>
-                                    <td>MIDEL GF GINGER SNAP CK 8PK</td>
-                                    <td>227 GR</td>
-                                    <td>8</td>
-                                    <td>$2.12</td>
-                                    <td>$27.30</td>
-                                    <td>06/01/2020</td>
-                                </tr>
-                                <tr>
-                                    <td><a href="#?" class="group-item"><i class="fa fa-plus-circle"></i></a></td>
                                     <td>MIDEL GF GRAHAM PIE CRST</td>
                                     <td>200 GR</td>
                                     <td>12</td>
                                     <td>$2.56</td>
                                     <td>$43.44</td>
-                                    <td>-</td>
-                                </tr>
-                                <tr>
-                                    <td><a href="#?" class="group-item"><i class="fa fa-plus-circle"></i></a></td>
-                                    <td>MIDEL GF VANILLA SAND.COOKIE</td>
-                                    <td>227 GR</td>
-                                    <td>12</td>
-                                    <td>$2.10</td>
-                                    <td>$38.88</td>
-                                    <td>-</td>
-                                </tr>
-                                <tr>
-                                    <td><a href="#?" class="group-item"><i class="fa fa-plus-circle"></i></a></td>
-                                    <td>MIDEL MAPLE GINGER CREMES GF</td>
-                                    <td>255 GR</td>
-                                    <td>12</td>
-                                    <td>$2.64</td>
-                                    <td>$53.00</td>
-                                    <td>-</td>
-                                </tr>
-                                <tr>
-                                    <td><a href="#?" class="group-item"><i class="fa fa-plus-circle"></i></a></td>
-                                    <td>MIDEL PIE CRST SHIPPR GRAH</td>
-                                    <td>200 GR</td>
-                                    <td>48</td>
-                                    <td>$0.00</td>
-                                    <td>$173.76</td>
-                                    <td>-</td>
                                 </tr>
                             </tbody>
                         </table>
                         <hr />
-                        <button id="btnCostingAnalysis" onclick="displaycosting()"  class="btn btn-success btn-block btn-lg" disabled>
-                            Create Costing Analysis for Selected
-                        </button>
                     </div>
                 </div>
 
-                <section id="PriceUpdateCalc" hidden>
+                <section id="PriceUpdateCalc">
                     <div class="row">
                         <div class="col-6 text-left">
                             <p>Currency: <b>CAD</b></p>
                             <p>Freight Terms : <b>FOB</b></p>
-                            <a href="#SalesMarginAnalysis" class="btn btn-info text-white">
-                                Sales & Margin Impact Analysis
-                            </a>
                         </div>
                         <div class="col-6 text-right">
-                            <p>Units per case: <b>8</b></p>
-                            <p>Unit Size : <b>227 GR</b></p>
+                            <p>Units per case: <b>12</b></p>
+                            <p>Unit Size : <b>200 GR</b></p>
                         </div>
                     </div>
                     <hr />
@@ -652,143 +488,118 @@
                         </tbody>
                     </table>
                     <div id="SalesMarginAnalysis" class="card">
-                        <div class="card-header bg-info text-white">
-                            <span class="font-lg font-weight-bold ">Sales & Margin Impact Analysis</span>
-                            <div class="card-header-actions">
-                                <a class="card-header-action btn-minimize" href="#" data-toggle="collapse" data-target="#collapse-SalesMargin" aria-expanded="true">
-                                    <i class="fa fa-chevron-down fa-lg text-white"></i>
-                                </a>
-                            </div>
-                        </div>
-                        <div class="collapse" id="collapse-SalesMargin" style="">
-                            <div class="card-body">
-                                <div class="row">
-                                    <div class="col-12">
 
-                                        <table class="table text-right">
-                                            <thead>
-                                                <tr>
-                                                    <th>Actual Case Volume L 12 Months</th>
-                                                    <th>Projected Case Volume</th>
-                                                </tr>
-                                                <tr>
-                                                    <th>500</th>
-                                                    <th><input type="number" class="form-control text-right col-6 float-right" id="input-ProjectedCaseVolume" value="500"></th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <tr>
-                                                    <td>
-                                                        Average Selling Price/cs
-                                                    </td>
-                                                    <td>
-                                                        New Average Selling Price/cs
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>
-                                                        $24.00
-                                                    </td>
-                                                    <td>
-                                                        $26.49
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>
-                                                        Total Sales L 12 Months
-                                                    </td>
-                                                    <td>
-                                                        Total Est. Sales Next 12 Months
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>
-                                                        $12,000
-                                                    </td>
-                                                    <td>
-                                                        $10,597
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>
-                                                        Actual Margin L 12 Months
-                                                    </td>
-                                                    <td>
-                                                        Estimated New Gross Margin 12 Months
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>
-                                                        $8.77
-                                                    </td>
-                                                    <td>
-                                                        $9.01
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>
-                                                        Net Margin $ Per Case
-                                                    </td>
-                                                    <td>
-                                                        New Net Margin $ Per Case
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>
-                                                        $8.58
-                                                    </td>
-                                                    <td>
-                                                        $8.58
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>
-                                                        Net Margin $ Total
-                                                    </td>
-                                                    <td>
-                                                        New Net Margin $ Total
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>
-                                                        $4290
-                                                    </td>
-                                                    <td>
-                                                        $3832
-                                                    </td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
-                                    </div>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-12">
+
+                                    <table class="table text-right">
+                                        <thead>
+                                            <tr>
+                                                <th>Actual Case Volume L 12 Months</th>
+                                                <th>Projected Case Volume</th>
+                                            </tr>
+                                            <tr>
+                                                <th>500</th>
+                                                <th><input type="number" class="form-control text-right col-6 float-right" id="input-ProjectedCaseVolume" value="500"></th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>
+                                                    Average Selling Price/cs
+                                                </td>
+                                                <td>
+                                                    New Average Selling Price/cs
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    $24.00
+                                                </td>
+                                                <td>
+                                                    $26.49
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    Total Sales L 12 Months
+                                                </td>
+                                                <td>
+                                                    Total Est. Sales Next 12 Months
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    $12,000
+                                                </td>
+                                                <td>
+                                                    $10,597
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    Actual Margin L 12 Months
+                                                </td>
+                                                <td>
+                                                    Estimated New Gross Margin 12 Months
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    $8.77
+                                                </td>
+                                                <td>
+                                                    $9.01
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    Net Margin $ Per Case
+                                                </td>
+                                                <td>
+                                                    New Net Margin $ Per Case
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    $8.58
+                                                </td>
+                                                <td>
+                                                    $8.58
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    Net Margin $ Total
+                                                </td>
+                                                <td>
+                                                    New Net Margin $ Total
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    $4290
+                                                </td>
+                                                <td>
+                                                    $3832
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
                                 </div>
                             </div>
                         </div>
                     </div>
-
-
-
-                    <hr />
-                    <div class="row pt-4">
-                        <button class="btn btn-lg btn-outline-dark ml-auto" data-toggle="modal" data-target="#savePNL-modal">Save as Draft</button>
-                        <button id="btnNewItemGroup" disabled class="btn btn-lg btn-outline-primary ml-3" onclick="AddNewGroup()">Add New Item Group</button>
-                        <button disabled id="btnStep3" class="btn btn-lg btn-outline-success ml-3" onclick="Step3()">Save Items Groups and Continue</button>
-                    </div>
                 </section>
+                <a id="btn-submitPCE" class="btn btn-lg btn-block btn-primary" href="#">Next Item Group</a>
+                <a id="btn-submitPCE" class="btn btn-lg btn-block btn-success" href="#?" onclick="review2()">Continue to Summary</a>
             </section>
-            <section id="step3" class="d-none step">
-                <a href="#" onclick="Step2()"><i class="fa fa-long-arrow-left pr-2"></i>Previous Step</a>
+            <hr />
+
+            <section id="step3">
+                <a href="#" onclick="review1()"><i class="fa fa-long-arrow-left pr-2"></i>Back</a>
                 <hr />
-                <div class="row col-12 m-0 p-0">
-                    <div>
-                        <h5 class="text-muted">Financial Impact on Brand:</h5>
-                    </div>
-                    <div class="buttons ml-auto my-3">
-                        <button class="btn btn-outline-primary active" id="btn-FinancialAllItems">All Items</button>
-                        <button class="btn btn-outline-primary" id="btn-FinancialAffectedItems">Affected Items Only</button>
-                    </div>
-                </div>
-
-
                 <div id="div-FinancialAllItems">
                     <table class="table text-right mt-4">
                         <thead>
@@ -800,11 +611,11 @@
                             </tr>
                             <tr class="table-light">
                                 <th></th>
-                                <th style="width:10%;" >Last 12M</th>
-                                <th style="width:10%;">Next 12M</th>
-                                <th style="width:10%;">Last 12M</th>
-                                <th style="width:10%;">Next 12M</th>
-                                <th >Last 12M</th>
+                                <th>Last 12M</th>
+                                <th>Next 12M</th>
+                                <th>Last 12M</th>
+                                <th>Next 12M</th>
+                                <th>Last 12M</th>
                                 <th>Next 12M</th>
                                 <th>Change</th>
                             </tr>
@@ -813,12 +624,12 @@
                             <tr>
                                 <td class="text-left"><b>Cases</b></td>
                                 <td id="val-L12affectedcases"><span id="val-L12affectedcases">2500</span></td>
-                                <td><input type="number" class="form-control text-right float-right" id="input-N12affectedCases" value="2500"></td>
+                                <td><input type="number" class="form-control text-right col-6 float-right" id="input-N12affectedCases" value="2500"></td>
                                 <td id="val-L12unaffectedcases"><span id="val-L12unaffectedcases">2500</span></td>
-                                <td><input type="number" class="form-control text-right float-right" id="input-N12unaffectedCases" value="2500"></td>
+                                <td><input type="number" class="form-control text-right col-6 float-right" id="input-N12unaffectedCases" value="2500"></td>
                                 <td><span id="val-L12totalcases"></span></td>
                                 <td><span id="val-N12totalcases"></span></td>
-                                <td id="val-Changetotalcases" class="changenum"></td>
+                                <td id="val-Changetotalcases"></td>
                             </tr>
                             <tr>
                                 <td class="text-left"><b>Average Price / Case (CAD)</b></td>
@@ -828,7 +639,7 @@
                                 <td id="val-N12unaffectedappc">20</td>
                                 <td id="val-L12appc"></td>
                                 <td id="val-N12appc"></td>
-                                <td id="val-Changeappc" class="changenum"></td>
+                                <td id="val-Changeappc"></td>
                             </tr>
 
                             <tr>
@@ -839,7 +650,7 @@
                                 <td id="val-N12unaffectedgrosssales"></td>
                                 <td id="val-L12totalgrosssales"></td>
                                 <td id="val-N12totalgrosssales"></td>
-                                <td id="val-Changegrosssales" class="changenum"></td>
+                                <td id="val-Changegrosssales"></td>
                             </tr>
                             <tr>
                                 <td class="text-left"><b>Sales Deductions</b></td>
@@ -849,7 +660,7 @@
                                 <td id="val-N12unaffecteddeductions">5000</td>
                                 <td id="val-L12totaldeductions"></td>
                                 <td id="val-N12totaldeductions"></td>
-                                <td id="val-Changedeductions" class="changenum"></td>
+                                <td id="val-Changedeductions"></td>
                             </tr>
                             <tr>
                                 <td class="text-left"><b>Net Sales</b></td>
@@ -859,7 +670,7 @@
                                 <td id="val-N12unaffectednetsales"></td>
                                 <td id="val-L12totalnetsales"></td>
                                 <td id="val-N12totalnetsales"></td>
-                                <td id="val-Changenetsales" class="changenum"></td>
+                                <td id="val-Changenetsales"></td>
                             </tr>
                             <tr>
                                 <td class="text-left"><b>Cost of Goods Sold</b></td>
@@ -869,7 +680,7 @@
                                 <td id="val-N12unaffectedcogs"></td>
                                 <td id="val-L12totalcogs"></td>
                                 <td id="val-N12totalcogs"></td>
-                                <td id="val-Changecogs" class="changenum"></td>
+                                <td id="val-Changecogs"></td>
                             </tr>
                             <tr>
                                 <td class="text-left"><b>Gross Margin</b></td>
@@ -879,7 +690,7 @@
                                 <td id="val-N12unaffectedgrossmargin"></td>
                                 <td id="val-L12totalgrossmargin"></td>
                                 <td id="val-N12totalgrossmargin"></td>
-                                <td id="val-Changegrossmargin" class="changenum"></td>
+                                <td id="val-Changegrossmargin"></td>
                             </tr>
                             <tr>
                                 <td class="text-left text-success"><b>Gross Margin $ / Case</b></td>
@@ -889,7 +700,7 @@
                                 <td id="val-N12unaffectedgrossmargincase"></td>
                                 <td id="val-L12totalgrossmargincase"></td>
                                 <td id="val-N12totalgrossmargincase"></td>
-                                <td id="val-Changegrossmargincase" class="changenum"></td>
+                                <td id="val-Changegrossmargincase"></td>
                             </tr>
                             <tr>
                                 <td class="text-left"><b>Variable Operating Expense</b></td>
@@ -899,7 +710,7 @@
                                 <td id="val-N12unaffectedvaropex"></td>
                                 <td id="val-L12totalvaropex"></td>
                                 <td id="val-N12totalvaropex"></td>
-                                <td id="val-Changevaropex" class="changenum"></td>
+                                <td id="val-Changevaropex"></td>
                             </tr>
                             <tr>
                                 <td class="text-left text-success"><b>Variable Operating Expense $ / case</b></td>
@@ -909,7 +720,7 @@
                                 <td id="val-N12unaffectedvaropexcase">1.47</td>
                                 <td id="val-L12totalvaropexcase">1.47</td>
                                 <td id="val-N12totalvaropexcase">1.47</td>
-                                <td id="val-Changevaropexcase" class="changenum">0</td>
+                                <td id="val-Changevaropexcase">0</td>
                             </tr>
                             <tr>
                                 <td class="text-left"><b>Contribution Margin</b></td>
@@ -919,7 +730,7 @@
                                 <td id="val-N12unaffectedconmargin"></td>
                                 <td id="val-L12totalconmargin"></td>
                                 <td id="val-N12totalconmargin"></td>
-                                <td id="val-Changeconmargin" class="changenum"></td>
+                                <td id="val-Changeconmargin"></td>
                             </tr>
                             <tr>
                                 <td class="text-left text-success"><b>Contribution Margin $ / Case</b></td>
@@ -929,7 +740,7 @@
                                 <td id="val-N12unaffectedconmargincase"></td>
                                 <td id="val-L12totalconmargincase"></td>
                                 <td id="val-N12totalconmargincase"></td>
-                                <td id="val-Changeconmargincase" class="changenum"></td>
+                                <td id="val-Changeconmargincase"></td>
                             </tr>
                             <tr>
                                 <td class="text-left"><b>Direct Operating Expense (Sales/Marketing)</b></td>
@@ -939,7 +750,7 @@
                                 <td></td>
                                 <td id="val-L12totaldirectopex">4000</td>
                                 <td id="val-N12totaldirectopex">4000</td>
-                                <td id="val-Changedirectopex" class="changenum">0</td>
+                                <td id="val-Changedirectopex">0</td>
                             </tr>
                             <tr class="table-success">
                                 <td class="text-left"><b>Contribution Margin (After Direct OpEx)</b></td>
@@ -949,7 +760,7 @@
                                 <td id="val-N12unaffectedconmarginA"></td>
                                 <td id="val-L12totalconmarginA"></td>
                                 <td id="val-N12totalconmarginA"></td>
-                                <td id="val-ChangeconmarginA" class="changenum"></td>
+                                <td id="val-ChangeconmarginA"></td>
                             </tr>
                             <tr class="table-success">
                                 <td class="text-left"><b>Contribution Margin (After Direct OpEx) $ / Case</b></td>
@@ -959,12 +770,12 @@
                                 <td id="val-N12unaffectedconmarginAcase"></td>
                                 <td id="val-L12totalconmarginAcase"></td>
                                 <td id="val-N12totalconmarginAcase"></td>
-                                <td id="val-ChangeconmarginAcase" class="changenum"></td>
+                                <td id="val-ChangeconmarginAcase"></td>
                             </tr>
                         </tbody>
                     </table>
                 </div>
-                <div id="div-FinancialAffectedItems" class="d-none">
+                <div id="div-FinancialAffectedItems">
                     <table class="table text-right mt-4">
                         <thead>
                             <tr>
@@ -1082,43 +893,23 @@
                         </tbody>
                     </table>
                 </div>
-                <hr />
-                @*<div class="chartView">
-                <div class="row">
-                    <div class="col-6">
-                        <canvas id="canvas" style="display: block; width:100%; height:auto" class="chartjs-render-monitor"></canvas>
-                    </div>
-                    <div class="col-6">
-                        <canvas id="canvas2" style="display: block; width:100%; height:auto" class="chartjs-render-monitor"></canvas>
-                    </div>
-                </div>
 
-            </div>*@
-                <div class="row pt-4">
-                    <button class="btn btn-lg btn-outline-dark ml-auto" data-toggle="modal" data-target="#savePNL-modal">Save as Draft</button>
-                    <a href="#?" class="btn btn-lg btn-outline-success ml-3" onclick="Step4()">Finalize Costing Model</a>
-                </div>
             </section>
-            <section id="step4" class="d-none step">
-                <a href="#" onclick="Step3()"><i class="fa fa-long-arrow-left pr-2"></i>Previous Step</a>
-                <hr />
-                <div class="form-row col-6 p-0">
-                    <h5>Purpose for creating Costing Model:</h5>
-                    <textarea class="form-control" rows="5" id="comment"></textarea>
-                </div>
-                
-                <hr />
+            <hr />
+            <section id="step4">
+                <h5>Reason for creating P&L proposal:</h5>
+                <textarea class="form-control" rows="5" id="comment">Some Text Here</textarea>
                 <div>
                     <h5>Existing Documents</h5>
                     <div data-role="dynamic-fields">
-                        <div id="files-existing">
+                        <div id="files-form">
                             <div class="form-inline form-row col-6 p-0">
 
-                                <input input type="text" class="form-control mb-2 mr-sm-2 col-6" id="field-name" value="File Description" disabled>
+                                <input input type="text" class="form-control mb-2 mr-sm-2 col-6" id="field-name" value="File Name 1">
                                 <!-- file upload start-->
                                 <div class="mb-2 mr-sm-2 col-sm-4 wrap-input-container">
                                     <label class="custom-file-upload form-control">
-                                        <i class="fa fa-cloud-upload"></i> Upload Document
+                                        FileName1.docx
                                     </label>
                                     <input class="file-upload" name="file_name" type="file" disabled>
                                 </div>
@@ -1126,168 +917,95 @@
                                 <button class="btn btn-sm btn-primary mb-2">
                                     <i class="fa fa-link"></i>
                                 </button>
-                                <button class="btn btn-sm btn-danger mb-2" data-role="remove">
-                                    <i class="fa fa-trash"></i>
-                                </button>
 
                             </div>
                         </div>
                     </div>
                 </div>
-
+                <p>Created On: <span id="step4Date">October 28th, 2019</span></p>
+                <p>Created By: <span id="step4User">Terry Huang</span></p>
                 <hr />
-                <h5>Upload New Documents</h5>
-                <div data-role="dynamic-fields">
-                    <div id="files-new">
-                        <div class="form-inline form-row col-6 p-0">
-
-                            <input type="text" class="form-control mb-2 mr-sm-2 col-6" placeholder="File Description">
-                            <!-- file upload start-->
-                            <div class="mb-2 mr-sm-2 col-sm-4 wrap-input-container">
-                                <label class="custom-file-upload form-control">
-                                    <i class="fa fa-cloud-upload"></i> Upload Document
-                                </label>
-                                <input class="file-upload" name="file_name" type="file">
-                            </div>
-                            <!-- file upload ends-->
-
-                            <button class="btn btn-sm btn-danger mb-2" data-role="remove">
-                                <i class="fa fa-trash"></i>
-                            </button>
-
-                        </div>
+                <div id="PCEWorkButtons" class="row col-12">
+                    <div class="col-4 offset-1">
+                        @*<a href="@Url.Action("PCEDisplay", null, new { area = string.Empty, controller = "Home" , target="_blank"}, Request.Url.Scheme)" id="btn-print" class="btn btn-lg btn-block btn-primary">Print / Save as PDF</a>*@
+                        <a id="btn-reject" class="btn btn-lg btn-block btn-danger" href="#?" data-toggle="modal" data-target="#modalReject">Reject</a>
                     </div>
-                    <div class="row col-6 file-upload-add">
-                        <button class="btn btn-primary btn-block mb-2" data-role="add">
-                            <i class="fa fa-plus">Add Another File</i>
-                        </button>
+                    <div class="col-4 offset-2">
+                        @*<a href="@Url.Action("PCEDisplay", null, new { area = string.Empty, controller = "Home" , target="_blank"}, Request.Url.Scheme)" id="btn-print" class="btn btn-lg btn-block btn-primary">Print / Save as PDF</a>*@
+                        <a id="btn-submitPCE" class="btn btn-lg btn-block btn-success" href="#?" data-toggle="modal" data-target="#modalApprove">Approve</a>
                     </div>
                 </div>
-                <hr />
-                <p>Created On: <span id="step4Date"></span></p>
-                <p>Created By: <span id="step4User">@ViewBag.Name</span></p>
-                <div class="row pt-4">
-                    <button class="btn btn-lg btn-outline-dark ml-auto" data-toggle="modal" data-target="#savePNL-modal">Save as Draft</button>
-                    <button class="btn btn-lg btn-outline-success ml-3" data-toggle="modal" data-target="#savePNL-modal">Submit For Approval</button>
-
-                </div>
-
             </section>
-            <div class="modal fade" id="modalDeleteFile" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                <div class="modal-dialog modal-danger" role="document">
+            <div class="modal fade" id="modalReject" tabindex="-1" role="dialog" aria-labelledby="modalReject" aria-hidden="true">
+                <div class="modal-dialog" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h4 class="modal-title">This file will be deleted</h4>
-                            <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">×</span>
+                            <h5 class="modal-title" id="modalItemGroup1Label">Price change rejected</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
                             </button>
                         </div>
                         <div class="modal-body">
-                            <p>This file will be permanently deleted from the server.</p>
+                            <div class="form-group">
+                                <label for="comment">Reason for Price Change:</label>
+                                <textarea class="form-control" rows="5" id="comment"></textarea>
+                            </div>
+                            <div class="custom-control custom-checkbox">
+                                <input type="checkbox" class="custom-control-input" id="customCheck1" checked>
+                                <label class="custom-control-label" for="customCheck1" >CC Confirmation Email to you</label>
+                            </div>
                         </div>
                         <div class="modal-footer">
-                            <button class="btn btn-danger" type="button" data-dismiss="modal">Delete File</button>
+                            <a id="btn-CompleteReject" class="btn btn-lg btn-block btn-success" href="@Url.Action("PCEMain", null, new { area = string.Empty, controller = "Home" }, Request.Url.Scheme)">Submit</a>
                         </div>
                     </div>
 
                 </div>
-
             </div>
-            <div class="modal fade" id="savePNL-modal">
-                <div class="modal-dialog modal-lg">
+            <div class="modal fade" id="modalApprove" tabindex="-1" role="dialog" aria-labelledby="modalApprove" aria-hidden="true">
+                <div class="modal-dialog" role="document">
                     <div class="modal-content">
-
-                        <!-- Modal Header -->
                         <div class="modal-header">
-                            <h4 class="modal-title">Save as</h4>
-                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            <h5 class="modal-title" id="modalItemGroup1Label">Confirmation of approval for price change</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
                         </div>
-
-                        <!-- Modal body -->
                         <div class="modal-body">
-                            <input class="form-control form-control-lg active" id="new-itemgroup-name" type="text" value="Midel - Oct 1 2019">
+                            A confirmation email will be sent to you and the brand manager.
                         </div>
-
-                        <!-- Modal footer -->
-                        <div class="modal-footer text-center">
-                            <a href="#?" class="btn btn-outline-dark row">Save</a>
-                            <hr />
-                            <a href="@Url.Action("PCEMain", null, new { area = string.Empty, controller = "Home" }, Request.Url.Scheme)" class="btn btn-outline-success row">Save and Exit</a>
+                        <div class="modal-footer">
+                            <a id="btn-CompleteApprove" class="btn btn-lg btn-block btn-success" href="@Url.Action("PCEMain", null, new { area = string.Empty, controller = "Home" }, Request.Url.Scheme)">Confirm</a>
                         </div>
                     </div>
+
                 </div>
-            </div>
+            </div>>
         </div>
     </div>
 </div>
-
 @section Scripts{
     <script src="~/Scripts/Site/formwizard.js"></script>
     <script>
         $(document).ready(function () {
-            $('[data-toggle="popover"]').popover();
-            $('#table_groupitems').DataTable({
-                "columnDefs": [
-                    { "orderable": false, "targets": 0 }
-                ],
-                "order": [[1, "desc"]]
-            });
-            $('#input-N12affectedCases, #input-N12unaffectedCases').change(calculateFinancialAllItems);
-
+            $("section .form-control").attr("disabled", "disabled");
+            $("#step3").hide();
+            $("#step4").hide();
         });
-    </script>
-    <script>
-        //Simple validation
-        $(document).ready(function () {
-            $("#Brands").on('change', function(){
-                $("#btnStep2").prop('disabled', false);
-                $("#btnStep2").text('Search All Items In Brand');
-            });
-        });
-    </script>
-    
-    <script>
-        // Dynamically add-on fields
-            // Remove button click
-            $(document).on(
-                'click',
-                '#files-new > .form-inline [data-role="remove"]',
-                function (e) {
-                    e.preventDefault();
-                    $(this).closest('.form-inline').remove();
-                }
-                );
-                $(document).on(
-                    'click',
-                    '#files-existing > .form-inline [data-role="remove"]',
-                    function (e) {
-                        e.preventDefault();
-                        $("#modalDeleteFile").modal('toggle');
-                    }
-                );
-            // Add button click
-            $(document).on(
-                'click',
-                '.file-upload-add [data-role="add"]',
-                function (e) {
-                    e.preventDefault();
-                    var container = $('#files-new');
-                    new_field_group = container.children().filter('.form-inline:first-child').clone();
-                    new_field_group.find('label').html('<i class="fa fa-cloud-upload"></i> Upload Document'); new_field_group.find('input').each(function () {
-                        $(this).val('');
-                    });
-                    container.append(new_field_group);
-                }
-            );
+        function review1() {
+            $("#step1").show();
+            $("#step2").show();
+            $("#step3").hide();
+            $("#step4").hide();
+        }
+        function review2() {
+            $("#step1").hide();
+            $("#step2").hide();
+            $("#step3").show();
+            $("#step4").show();
+            calculateFinancialAllItems();
+        }
 
 
-
-        // file upload
-
-        $(document).on('change', '.file-upload', function () {
-            var i = $(this).prev('label').clone();
-            var file = this.files[0].name;
-            $(this).prev('label').text(file);
-        });
     </script>
 }
