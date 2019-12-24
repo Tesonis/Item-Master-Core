@@ -1,5 +1,7 @@
 ﻿using IBM.Data.DB2.iSeries;
 using PricingProject.Models.ItemViewModels;
+using Microsoft.WindowsAzure.Storage;
+using Microsoft.WindowsAzure.Storage.Blob;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,6 +20,11 @@ namespace PricingProject.Controllers
             ViewBag.Vendors = GetVendors();
             return View(vm);
         }
+        [HttpPost]
+        public ActionResult PCEPNL(string Brand)
+        {
+            return View(Brand);
+        }
 
         public ActionResult PCEDisplay()
         {
@@ -30,6 +37,7 @@ namespace PricingProject.Controllers
         public ActionResult PCEMain()
         {
             ViewBag.name = Request.Cookies["SecToken"]["FullName"];
+            
             return View();
         }
         public ActionResult PCEAdd()

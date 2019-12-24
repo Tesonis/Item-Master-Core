@@ -117,15 +117,6 @@
                                     <option>Zone 3 Only</option>
                                 </select>
                             </div>
-
-                            @*<div class="col-3 form-group">
-                            <label for="selWarehousecat">Shelf Life:</label>
-                            <select id="selBrandcat" class="form-control">
-                                <option selected>More than 180 days</option>
-                                <option>Less than 180 days</option>
-                                <option>Contains Items from both</option>
-                            </select>
-                        </div>*@
                             <div class="col-3 form-group">
                                 <label for="selWarehousecat">Warehouse Category:</label>
                                 <select id="selBrandcat" class="form-control">
@@ -136,7 +127,12 @@
                             </div>
 
                         </div>
+                        <hr />
+                        <div class="row">
+                            <h5>File Upload</h5>
+                            <iframe id="fileuploader" src="http://apps.treeoflife.com/fileuploadtest" style="height:200px;width:100%;border:none;overflow:hidden;"></iframe>
 
+                        </div>
                     </div>
                 </div>
                 <hr />
@@ -604,6 +600,15 @@
             });
             $('[data-toggle="tooltip"]').tooltip();
             $("#btn-programDeselectAll").hide();
+            $("#fileuploader").on('load', function () {
+                var iframeHeight = $("#fileuploader").contents().find('html').height() + 20;
+                $("#fileuploader").css('height', iframeHeight)
+            });
+            
+            $("#fileuploader").contents().change(function () {
+                $("#fileuploader").css('height', $("#fileuploader").contents().find('html').height() + 20);
+            });
+
         });
         $("#btn-programSelectAll").click(function () {
             $('#dataTable-program tbody tr').addClass('table-primary')
@@ -710,5 +715,6 @@
 
 
         });
+
     </script>
 }

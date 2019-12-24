@@ -101,16 +101,20 @@ $("#btn-FinancialAffectedItems").click(function () {
     $("#btn-FinancialAffectedItems").addClass("active");
 });
 function calculateCostingAllItems() {
-    var currentpurchasepricepercase = parseFloat($("#data-currentpurchasepricepercase"));
-    var proposedpurchasepricepercase = parseFloat($("#input-proposedpurchasepricepercase"));
+    var currpurchasepricepercase = parseFloat($("#data-currentpurchasepricepercase"));
+    var proppurchasepricepercase = parseFloat($("#input-proposedpurchasepricepercase"));
     var exchangerate = parseFloat($("#dataExchangeRate"));
-    var purchasepriceCAD = proposedpurchasepricepercase * exchangerate;
+    var purchasepriceCAD = proppurchasepricepercase * exchangerate;
     var duty = purchasepriceCAD * parseFloat($("#data-duty")) / 100;
     var freightcosting = parseFloat($("#data-freightcosting"));
-    var currentlandingcost;
-    var proposedlandingcost = purchasepriceCAD + duty + freightcosting;
-    var currentdealaccruals = parseFloat($("#data-freightcosting"));
-    var proposeddealaccruals;
+    var currlandingcost;
+    var proplandingcost = purchasepriceCAD + duty + freightcosting;
+    var currdealaccruals = parseFloat($("#data-freightcosting"));
+    var propdealaccruals;
+    //Other
+    var cashtermsperc;
+    var cashtermscurr;
+    var cashtermsprop;
 
 
     //DSD
@@ -118,7 +122,9 @@ function calculateCostingAllItems() {
     var dsdcproposedpricepercase;
 }
 
-
+function resizeIframe(obj) {
+    obj.style.height = obj.contentWindow.document.documentElement.scrollHeight + 'px';
+}
 
 function calculateFinancialAllItems() {
     //CASES
@@ -318,4 +324,17 @@ function changecolor() {
             $(this).addClass('text-danger');
         }
     });
+}
+function getUrlVars() {
+    var vars = {};
+    var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function (m, key, value) {
+        vars[key] = value;
+    });
+    return vars;
+}
+function Step1Submitted() {
+    var selectedbrand = getUrlVars()["Brands"];
+    if (selectedbrand != "" && selectedbrand != undefined) {
+        Step2();
+    }
 }

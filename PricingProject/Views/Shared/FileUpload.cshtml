@@ -1,12 +1,58 @@
 ﻿
-@{
-    ViewBag.Title = "FileUpload";
-    Layout = "~/Views/Shared/_Layout.cshtml";
-}
-
-@using (Html.BeginForm("UploadFile", "Shared", FormMethod.Post, new { enctype = "multipart/form-data" }))
+@using (Html.BeginForm("UploadAsync", "BlobStorage", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
-    <input type="file" name="FileName" id="file" style="width:240px" />
-    <input type="submit" value="Upload" />
+    <div class="fileUpload btn btn-primary">
+        <input type="file" id="file" name="selectFiles" onchange="DisplayFilesToUpload()" multiple />
+    </div>
+
+    @* This gets populated from the DisplayFilesToUpload() JS function*@
+    <p id="FilesToUpload"></p>
 }
 
+@if (Model != null && Model.Count > 0)
+{
+    foreach (var item in Model)
+    {
+        <div class="row col-md-12 form-inline" style="display:inline-block">
+            <input class="col-md-5 form-control-static" style="margin-right:10px" type="text" value="@item" />
+            <a class="btn btn-primary" href="@item" target="_blank"><label>Link</label></a>
+            <a class="btn btn-danger" onclick="deleteImage('@item');"><label>Delete</label></a>
+        </div>
+
+    }
+
+    using (Html.BeginForm("DeleteAll", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        <div class="fileUpload btn btn-default"><span>Delete All Files</span><input type="submit" name="deleteAll" class="upload" /></div>
+    }
+}
+<script>
+    //Calls async Task<ActionResult> DeleteImage(string name) in the HomeController and Refreshes the page
+    function deleteImage(item) {
+        var url = "/Home/DeleteImage";
+        $.post(url, { Name: item }, function (data) {
+            window.location.href = "/Home/Index";
+        });
+    }
+
+    //Lists the file name and size for all files to be uploaded by updating the <p id="FilesToUpload"></p> control
+    function DisplayFilesToUpload() {
+        var element = document.getElementById("file");
+        var html = "<h4>Files(s) to Upload</h4>";
+
+        var filecount = 1;
+        for (var i = 0; i < element.files.length; i++) {
+            var file = element.files[i];
+            html += '<div class="row col-12 p-0"> ' +
+                '<div class="mb-2 mr-sm-2 col-sm-3 wrap-input-container" > ' +
+                '<label class="custom-file-upload form-control" > <i class="fa fa-cloud-upload" ></i >' + file.name +'</label >' +
+                '<input class="file-upload" name = "file_name" type = "file" disabled ></div > ' +
+                '<input type="text" class="form-control mb-2 mr-sm-2 col-md-4 filedesc" id="filedesc1" placeholder="File Description" ></div ><br/>'
+
+        }
+
+        html += "<hr><input type='submit' class='upload btn btn-success col-md-6' value='Upload Files'/>"
+        document.getElementById("FilesToUpload").innerHTML = html;
+    }
+
+</script>

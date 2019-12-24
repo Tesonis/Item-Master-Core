@@ -38,10 +38,6 @@ namespace PricingProject.Controllers
                 }
                 else
                 {
-                    //User user = new User();
-                    //user.Username = session.Username;
-                    //user.FullName = session.FullName;
-                    //user.Email = session.EmailAddress;
                     HttpCookie userCookie = new HttpCookie("SecToken");
                     userCookie["FullName"] = session.FullName;
                     userCookie["Email"] = session.EmailAddress;
@@ -50,11 +46,7 @@ namespace PricingProject.Controllers
                     userCookie.Expires.AddHours(1);
                     Response.SetCookie(userCookie);
                     FormsAuthentication.SetAuthCookie(userCookie["SecurityKey"], true);
-                    //Session["FullName"] = session.FullName;
-                    //Session["Email"] = session.EmailAddress;
-                    //Session["Username"] = session.Username;
-                    //Session["SecurityKey"] = session.securityIdentifier;
-                    return RedirectToAction("PCEMain", "Home", new { subdomain = "pcm" }); ;
+                    return RedirectToAction("PCEMain", "Home"); ;
                 }
             }
             catch(InvalidCastException e)

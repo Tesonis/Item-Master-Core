@@ -28,21 +28,22 @@
 
         <div id="multiForm" class="container-fluid mx-auto">
             <section id="step1" class="step mx-auto col-8">
-                <div class="col-12 mx-auto text-left">
-                    @*<div class="mt-2">
-                        <div class="py-3"><b>Select Supplier</b></div>
-                        @Html.DropDownListFor(x => x.Vendors, Model.Vendors, new { @class = "selectpicker form-control search-result-filter", data_live_search = "true", data_style = "btn-white border-secondary", title = "--- No Supplier Selected ---" })
-                    </div>*@
+                @using (Html.BeginForm("PCEPNL", "Home", FormMethod.Get))
+                {
+                    <div class="col-12 mx-auto text-left">
+                        <div class="mt-2">
 
-                    <div class="mt-2">
+                            <div class="py-3"><b>Select Brand</b></div>
 
-                        <div class="py-3"><b>Select Brand</b></div>
-                        @Html.DropDownListFor(x => x.Brands, Model.Brands, new { @class = "selectpicker form-control search-result-filter", data_live_search = "true", data_style = "btn-white border-secondary", title = "--- No Brand Selected ---" })
+                            @Html.DropDownListFor(x => x.Brands, Model.Brands, new { @class = "selectpicker form-control search-result-filter", data_live_search = "true", data_style = "btn-white border-secondary", title = "--- No Brand Selected ---" })
+
+                        </div>
                     </div>
-                </div>
-                <div class="row py-5 col-12 mx-auto">
-                    <button id="btnStep2" class="btn btn-lg btn-success btn-block" disabled onclick="Step2()">Brand Cannot Be Empty</button>
-                </div>
+                    <div class="row py-5 col-12 mx-auto">
+                        <button id="btnStep2" class="btn btn-lg btn-success btn-block" disabled type="submit">Search Items</button>
+                    </div>
+                }
+
             </section>
 
             <div class="modal" id="modalWarningSave" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -113,9 +114,9 @@
                 <hr />
                 <div>
                     @*<div class="alert alert-warning alert-dismissible fade d-none">
-                    <button type="button" class="close" data-dismiss="alert">&times;</button>
-                    <strong>Warning. </strong> Item Group contains more than 1 item. Data shown will reflect the <strong>averages</strong> of all items (If Applicable).
-                </div>*@
+                            <button type="button" class="close" data-dismiss="alert">&times;</button>
+                            <strong>Warning. </strong> Item Group contains more than 1 item. Data shown will reflect the <strong>averages</strong> of all items (If Applicable).
+                        </div>*@
                     <div id="group-short" class="row col-12 p-0 m-0">
                         <h5 class="pt-2 mr-2">Name of Item Group:</h5>
                         <div class="input-group col-10">
@@ -131,7 +132,7 @@
                             <input class="form-control" id="new-itemgroup-name" type="text" value=" MIDEL Group 1">
                             <div class="input-group-append">
                                 <label class="input-group-text"><span id="numitemsselected">0</span> &nbsp; Item(s) Selected</label>
-                                
+
                             </div>
 
 
@@ -253,7 +254,7 @@
                             </tbody>
                         </table>
                         <hr />
-                        <button id="btnCostingAnalysis" onclick="displaycosting()"  class="btn btn-success btn-block btn-lg" disabled>
+                        <button id="btnCostingAnalysis" onclick="displaycosting()" class="btn btn-success btn-block btn-lg" disabled>
                             Create Costing Analysis for Selected
                         </button>
                     </div>
@@ -800,11 +801,11 @@
                             </tr>
                             <tr class="table-light">
                                 <th></th>
-                                <th style="width:10%;" >Last 12M</th>
+                                <th style="width:10%;">Last 12M</th>
                                 <th style="width:10%;">Next 12M</th>
                                 <th style="width:10%;">Last 12M</th>
                                 <th style="width:10%;">Next 12M</th>
-                                <th >Last 12M</th>
+                                <th>Last 12M</th>
                                 <th>Next 12M</th>
                                 <th>Change</th>
                             </tr>
@@ -1084,16 +1085,16 @@
                 </div>
                 <hr />
                 @*<div class="chartView">
-                <div class="row">
-                    <div class="col-6">
-                        <canvas id="canvas" style="display: block; width:100%; height:auto" class="chartjs-render-monitor"></canvas>
-                    </div>
-                    <div class="col-6">
-                        <canvas id="canvas2" style="display: block; width:100%; height:auto" class="chartjs-render-monitor"></canvas>
-                    </div>
-                </div>
+                        <div class="row">
+                            <div class="col-6">
+                                <canvas id="canvas" style="display: block; width:100%; height:auto" class="chartjs-render-monitor"></canvas>
+                            </div>
+                            <div class="col-6">
+                                <canvas id="canvas2" style="display: block; width:100%; height:auto" class="chartjs-render-monitor"></canvas>
+                            </div>
+                        </div>
 
-            </div>*@
+                    </div>*@
                 <div class="row pt-4">
                     <button class="btn btn-lg btn-outline-dark ml-auto" data-toggle="modal" data-target="#savePNL-modal">Save as Draft</button>
                     <a href="#?" class="btn btn-lg btn-outline-success ml-3" onclick="Step4()">Finalize Costing Model</a>
@@ -1106,64 +1107,9 @@
                     <h5>Purpose for creating Costing Model:</h5>
                     <textarea class="form-control" rows="5" id="comment"></textarea>
                 </div>
+
+                <hr />
                 
-                <hr />
-                <div>
-                    <h5>Existing Documents</h5>
-                    <div data-role="dynamic-fields">
-                        <div id="files-existing">
-                            <div class="form-inline form-row col-6 p-0">
-
-                                <input input type="text" class="form-control mb-2 mr-sm-2 col-6" id="field-name" value="File Description" disabled>
-                                <!-- file upload start-->
-                                <div class="mb-2 mr-sm-2 col-sm-4 wrap-input-container">
-                                    <label class="custom-file-upload form-control">
-                                        <i class="fa fa-cloud-upload"></i> Upload Document
-                                    </label>
-                                    <input class="file-upload" name="file_name" type="file" disabled>
-                                </div>
-                                <!-- file upload ends-->
-                                <button class="btn btn-sm btn-primary mb-2">
-                                    <i class="fa fa-link"></i>
-                                </button>
-                                <button class="btn btn-sm btn-danger mb-2" data-role="remove">
-                                    <i class="fa fa-trash"></i>
-                                </button>
-
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <hr />
-                <h5>Upload New Documents</h5>
-                <div data-role="dynamic-fields">
-                    <div id="files-new">
-                        <div class="form-inline form-row col-6 p-0">
-
-                            <input type="text" class="form-control mb-2 mr-sm-2 col-6" placeholder="File Description">
-                            <!-- file upload start-->
-                            <div class="mb-2 mr-sm-2 col-sm-4 wrap-input-container">
-                                <label class="custom-file-upload form-control">
-                                    <i class="fa fa-cloud-upload"></i> Upload Document
-                                </label>
-                                <input class="file-upload" name="file_name" type="file">
-                            </div>
-                            <!-- file upload ends-->
-
-                            <button class="btn btn-sm btn-danger mb-2" data-role="remove">
-                                <i class="fa fa-trash"></i>
-                            </button>
-
-                        </div>
-                    </div>
-                    <div class="row col-6 file-upload-add">
-                        <button class="btn btn-primary btn-block mb-2" data-role="add">
-                            <i class="fa fa-plus">Add Another File</i>
-                        </button>
-                    </div>
-                </div>
-                <hr />
                 <p>Created On: <span id="step4Date"></span></p>
                 <p>Created By: <span id="step4User">@ViewBag.Name</span></p>
                 <div class="row pt-4">
@@ -1223,6 +1169,7 @@
 
 @section Scripts{
     <script src="~/Scripts/Site/formwizard.js"></script>
+
     <script>
         $(document).ready(function () {
             $('[data-toggle="popover"]').popover();
@@ -1239,46 +1186,47 @@
     <script>
         //Simple validation
         $(document).ready(function () {
-            $("#Brands").on('change', function(){
+            $("#Brands").on('change', function () {
                 $("#btnStep2").prop('disabled', false);
-                $("#btnStep2").text('Search All Items In Brand');
+                $("#btnStep2").text('Search Items');
             });
+            Step1Submitted();
         });
     </script>
-    
+
     <script>
         // Dynamically add-on fields
-            // Remove button click
-            $(document).on(
-                'click',
-                '#files-new > .form-inline [data-role="remove"]',
-                function (e) {
-                    e.preventDefault();
-                    $(this).closest('.form-inline').remove();
-                }
-                );
-                $(document).on(
-                    'click',
-                    '#files-existing > .form-inline [data-role="remove"]',
-                    function (e) {
-                        e.preventDefault();
-                        $("#modalDeleteFile").modal('toggle');
-                    }
-                );
-            // Add button click
-            $(document).on(
-                'click',
-                '.file-upload-add [data-role="add"]',
-                function (e) {
-                    e.preventDefault();
-                    var container = $('#files-new');
-                    new_field_group = container.children().filter('.form-inline:first-child').clone();
-                    new_field_group.find('label').html('<i class="fa fa-cloud-upload"></i> Upload Document'); new_field_group.find('input').each(function () {
-                        $(this).val('');
-                    });
-                    container.append(new_field_group);
-                }
-            );
+        // Remove button click
+        $(document).on(
+            'click',
+            '#files-new > .form-inline [data-role="remove"]',
+            function (e) {
+                e.preventDefault();
+                $(this).closest('.form-inline').remove();
+            }
+        );
+        $(document).on(
+            'click',
+            '#files-existing > .form-inline [data-role="remove"]',
+            function (e) {
+                e.preventDefault();
+                $("#modalDeleteFile").modal('toggle');
+            }
+        );
+        // Add button click
+        $(document).on(
+            'click',
+            '.file-upload-add [data-role="add"]',
+            function (e) {
+                e.preventDefault();
+                var container = $('#files-new');
+                new_field_group = container.children().filter('.form-inline:first-child').clone();
+                new_field_group.find('label').html('<i class="fa fa-cloud-upload"></i> Upload Document'); new_field_group.find('input').each(function () {
+                    $(this).val('');
+                });
+                container.append(new_field_group);
+            }
+        );
 
 
 
@@ -1289,5 +1237,6 @@
             var file = this.files[0].name;
             $(this).prev('label').text(file);
         });
+        
     </script>
 }
